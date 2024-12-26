@@ -7,6 +7,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 import Link from "next/link"; // Import Link
 import Image from "next/image";
+import Link from "next/link";
 
 const logo = "/assets/logo.jpg";
 
