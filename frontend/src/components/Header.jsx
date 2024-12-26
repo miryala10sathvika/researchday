@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 const image = {
     url: "/assets/logo.jpg",
@@ -9,7 +10,100 @@ const image = {
 export default function Header() {
     return (
         <Box sx={{ width: "100%", overflow: "hidden", margin: "auto" }}>
-            <Box display="flex" justifyContent="space-between" mt={1}>
+            {/* Navbar Section */}
+            <nav 
+                style={{
+                    width: "100%",
+                    borderBottom: "1px solid #e0e0e0",
+                    backgroundColor: "white",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 1000,
+                }}
+            >
+                <div className="navbar-container" style={{
+                    maxWidth: "1200px",
+                    margin: "0 auto",
+                    padding: "1rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}>
+                    {/* Logo Section */}
+                    <div className="logo-section">
+                        <Image
+                            src={image.url}
+                            alt={image.alt}
+                            width={120}
+                            height={50}
+                            style={{ mixBlendMode: "multiply" }}
+                        />
+                    </div>
+
+                    {/* Navigation Links */}
+                    <div className="nav-links" style={{
+                        display: "flex",
+                        gap: "2rem",
+                    }}>
+                        <Link 
+                            href="/" 
+                            style={{
+                                textDecoration: "none",
+                                color: "#333",
+                                fontSize: "1rem",
+                                fontWeight: 500,
+                                padding: "0.5rem 1rem",
+                                transition: "color 0.3s ease",
+                            }}
+                        >
+                            Home
+                        </Link>
+                        <Link 
+                            href="/organisation" 
+                            style={{
+                                textDecoration: "none",
+                                color: "#333",
+                                fontSize: "1rem",
+                                fontWeight: 500,
+                                padding: "0.5rem 1rem",
+                                transition: "color 0.3s ease",
+                            }}
+                        >
+                            Organisation
+                        </Link>
+                        <Link 
+                            href="/applications" 
+                            style={{
+                                textDecoration: "none",
+                                color: "#333",
+                                fontSize: "1rem",
+                                fontWeight: 500,
+                                padding: "0.5rem 1rem",
+                                transition: "color 0.3s ease",
+                            }}
+                        >
+                            Applications
+                        </Link>
+                        <Link 
+                            href="/program" 
+                            style={{
+                                textDecoration: "none",
+                                color: "#333",
+                                fontSize: "1rem",
+                                fontWeight: 500,
+                                padding: "0.5rem 1rem",
+                                transition: "color 0.3s ease",
+                            }}
+                        >
+                            Program
+                        </Link>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Content Section */}
+            <Box display="flex" justifyContent="space-between" mt={3}>
+                {/* Logo and Info Box */}
                 <Box
                     flex={1}
                     sx={{
@@ -41,30 +135,24 @@ export default function Header() {
                         India
                     </Typography>
                 </Box>
-
-                {/* Second Box */}
+                
+                {/* Carousel Box */}
                 <Box
                     flex={1}
                     sx={{
-                        margin: "0 8px", // Add consistent margin for spacing
+                        margin: "0 8px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        height: "300px", // Match height with the first Box
-                        backgroundColor: "#f9f9f9", // Optional background for visual balance
+                        height: "300px",
+                        backgroundColor: "#f9f9f9",
                         borderRadius: 2,
                     }}
                 >
-                    <h1 style={{ textAlign: "center" }}>
+                    <Typography variant="h4">
                         Here comes the carousel
-                    </h1>
-                    {/* <Carousel /> */}
+                    </Typography>
                 </Box>
-            </Box>
-            <Box>
-                <Typography variant="h5" mt={2} sx={{ textAlign: "center" }}>
-                    The Navbar Comes here
-                </Typography>
             </Box>
         </Box>
     );
