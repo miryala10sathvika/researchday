@@ -73,7 +73,7 @@ export default function Home() {
                     <Typography variant="h6" gutterBottom>
                         Ignite Innovation, Inspire Collaboration
                     </Typography>
-                    
+                    <Typography variant="subtitle1">Date: 01/01/2024</Typography>
                 </Box>
             </Box>
             <Box 
