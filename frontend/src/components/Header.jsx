@@ -1,71 +1,161 @@
-import { Box, Typography } from "@mui/material";
+"use client";
+
+import { AppBar, Toolbar, Box, Typography, Button, IconButton, Menu, MenuItem, Collapse } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
+import Link from "next/link"; // Import Link
 import Image from "next/image";
 
-const image = {
-    url: "/assets/logo.jpg",
-    alt: "IIITH Students Conference",
-};
+const logo = "/assets/logo.jpg";
 
 export default function Header() {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [openSubmenu, setOpenSubmenu] = useState(null);
+
+    const handleMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const toggleMobileSubmenu = (index) => {
+        setOpenSubmenu((prev) => (prev === index ? null : index));
+    };
+
+    const menuItems = [
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        {
+            label: "Organization",
+            submenu: [
+                { label: "Submenu 1", href: "/organization/submenu1" },
+                { label: "Submenu 2", href: "/organization/submenu2" },
+                { label: "Submenu 3", href: "/organization/submenu3" },
+            ],
+        },
+        { label: "Applications", href: "/applications" },
+        { label: "Program", href: "/program" },
+    ];
+
     return (
-        <Box sx={{ width: "100%", overflow: "hidden", margin: "auto" }}>
-            <Box display="flex" justifyContent="space-between" mt={1}>
-                <Box
-                    flex={1}
-                    sx={{
-                        backgroundColor: "#e0e8ef",
-                        borderRadius: 2,
-                        boxShadow: "3px 3px 8px rgba(0, 0, 0, 0.1)",
-                        textAlign: "center",
-                        margin: "0 8px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "300px",
-                    }}
-                >
-                    <Image
-                        src={image.url}
-                        alt={image.alt}
-                        width={250}
-                        height={100}
-                        style={{ mixBlendMode: "multiply" }}
-                    />
-                    <Typography variant="h6" mt={2} mb={1}>
-                        February 15-17, 2024
-                    </Typography>
-                    <Typography variant="body1">
-                        Gachibowli, Hyderabad,
-                        <br />
-                        India
+        <AppBar position="static" sx={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", backgroundColor: "white", color: "black", zIndex: 999, height: 90 }}>
+            <Toolbar>
+                {/* Logo */}
+                <Box display="flex" alignItems="center" ml={2} p={1}>
+                    <Image src={logo} width={150} height={80} alt="IIITH Logo" />
+                    <Typography variant="h5" component="h1" sx={{ ml: 2, fontWeight: "bold" }} display={{ xs: "none", md: "block" }}>
+                        IIITH Research Fest
                     </Typography>
                 </Box>
 
-                {/* Second Box */}
+                {/* Desktop Menu */}
+                <Box flexGrow={1} display={{ xs: "none", md: "flex" }} justifyContent="flex-end" mr={4} zIndex={999}>
+                    {menuItems.map((item, index) => (
+                        <Box key={index}>
+                            {item.submenu ? (
+                                <Box>
+                                    <Button
+                                        color="inherit"
+                                        onClick={handleMenuOpen}
+                                        sx={{ fontWeight: "bold" }}
+                                    >
+                                        {item.label}
+                                    </Button>
+                                    <Menu
+                                        anchorEl={anchorEl}
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleMenuClose}
+                                    >
+                                        {item.submenu.map((subItem, subIndex) => (
+                                            <MenuItem key={subIndex} onClick={handleMenuClose}>
+                                                <Link href={subItem.href} passHref>
+                                                    {subItem.label}
+                                                </Link>
+                                            </MenuItem>
+                                        ))}
+                                    </Menu>
+                                </Box>
+                            ) : (
+                                <Link href={item.href} passHref>
+                                    <Button color="inherit" sx={{ fontWeight: "bold" }}>
+                                        {item.label}
+                                    </Button>
+                                </Link>
+                            )}
+                        </Box>
+                    ))}
+                </Box>
+
+                {/* Mobile Menu Icon */}
+                <Box display={{ xs: "flex", md: "none" }} ml={"auto"} zIndex={999}>
+                    <IconButton
+                        size="large"
+                        edge="end"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                </Box>
+            </Toolbar>
+
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
                 <Box
-                    flex={1}
                     sx={{
-                        margin: "0 8px", // Add consistent margin for spacing
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: "300px", // Match height with the first Box
-                        backgroundColor: "#f9f9f9", // Optional background for visual balance
-                        borderRadius: 2,
+                        display: { xs: "flex", md: "none" },
+                        flexDirection: "column",
+                        backgroundColor: "white",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                        position: "absolute",
+                        top: 90,
+                        right: 0,
+                        width: "100%",
+                        zIndex: 999,
                     }}
                 >
-                    <h1 style={{ textAlign: "center" }}>
-                        Here comes the carousel
-                    </h1>
-                    {/* <Carousel /> */}
+                    {menuItems.map((item, index) => (
+                        <Box key={index} sx={{ textAlign: "center" }}>
+                            {item.submenu ? (
+                                <Box>
+                                    <Button
+                                        color="inherit"
+                                        fullWidth
+                                        onClick={() => toggleMobileSubmenu(index)}
+                                        endIcon={openSubmenu === index ? <ExpandLess /> : <ExpandMore />}
+                                        sx={{ fontWeight: "bold", padding: 1.3 }}
+                                    >
+                                        {item.label}
+                                    </Button>
+                                    <Collapse in={openSubmenu === index} timeout="auto" unmountOnExit>
+                                        <Box pl={2} sx={{ backgroundColor: "#efeded", padding: "8px 0" }}>
+                                            {item.submenu.map((subItem, subIndex) => (
+                                                <Link key={subIndex} href={subItem.href} passHref>
+                                                    <Button color="inherit" fullWidth sx={{ padding: 1.3 }}>
+                                                        {subItem.label}
+                                                    </Button>
+                                                </Link>
+                                            ))}
+                                        </Box>
+                                    </Collapse>
+                                </Box>
+                            ) : (
+                                <Link href={item.href} passHref>
+                                    <Button color="inherit" sx={{ fontWeight: "bold", padding: 1.3 }} fullWidth>
+                                        {item.label}
+                                    </Button>
+                                </Link>
+                            )}
+                        </Box>
+                    ))}
                 </Box>
-            </Box>
-            <Box>
-                <Typography variant="h5" mt={2} sx={{ textAlign: "center" }}>
-                    The Navbar Comes here
-                </Typography>
-            </Box>
-        </Box>
+            )}
+        </AppBar>
     );
 }
