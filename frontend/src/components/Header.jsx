@@ -54,7 +54,7 @@ export default function Header() {
                 </Box>
 
                 {/* Desktop Menu */}
-                <Box flexGrow={1} display={{ xs: "none", md: "flex" }} justifyContent="flex-end" mr={4}>
+                <Box flexGrow={1} display={{ xs: "none", md: "flex" }} justifyContent="flex-end" mr={4} zIndex={999}>
                     {menuItems.map((item, index) => (
                         <Box key={index}>
                             {item.submenu ? (
@@ -92,7 +92,7 @@ export default function Header() {
                 </Box>
 
                 {/* Mobile Menu Icon */}
-                <Box display={{ xs: "flex", md: "none" }} ml={"auto"}>
+                <Box display={{ xs: "flex", md: "none" }} ml={"auto"} zIndex={999}>
                     <IconButton
                         size="large"
                         edge="end"
@@ -117,7 +117,7 @@ export default function Header() {
                         top: 90,
                         right: 0,
                         width: "100%",
-                        zIndex: 1,
+                        zIndex: 999,
                     }}
                 >
                     {menuItems.map((item, index) => (
