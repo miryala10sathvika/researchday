@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Box
           sx={{
-            width: { xs: "90%", sm: "70%", md: "60%", lg: "50%" },
+            width: "100%",
             overflow: "hidden",
             margin: "auto",
           }}
