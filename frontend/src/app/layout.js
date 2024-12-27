@@ -1,18 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Box } from "@mui/material";
 import Header from "components/Header";
 import Footer from "components/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Student Conference IIITH",
@@ -25,16 +14,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta rel="icon" href="/favicon.png" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
+      </head>
+      <body>
         <Box
           sx={{
-            width: { xs: "90%", sm: "70%", md: "60%", lg: "50%" },
-            overflow: "hidden",
+            width: "100%",
+            overflowX: "hidden",
             margin: "auto",
           }}
         >
           <Header />
-            {children}
+            <Box component="main" sx={{ mt: 10 }}>
+              {children}
+            </Box>
           <Footer />
         </Box>
       </body>
