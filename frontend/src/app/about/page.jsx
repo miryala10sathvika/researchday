@@ -69,7 +69,7 @@ export default function About() {
             }
           }}
         >
-          <span>Research Fest 2024</span>
+          <span>Research Fest </span>
         </Typography>
 
         {/* Introduction Section - Now Centered */}
