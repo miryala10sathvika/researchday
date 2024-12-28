@@ -1,0 +1,50 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between cards */
+    justify-content: center; /* Center align cards */
+    align-items: flex-start; /* Ensure cards align at the top */
+}
+
+.card {
+  flex: 1 1 calc(48% - 20px);
+  max-width: 48%; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.card-header {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.card-name {
+  color: black;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-institute {
+  color: grey;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.hr {
+    width: 96%;
+    margin: 0 auto;
+    color: grey;
+    opacity: 70%;
+}
