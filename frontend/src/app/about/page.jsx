@@ -21,16 +21,17 @@ export default function About() {
           width: '100%',
           height: '100%',
           opacity: 0.05,  // Very light watermark effect
-          zIndex: 0,
           overflow: 'hidden'
         }}
       >
-        <Image
+        <img
           src="/assets/conference-concept.png"
           alt="Conference Concept"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
+          style={{
+              objectFit: 'fill',
+              width: '100%',
+              height: '100%',
+            } }
         />
       </Box>
 
@@ -320,15 +321,12 @@ export default function About() {
                 zIndex: 1
               }
             }}>
-              <Image
+              <img
                 src="/assets/conference-concept.png"
-                alt="Research Collaboration"
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                style={{ 
-                  borderRadius: '20px',
-                  filter: 'contrast(1.05) brightness(1.02)'
+                alt="Conference Concept"
+                style={{
+                  width: '100%',
+                  objectFit: 'fill',
                 }}
               />
               <Box sx={{
