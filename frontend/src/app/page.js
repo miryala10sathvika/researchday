@@ -39,7 +39,13 @@ const news = [
 const bannerImage = "/assets/banner.jpg"
 export default function Home() {
     return (
-        <Box sx={{ width: "100%", overflow: "hidden", margin: "auto", minHeight: "80vh" }}>
+        <Box sx={{ 
+            width: "100%", 
+            overflow: "hidden", 
+            margin: "auto", 
+            minHeight: "80vh",
+            backgroundColor: "white"
+        }}>
             <Box sx={{ width: "100%", position: "relative", height: "400px" }}>
                 {/* Background Image */}
                 <Image src={bannerImage} alt="Banner" fill style={{ objectFit: "cover" }} />
@@ -67,7 +73,7 @@ export default function Home() {
                     <Typography variant="h6" gutterBottom>
                         Ignite Innovation, Inspire Collaboration
                     </Typography>
-                    <Typography variant="subtitle1">Date: 01/01/2024</Typography>
+                    
                 </Box>
             </Box>
             <Box 
@@ -78,8 +84,10 @@ export default function Home() {
                 gap: 4,
                 ml: { xs: 2, md: 20 }, // Margin left adjusts for xs and md screens
                 mr: { xs: 2, md: 20 }, // Margin right adjusts for xs and md screens
+                backgroundColor: "white",
+                color: "#1a1a1a"
               }}>
-                <Box flex={1}>
+                <Box flex={1} sx={{ backgroundColor: "white" }}>
                     <div
                         style={{
                             fontFamily: "Arial, sans-serif",
@@ -87,20 +95,20 @@ export default function Home() {
                             margin: "20px",
                         }}
                     >
-                        <Typography variant="h4" gutterBottom>
-                            Research Fest @ IIIT-H - 2025
+                        <Typography variant="h3" gutterBottom>
+                            Research Fest @ IIITH - 2025
                         </Typography>
-                        <Typography paragraph>
+                        <Typography paragraph sx={{ fontSize: "1.5rem" }}>
                             The Research Fest is an annual event celebrating research and innovation on our campus. Designed as a mini internal conference, it provides a platform for students to present their accepted or published papers and showcase their work through conference-style paper presentations and poster sessions. The event fosters interdisciplinary discussions, highlights academic excellence, and encourages networking within the research community.
                         </Typography>
-                        <Typography paragraph>
+                        <Typography paragraph sx={{ fontSize: "1.5rem" }}>
                             Open to Dual Degree, Masters, and PhD students, the Research Fest offers a unique opportunity to share ideas, explore diverse projects, and gain hands-on experience in presenting research. Join us in celebrating the spirit of inquiry and advancing knowledge together!
                         </Typography>
 
                         <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
                             Contact
                         </Typography>
-                        <Typography>
+                        <Typography sx={{ fontSize: "1.1rem" }}>
                             If you have any questions, please contact us via e-mail at:{" "}
                             <Link
                                 href="mailto:researchfest@iiit.ac.in"
@@ -113,9 +121,9 @@ export default function Home() {
                 </Box>
 
                 {/* Right Content */}
-                <Box flex={1} sx={{ margin: "20px" }}>
+                <Box flex={1} sx={{ margin: "20px", backgroundColor: "white" }}>
                     {/* Important Dates */}
-                    <Paper elevation={3} sx={{ padding: 3, backgroundColor: "#f8f9fa", marginBottom: 4 }}>
+                    <Paper elevation={3} sx={{ padding: 3, backgroundColor: "white", marginBottom: 4 }}>
                         <Typography
                             variant="h5"
                             gutterBottom
@@ -132,7 +140,7 @@ export default function Home() {
                                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                                     {item.date}
                                 </Typography>
-                                <Typography variant="body1" sx={{ color: "#666" }}>
+                                <Typography variant="body1" sx={{ color: "#666", fontSize: "1.1rem" }}>
                                     {item.event}
                                 </Typography>
                             </Box>
@@ -140,7 +148,7 @@ export default function Home() {
                     </Paper>
 
                     {/* Latest News */}
-                    <Paper elevation={3} sx={{ padding: 3, backgroundColor: "#f8f9fa" }}>
+                    <Paper elevation={3} sx={{ padding: 3, backgroundColor: "white" }}>
                         <Typography
                             variant="h5"
                             gutterBottom
@@ -157,7 +165,7 @@ export default function Home() {
                                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                                     {item.date}
                                 </Typography>
-                                <Typography variant="body1" sx={{ color: "#666" }}>
+                                <Typography variant="body1" sx={{ color: "#666", fontSize: "1.1rem" }}>
                                     {item.content}
                                 </Typography>
                             </Box>
