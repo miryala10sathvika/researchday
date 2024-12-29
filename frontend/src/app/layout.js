@@ -1,20 +1,7 @@
-import { Inter, Playfair_Display, Montserrat } from 'next/font/google';
 import "./globals.css";
 import { Box } from "@mui/material";
 import Header from "components/Header";
 import Footer from "components/Footer";
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '600'],
-});
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400'],
-});
 
 export const metadata = {
   title: "Student Conference IIITH",
@@ -28,18 +15,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta rel="icon" href="/favicon.png" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
       </head>
-      <body className={`${playfair.variable} ${montserrat.variable}`}>
+      <body>
         <Box
           sx={{
             width: "100%",
-            overflow: "hidden",
+            overflowX: "hidden",
             margin: "auto",
           }}
         >
           <Header />
-            {children}
+            <Box component="main" sx={{ mt: 10 }}>
+              {children}
+            </Box>
           <Footer />
         </Box>
       </body>

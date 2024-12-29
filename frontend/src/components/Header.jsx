@@ -43,11 +43,11 @@ export default function Header() {
     ];
 
     return (
-        <AppBar position="static" sx={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", backgroundColor: "white", color: "black", zIndex: 999, height: 90 }}>
+        <AppBar position="absolute" sx={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", backgroundColor: "white", color: "black", zIndex: 999, height: 90 }}>
             <Toolbar>
                 {/* Logo */}
                 <Box display="flex" alignItems="center" ml={2} p={1}>
-                    <Image src={logo} width={150} height={80} alt="IIITH Logo" />
+                    <Image src={logo} width={150} height={80} alt="IIITH Logo"/>
                     <Typography variant="h5" component="h1" sx={{ ml: 2, fontWeight: "bold" }} display={{ xs: "none", md: "block" }}>
                         IIITH Research Fest
                     </Typography>
