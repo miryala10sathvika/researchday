@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --theme-bg-color: rgb(63, 81, 181);
 }
 
 @media (prefers-color-scheme: light) {
@@ -40,7 +41,7 @@ a {
 }
 
 p{
-  text-align: justify;
+  text-align: left;
 }
 
 @media (prefers-color-scheme: dark) {
