@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'components/MemberCard';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 const organizers = [
   {
