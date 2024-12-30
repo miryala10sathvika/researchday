@@ -5,8 +5,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
-import Link from "next/link"; // Import Link
+import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const logo = "/assets/logo.jpg";
 
@@ -14,6 +15,7 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [openSubmenu, setOpenSubmenu] = useState(null);
+    const pathname = usePathname(); // Initialize usepathname
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -31,12 +33,12 @@ export default function Header() {
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
         {
-            label: "Organization",
-            submenu: [
-                { label: "Submenu 1", href: "/organization/submenu1" },
-                { label: "Submenu 2", href: "/organization/submenu2" },
-                { label: "Submenu 3", href: "/organization/submenu3" },
-            ],
+            label: "Organization", href: "/organization",
+            // submenu: [
+            //     { label: "Submenu 1", href: "/organization/submenu1" },
+            //     { label: "Submenu 2", href: "/organization/submenu2" },
+            //     { label: "Submenu 3", href: "/organization/submenu3" },
+            // ],
         },
         { label: "Applications", href: "/applications" },
         { label: "Program", href: "/program" },
@@ -46,15 +48,15 @@ export default function Header() {
         <AppBar position="absolute" sx={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", backgroundColor: "white", color: "black", zIndex: 999, height: 90 }}>
             <Toolbar>
                 {/* Logo */}
-                <Box display="flex" alignItems="center" ml={2} p={1}>
+                <Box display="flex" alignItems="center" sx={{ ml: { xs: 0, md: 2 }, pl: { xs: 0, md: 2 } }} p={1}>
                     <Image src={logo} width={150} height={80} alt="IIITH Logo"/>
-                    <Typography variant="h5" component="h1" sx={{ ml: 2, fontWeight: "bold" }} display={{ xs: "none", md: "block" }}>
+                    <Typography variant="h5" component="h1" sx={{ ml: 2, fontWeight: "bold" }} display={{ xs: "none", lg: "block" }}>
                         IIITH Research Fest
                     </Typography>
                 </Box>
 
                 {/* Desktop Menu */}
-                <Box flexGrow={1} display={{ xs: "none", md: "flex" }} justifyContent="flex-end" mr={4} zIndex={999}>
+                <Box flexGrow={1} display={{ xs: "none", md: "flex" }} justifyContent="flex-end" mr={4} zIndex={999} gap={2}>
                     {menuItems.map((item, index) => (
                         <Box key={index}>
                             {item.submenu ? (
@@ -82,7 +84,15 @@ export default function Header() {
                                 </Box>
                             ) : (
                                 <Link href={item.href} passHref>
-                                    <Button color="inherit" sx={{ fontWeight: "bold" }}>
+                                    <Button
+                                        color="inherit"
+                                        sx={{
+                                            fontWeight: "bold",
+                                            backgroundColor: pathname === item.href ? "var(--theme-bg-color)" : "transparent",
+                                            color: pathname === item.href ? "white" : "black",
+                                            borderRadius: { xs: "0px", md: "4px"},
+                                        }}
+                                    >
                                         {item.label}
                                     </Button>
                                 </Link>
@@ -92,7 +102,7 @@ export default function Header() {
                 </Box>
 
                 {/* Mobile Menu Icon */}
-                <Box display={{ xs: "flex", md: "none" }} ml={"auto"} zIndex={999}>
+                <Box display={{ xs: "flex", md: "none" }} ml={"auto"} zIndex={999} mr={2}>
                     <IconButton
                         size="large"
                         edge="end"
@@ -137,7 +147,16 @@ export default function Header() {
                                         <Box pl={2} sx={{ backgroundColor: "#efeded", padding: "8px 0" }}>
                                             {item.submenu.map((subItem, subIndex) => (
                                                 <Link key={subIndex} href={subItem.href} passHref>
-                                                    <Button color="inherit" fullWidth sx={{ padding: 1.3 }}>
+                                                    <Button
+                                                        color="inherit"
+                                                        fullWidth
+                                                        sx={{
+                                                            padding: 1.3,
+                                                            backgroundColor: pathname === item.href ? "var(--theme-bg-color)" : "transparent",
+                                                            color: pathname === item.href ? "white" : "black",
+                                                            borderRadius: { xs: "0px", md: "4px"},
+                                                        }}
+                                                    >
                                                         {subItem.label}
                                                     </Button>
                                                 </Link>
@@ -147,7 +166,18 @@ export default function Header() {
                                 </Box>
                             ) : (
                                 <Link href={item.href} passHref>
-                                    <Button color="inherit" sx={{ fontWeight: "bold", padding: 1.3 }} fullWidth>
+                                    <Button
+                                        color="inherit"
+                                        sx={{
+                                            fontWeight: "bold",
+                                            padding: 1.3,
+                                            backgroundColor: pathname === item.href ? "var(--theme-bg-color)" : "transparent",
+                                            color: pathname === item.href ? "white" : "black",
+                                            borderRadius: { xs: "0px", md: "4px"},
+                                        }}
+                                        fullWidth
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
                                         {item.label}
                                     </Button>
                                 </Link>
