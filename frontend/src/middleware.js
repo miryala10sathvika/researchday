@@ -14,6 +14,6 @@ export function middleware(request) {
 
 export const config = {
     matcher: [
-        '/:path*', // Matches all pages and routes
+        '/((?!api/login).*)', // Exclude /api/login but match all other paths
     ],
 };
