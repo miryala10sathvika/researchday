@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routes.auth import auth_router
+from app.routes.submissions import sub_router
 from app.db import get_db
 
 app = FastAPI(root_path="/api")
@@ -12,3 +13,4 @@ def read_root():
 
 # Include the routes
 app.include_router(auth_router)
+app.include_router(sub_router)
