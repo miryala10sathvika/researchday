@@ -1,10 +1,14 @@
 from fastapi import FastAPI
-from app.routes import auth
+from app.routes.auth import auth_router
+from app.db import get_db
 
 app = FastAPI(root_path="/api")
 
-app.include_router(auth.router, prefix="/auth")
-
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to IIITH Conference API"}
+    db = get_db()  # Get the database connection
+    return "Hello World!"
+    # return {"client_info": str(db.client)}  # Return the MongoDB client information as a response
+
+# Include the routes
+app.include_router(auth_router)
