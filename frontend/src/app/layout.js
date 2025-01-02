@@ -2,7 +2,6 @@ import "./globals.css";
 import { Box } from "@mui/material";
 import Header from "components/Header";
 import Footer from "components/Footer";
-import { AuthProvider } from "providers/AuthProvider";
 
 export const metadata = {
   title: "Student Conference IIITH",
@@ -22,21 +21,19 @@ export default async function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap" />
       </head>
       <body>
-        <AuthProvider>
-          <Box
-            sx={{
-              width: "100%",
-              overflowX: "hidden",
-              margin: "auto",
-            }}
-          >
-            <Header />
-              <Box component="main" sx={{ mt: 10 }}>
-                {children}
-              </Box>
-            <Footer />
-          </Box>
-        </AuthProvider>
+        <Box
+          sx={{
+            width: "100%",
+            overflowX: "hidden",
+            margin: "auto",
+          }}
+        >
+          <Header />
+            <Box component="main" sx={{ mt: 10 }}>
+              {children}
+            </Box>
+          <Footer />
+        </Box>
       </body>
     </html>
   );
