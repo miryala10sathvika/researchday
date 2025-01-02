@@ -42,6 +42,7 @@ export default function Header() {
         },
         { label: "Applications", href: "/applications" },
         { label: "Program", href: "/program" },
+        { label: "Logout", href: "/api/logout"}
     ];
 
     return (
