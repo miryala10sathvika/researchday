@@ -2,34 +2,60 @@ import ApplicationsClient from 'components/applicationsClient';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-const authorized_mails = ['dilepkumar.adari@students.iiit.ac.in', 'adaridileep@students.iiit.ac.in'];
+const AUTHORIZED_EMAILS = [
+  'dileepkumar.adari@students.iiit.ac.in',
+  'adaridileep@students.iiit.ac.in',
+];
+
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000/api';
 
 export default async function ApplicationsPage() {
-    const cookeys = await cookies();
+    const cookeys = cookies();
     const cookieHeader = cookeys
-        .getAll()
-        .map((cookie) => `${cookie.name}=${cookie.value}`)
-        .join("; ");
+      .getAll()
+      .map((cookie) => `${cookie.name}=${cookie.value}`)
+      .join('; ');
 
-    const userResponse = await fetch(`${process.env.BACKEND_URL || "http://localhost:8000/api"}/user`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'cookie': cookieHeader,
-        },
-        credentials: 'include', // Send cookies
+    // Fetch user data
+    const userResponse = await fetch(`${BACKEND_URL}/user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: cookieHeader,
+      },
+      credentials: 'include',
     });
 
     if (!userResponse.ok) {
-        return <div>Failed to fetch user data</div>;
+      console.error('Failed to fetch user data:', userResponse.statusText);
+      return <div>Failed to fetch user data</div>;
     }
 
-    const userData = await userResponse.json();
-    const user = userData.user;
+    const { user } = await userResponse.json();
 
-    if (user && authorized_mails.includes(user.email)) {
-        redirect('/applications/submissions');
+    if (!user) {
+      return redirect('/api/login');
     }
 
-    return <ApplicationsClient submitted={false} user={user} />;
+    // Check if the user is authorized
+    if (AUTHORIZED_EMAILS.includes(user.email)) {
+      return redirect('/applications/submissions');
+    }
+
+    // Fetch user submissions
+    const submissionsResponse = await fetch(`${BACKEND_URL}/submissions/${user.roll}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        cookie: cookieHeader,
+      },
+      credentials: 'include',
+    });
+
+    const submissions = submissionsResponse.ok
+      ? await submissionsResponse.json()
+      : [];
+
+    return <ApplicationsClient submitted={submissions} user={user} />;
+
 }

@@ -1,9 +1,9 @@
 from typing import List, Optional
-from pydantic import BaseModel, Field
 from uuid import UUID
 import uuid
 from datetime import datetime
 from motor.motor_asyncio import AsyncIOMotorDatabase
+from pydantic import BaseModel
 
 
 # Request and Response Models
@@ -11,7 +11,7 @@ class SubmissionCreate(BaseModel):
     track_id: UUID
     title: str
     abstract: str
-    authors: List[UUID]
+    authors: str
 
 
 class SubmissionUpdateStatus(BaseModel):
@@ -25,7 +25,7 @@ class SubmissionResponse(BaseModel):
     track_id: str
     title: str
     abstract: str
-    authors: List[str]
+    authors: str
     file_url: str
     acceptance_proof: str
     status: str

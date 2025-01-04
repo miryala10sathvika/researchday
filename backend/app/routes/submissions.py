@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, Form
 from typing import List
-from uuid import UUID
+from uuid import UUID, uuid4
 from app.manager.submissions import SubmissionLogic, SubmissionCreate, SubmissionUpdateStatus, SubmissionResponse
 from app.db import get_db
 import uuid
@@ -10,27 +10,27 @@ import os
 sub_router = APIRouter()
 
 
-@sub_router.post("/submit", response_model=SubmissionResponse)
+@sub_router.post("/submissions", response_model=SubmissionResponse)
 async def create_submission(
-    user_roll_no: str,
+    user_roll_no: str = Form(...),
     title: str = Form(...),
     abstract: str = Form(...),
-    authors: List[str] = Form(...),
+    authors: str = Form(...),  # Comma-separated authors
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     db=Depends(get_db),
 ):
     try:
-        sub_id=str(uuid.uuid4())
-        # Save the uploaded files
+        sub_id = str(uuid4())
+
+
         file_url_path = f"uploads/paper/{sub_id}.pdf"
         acceptance_proof_path = f"uploads/proof/{sub_id}.pdf"
         
-        # Save files to the server (example: in an 'uploads' directory)
-        with open(file_url_path, "wb") as f:
-            f.write(await file_url.read())
-        with open(acceptance_proof_path, "wb") as f:
-            f.write(await acceptance_proof.read())
+        # with open(file_url_path, "wb+") as f:
+        #     f.write(await file_url.read())
+        # with open(acceptance_proof_path, "wb+") as f:
+        #     f.write(await acceptance_proof.read())
 
         # Prepare submission data
         submission_data = {
@@ -42,9 +42,10 @@ async def create_submission(
             "acceptance_proof": acceptance_proof_path,
         }
 
-        return await SubmissionLogic.create_submission(sub_id,db, submission_data)
+        # Create the submission in the database
+        return await SubmissionLogic.create_submission(str(sub_id), db, submission_data)
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=f"{str(e)}")
 
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
@@ -52,16 +53,16 @@ async def get_all_submissions(db=Depends(get_db)):
     try:
         return await SubmissionLogic.get_all_submissions(db)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"{str(e)}")
 
 @sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
 async def get_submission(roll_no: str, db=Depends(get_db)):
     try:
         return await SubmissionLogic.get_submission_by_roll_no(db, roll_no)
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=f"-{str(e)}")
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)
@@ -69,9 +70,9 @@ async def update_submission_status(submission_id: UUID, update: SubmissionUpdate
     try:
         return await SubmissionLogic.update_submission_status(db, submission_id, update)
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=f"{str(e)}")
     
 @sub_router.get("/get-pdf/{folder_name}/{uuid}")
 async def get_pdf(folder_name: str, uuid: str):
@@ -83,4 +84,4 @@ async def get_pdf(folder_name: str, uuid: str):
         raise HTTPException(status_code=404, detail="File not found")
 
     # Return the file as a response
-    return FileResponse(file_path, media_type='application/pdf')
+    return FileResponse(file_path, media_type="application/pdf")

@@ -1,9 +1,12 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, Paper, Grid, Divider } from '@mui/material';
 import Link from 'next/link';
 
-export default function ApplicationsClient({ submitted }) {
+export default function ApplicationsClient({ submitted, user }) {
+    // Default value if submitted array is empty
+    const isSubmitted = submitted && submitted.length !== 0;
+
     return (
         <Box
             sx={{
@@ -13,6 +16,7 @@ export default function ApplicationsClient({ submitted }) {
                 minHeight: '100vh',
             }}
         >
+            {/* Application Status Card */}
             <Box
                 sx={{
                     margin: '20px auto',
@@ -23,8 +27,6 @@ export default function ApplicationsClient({ submitted }) {
                     maxWidth: '600px',
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                     textAlign: 'center',
-                    height: 'auto',
-                    overflow: 'hidden',
                 }}
             >
                 <Typography
@@ -46,12 +48,73 @@ export default function ApplicationsClient({ submitted }) {
                         gap: '8px',
                     }}
                 >
-                    Current Status: <strong>{submitted ? 'Submitted' : 'Not Submitted'}</strong>
+                    Current Status: <strong>{isSubmitted ? submitted.status : 'Not Submitted'}</strong>
                 </Typography>
             </Box>
 
+            {/* Application Details Section */}
+            {isSubmitted && (
+                <Box sx={{ p: 3, maxWidth: 800, mx: 'auto' }}>
+                    <Paper elevation={3} sx={{ p: 3 }}>
+                        <Typography variant="h5" gutterBottom>
+                            Application Details
+                        </Typography>
+                        <Divider sx={{ my: 2 }} />
+                        <Grid container spacing={2} textAlign={'left'}>
+                            {[
+                                { label: 'Student Roll No', value: submitted.user_roll_no },
+                                { label: 'Title', value: submitted.title },
+                                { label: 'Abstract', value: submitted.abstract },
+                                { label: 'Authors', value: submitted.authors },
+                            ].map((detail, index) => (
+                                <Grid item xs={12} key={index}>
+                                    <Typography variant="subtitle1" color="primary">
+                                        {detail.label}
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                        {detail.value}
+                                    </Typography>
+                                </Grid>
+                            ))}
+
+                            <Grid item xs={12}>
+                                <Typography variant="subtitle1" color="primary">
+                                    Uploaded Paper
+                                </Typography>
+                                {submitted.file_url && (
+                                    <Button
+                                        variant="contained"
+                                        href={submitted.file_url}
+                                        target="_blank"
+                                        sx={{ mt: 1 }}
+                                    >
+                                        View Paper
+                                    </Button>
+                                )}
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <Typography variant="subtitle1" color="primary">
+                                    Proof of Acceptance
+                                </Typography>
+                                {submitted.acceptance_proof && (
+                                    <Button
+                                        variant="contained"
+                                        href={submitted.acceptance_proof}
+                                        target="_blank"
+                                        sx={{ mt: 1 }}
+                                    >
+                                        View Proof
+                                    </Button>
+                                )}
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                </Box>
+            )}
+
             {/* Guidelines Section */}
-            {!submitted && (
+            {!isSubmitted && (
                 <Box
                     sx={{
                         margin: '40px auto',
@@ -84,16 +147,14 @@ export default function ApplicationsClient({ submitted }) {
                         >
                             <li>Submit your most recent published paper for the presentation.</li>
                             <li>Ensure all information is accurate and up-to-date.</li>
-                            <li>
-                                Upload required documents in PDF, PNG, JPG, or JPEG formats only.
-                            </li>
+                            <li>Upload required documents in PDF, PNG, JPG, or JPEG formats only.</li>
                             <li>Review your application before final submission.</li>
                         </Typography>
                     </Box>
                 </Box>
             )}
 
-            {/* Buttons */}
+            {/* Action Button */}
             <Box
                 sx={{
                     display: 'flex',
@@ -102,30 +163,7 @@ export default function ApplicationsClient({ submitted }) {
                     marginTop: '50px',
                 }}
             >
-                {submitted ? (
-                    <Link href="/applications/view" passHref>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                padding: '15px 50px',
-                                fontSize: '1.2rem',
-                                fontWeight: 700,
-                                borderRadius: '12px',
-                                backgroundColor: 'var(--theme-bg-color)',
-                                color: '#fff',
-                                '&:hover': {
-                                    backgroundColor: 'var(--theme-bg-color)',
-                                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
-                                    transform: 'translateY(-2px)',
-                                },
-                                transition: 'all 0.2s ease',
-                            }}
-                        >
-                            View Submission
-                        </Button>
-                    </Link>
-                ) : (
+                {!isSubmitted && (
                     <Link href="/applications/new" passHref>
                         <Button
                             variant="contained"

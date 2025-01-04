@@ -60,23 +60,19 @@ export default function NewClient({ user }) {
 
         try {
             const formDataToSend = new FormData();
-            formDataToSend.append('user_roll_no', user.roll);
+            formDataToSend.append('user_roll_no', user.roll.toString());
             formDataToSend.append('title', formData.title);
             formDataToSend.append('abstract', formData.abstract);
             formDataToSend.append('authors', formData.authors);
             formDataToSend.append('file_url', files.mainFile);
             formDataToSend.append('acceptance_proof', files.proof);
-            console.log(formDataToSend.get('user_roll_no'));
-            console.log(process.env.BACKEND_URL);
 
-            const response = await fetch(`${process.env.BACKEND_URL || "http://localhost:8000/api"}/submit`, {
+            const response = await fetch(`${process.env.BACKEND_URL || "http://localhost:8000/api"}/submissions`, {
                 method: 'POST',
                 body: formDataToSend,
             });
-
             if (response.ok) {
-                alert('Application submitted successfully!');
-                router.push(`/applications/view?id=${user.roll}`);
+                router.push(`/applications`);
             } else {
                 throw new Error('Failed to submit application.');
             }
