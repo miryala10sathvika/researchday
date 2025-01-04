@@ -78,3 +78,10 @@ class SubmissionLogic:
         if not result:
             raise ValueError("Submission not found.")
         return SubmissionResponse(**result)
+    
+    @staticmethod
+    async def get_submission_by_roll_no(db: AsyncIOMotorDatabase, roll_no: str) -> SubmissionResponse:
+        submission = await db.submissions.find_one({"user_roll_no": roll_no})
+        if not submission:
+            raise ValueError("Submission not found.")
+        return SubmissionResponse(**submission)

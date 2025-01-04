@@ -10,7 +10,7 @@ import os
 sub_router = APIRouter()
 
 
-@sub_router.post("/submissions", response_model=SubmissionResponse)
+@sub_router.post("/submit", response_model=SubmissionResponse)
 async def create_submission(
     user_roll_no: str,
     title: str = Form(...),
@@ -53,6 +53,15 @@ async def get_all_submissions(db=Depends(get_db)):
         return await SubmissionLogic.get_all_submissions(db)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
+async def get_submission(roll_no: str, db=Depends(get_db)):
+    try:
+        return await SubmissionLogic.get_submission_by_roll_no(db, roll_no)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)

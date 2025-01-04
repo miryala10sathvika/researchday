@@ -56,7 +56,7 @@ async def login(request: Request):
             raise HTTPException(status_code=400, detail="Failed to verify ticket with CAS")
 
         # Generate JWT token
-        payload = {"uid": attributes["uid"], "role": attributes.get("role", "user")}
+        payload = {"uid": attributes["uid"], "roll": attributes["RollNo"], "email": attributes["E-Mail"]}
         token = encode(payload, JWT_SECRET, algorithm="HS256")
 
         # Set JWT token in cookies
@@ -67,6 +67,7 @@ async def login(request: Request):
             httponly=True,
             secure=SECURE_COOKIES,
             max_age=COOKIE_MAX_AGE,
+            path="/",
         )
         logger.info("User successfully authenticated and JWT token set.")
         return response
@@ -93,25 +94,21 @@ async def logout(request: Request):
 @auth_router.get("/user")
 async def profile(request: Request):
     """
-    Retrieve user profile information using the JWT token.
+    Retrieve user profile information using the JWT token from cookies.
     """
-    try:
-        token = request.cookies.get("Authorization")
-        if not token:
-            logger.warning("Unauthorized access attempt. No token provided.")
-            raise HTTPException(status_code=401, detail="Unauthorized. No token provided.")
+    token = request.cookies.get("Authorization")
+    if not token:
+        logger.warning("Unauthorized access attempt. No token provided.")
+        raise HTTPException(status_code=401, detail="Unauthorized. No token provided.")
 
-        # Decode and verify the JWT token
+    # Decode and verify the JWT token
+    try:
         payload = decode(token, JWT_SECRET, algorithms=["HS256"])
         logger.info("User profile retrieved successfully.")
         return JSONResponse({"message": "Profile retrieved", "user": payload}, status_code=200)
-
     except ExpiredSignatureError:
         logger.warning("Token expired during profile retrieval.")
         return JSONResponse({"message": "Token expired"}, status_code=401)
     except DecodeError:
         logger.warning("Failed to decode JWT token.")
         return JSONResponse({"message": "Failed to decode token"}, status_code=400)
-    except Exception as e:
-        logger.exception("An error occurred while retrieving profile information.")
-        return JSONResponse({"message": f"Failed to retrieve profile: {str(e)}"}, status_code=500)
