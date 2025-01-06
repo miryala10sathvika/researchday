@@ -4,7 +4,6 @@ import { Box, Button, Typography, Paper, Grid, Divider } from '@mui/material';
 import Link from 'next/link';
 
 export default function ApplicationsClient({ submitted, user }) {
-    // Default value if submitted array is empty
     const isSubmitted = submitted && submitted.length !== 0;
 
     return (
@@ -12,11 +11,13 @@ export default function ApplicationsClient({ submitted, user }) {
             sx={{
                 padding: '40px',
                 textAlign: 'center',
-                backgroundColor: '#f9f9f9',
                 minHeight: '100vh',
             }}
         >
-            {/* Application Status Card */}
+            {/* Geetings Section */}
+            <Typography variant="h4" sx={{ marginBottom: '20px' }}>
+                Hello, {user.uid}
+            </Typography>
             <Box
                 sx={{
                     margin: '20px auto',
@@ -85,7 +86,7 @@ export default function ApplicationsClient({ submitted, user }) {
                                 {submitted.file_url && (
                                     <Button
                                         variant="contained"
-                                        href={submitted.file_url}
+                                        href={`/api/get-pdf/paper/${submitted.submission_id}`}
                                         target="_blank"
                                         sx={{ mt: 1 }}
                                     >
@@ -101,7 +102,7 @@ export default function ApplicationsClient({ submitted, user }) {
                                 {submitted.acceptance_proof && (
                                     <Button
                                         variant="contained"
-                                        href={submitted.acceptance_proof}
+                                        href={`/api/get-pdf/proof/${submitted.submission_id}`}
                                         target="_blank"
                                         sx={{ mt: 1 }}
                                     >

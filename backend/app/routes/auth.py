@@ -101,7 +101,6 @@ async def profile(request: Request):
         logger.warning("Unauthorized access attempt. No token provided.")
         raise HTTPException(status_code=401, detail="Unauthorized. No token provided.")
 
-    # Decode and verify the JWT token
     try:
         payload = decode(token, JWT_SECRET, algorithms=["HS256"])
         logger.info("User profile retrieved successfully.")

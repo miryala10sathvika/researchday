@@ -7,7 +7,7 @@ import uuid
 from fastapi.responses import FileResponse
 import os
 
-sub_router = APIRouter()
+sub_router = APIRouter()    
 
 
 @sub_router.post("/submissions", response_model=SubmissionResponse)
@@ -24,14 +24,15 @@ async def create_submission(
     try:
         sub_id = str(uuid4())
 
-
         file_url_path = f"uploads/paper/{sub_id}.pdf"
         acceptance_proof_path = f"uploads/proof/{sub_id}.pdf"
-        
-        # with open(file_url_path, "wb+") as f:
-        #     f.write(await file_url.read())
-        # with open(acceptance_proof_path, "wb+") as f:
-        #     f.write(await acceptance_proof.read())
+        os.makedirs(os.path.dirname(file_url_path), exist_ok=True)
+        os.makedirs(os.path.dirname(acceptance_proof_path), exist_ok=True)
+
+        with open(file_url_path, "wb+") as f:
+            f.write(await file_url.read())
+        with open(acceptance_proof_path, "wb+") as f:
+            f.write(await acceptance_proof.read())
 
         # Prepare submission data
         submission_data = {
@@ -47,7 +48,9 @@ async def create_submission(
         # Create the submission in the database
         return await SubmissionLogic.create_submission(str(sub_id), db, submission_data)
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"{str(e)}")
+        print(f"Error: {str(e)}")  # Log the error in your backend logs
+        raise HTTPException(status_code=400, detail=f"Error: {str(e)}")
+
 
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
@@ -87,13 +90,10 @@ async def update_submission_status(submission_id: UUID, update: SubmissionUpdate
         raise HTTPException(status_code=400, detail=f"{str(e)}")
     
 @sub_router.get("/get-pdf/{folder_name}/{uuid}")
-async def get_pdf(folder_name: str, uuid: str):
-    # Construct the file paths
-    file_path = os.path.join("uploads", folder_name, f"{uuid}.pdf")
-    
-    # Check if the file exists
-    if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="File not found")
-
-    # Return the file as a response
-    return FileResponse(file_path, media_type="application/pdf")
+async def get_pdf(folder_name: str, uuid: str, db=Depends(get_db)):
+    try:
+        return FileResponse(f"uploads/{folder_name}/{uuid}.pdf")
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=f"{str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"{str(e)}")

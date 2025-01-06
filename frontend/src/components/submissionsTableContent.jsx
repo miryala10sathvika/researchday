@@ -141,22 +141,22 @@ export default function SubmissionsTableContent({ user, submissions }) {
           >
             Open
           </Button>
-          {row.status === "Pending" || row.status === "Rejected" && (
+          {(row?.status === "Pending" || row?.status === "Rejected") && (
             <Button
               variant="contained"
               color="success"
               size="small"
-              onClick={() => handleApprove(row.submission_id)}
+              onClick={() => handleApprove(row?.submission_id)}
             >
               Approve
             </Button>
             )}
-          {row.status === "Pending" || row.status === "Approved" && (
+          {(row?.status === "Pending" || row?.status === "Approved") && (
             <Button
               variant="contained"
               color="error"
               size="small"
-              onClick={() => handleReject(row.submission_id)}
+              onClick={() => handleReject(row?.submission_id)}
             >
               Decline
             </Button>

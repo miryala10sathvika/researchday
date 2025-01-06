@@ -1,8 +1,8 @@
 import ApplicationsClient from 'components/applicationsClient';
-import { cookies } from 'next/headers';
 import {  redirect } from 'next/navigation';
 import { Box, Button } from '@mui/material';
 import Link from 'next/link';
+import { getUser, getSubmissionByRoll } from 'utils/verification';
 
 const AUTHORIZED_EMAILS = [
   'dileepkumar.adari@students.iiit.ac.in',
@@ -12,46 +12,14 @@ const AUTHORIZED_EMAILS = [
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000/api';
 
 export default async function ApplicationsPage() {
-    const cookeys = cookies();
-    const cookieHeader = cookeys
-      .getAll()
-      .map((cookie) => `${cookie.name}=${cookie.value}`)
-      .join('; ');
-
-    // Fetch user data
-    const userResponse = await fetch(`${BACKEND_URL}/user`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        cookie: cookieHeader,
-      },
-      credentials: 'include',
-    });
-
-    if (!userResponse.ok) {
-      console.error('Failed to fetch user data:', userResponse.statusText);
-      return <div>Failed to fetch user data</div>;
-    }
-
-    const { user } = await userResponse.json();
+    const user = await getUser();
 
     if (!user) {
       return redirect('/api/login');
     }
 
-    // Fetch user submissions
-    const submissionsResponse = await fetch(`${BACKEND_URL}/submissions/${user.roll}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        cookie: cookieHeader,
-      },
-      credentials: 'include',
-    });
+    const submissions = await getSubmissionByRoll(user);
 
-    const submissions = submissionsResponse.ok
-      ? await submissionsResponse.json()
-      : [];
 
     return (
       <Box
@@ -68,9 +36,7 @@ export default async function ApplicationsPage() {
           <Button
             variant="contained"
             color="primary"
-            sx={{
-              mt: 4,
-            }}
+            sx={{ mt: 10 }}
           >
             View all Submissions
           </Button>

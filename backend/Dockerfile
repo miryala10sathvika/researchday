@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY app/ /app/app/
+RUN mkdir -p /app/uploads/paper /app/uploads/proof
 
 # Expose the application port (for backend)
 EXPOSE 8000

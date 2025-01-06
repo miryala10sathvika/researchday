@@ -1,46 +1,32 @@
 import React from 'react';
-import { cookies } from 'next/headers';
 import SubmissionDetails from 'components/submissionDetails';
-import { Grid, Box, Button } from '@mui/material';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000/api';
+import { getUser, getSubmissionById, getSubmissions } from "utils/verification";
 
-async function fetchSubmissionDetails(submissionId, cookieHeader) {
-    const res = await fetch(`${BACKEND_URL}/submission/${submissionId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            cookie: cookieHeader,
-        },
-        credentials: 'include',
-    });
-
-    if (!res.ok) {
-        throw new Error('Failed to fetch submission details');
-    }
-
-    return res.json();
-}
+const AUTHORIZED_EMAILS = [
+  "dileepkumar.adari@students.iiit.ac.in",
+  "adaridileep@students.iiit.ac.in",
+];
 
 export default async function Page({ params }) {
-    const { id } = params;
+    const submissionId = await params?.id;
 
-    // Get cookies for authentication
-    const cookeys = cookies();
-    const cookieHeader = cookeys
-        .getAll()
-        .map((cookie) => `${cookie.name}=${cookie.value}`)
-        .join('; ');
+    const user = await getUser();
 
-    // Fetch submission details
-    let submission = null;
-    try {
-        submission = await fetchSubmissionDetails(id, cookieHeader);
-    } catch (error) {
-        return <div>Error: {error.message}</div>;
+    if (!user) {
+        return redirect('/api/login');
     }
 
-    // Render the client-side component and pass necessary data
+    // Check if the user is authorized
+    if (!AUTHORIZED_EMAILS.includes(user.email)) {
+        return redirect("/applications");
+    }
+    const submission = await getSubmissionById(submissionId);
+
+    if (!submission) {
+        return <div>Submission not found</div>;
+    }
+
     return (
         <>
             <SubmissionDetails submission={submission} />

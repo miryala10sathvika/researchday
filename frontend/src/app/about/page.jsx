@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 export default function About() {
   return (
-    <Box sx={{ 
-      width: "100%", 
-      padding: { xs: 2, md: 4 }, 
+    <Box sx={{
+      width: "100%",
+      padding: { xs: 2, md: 4 },
       backgroundColor: "#ffffff",
       minHeight: "100vh",
       display: 'flex',
@@ -28,16 +28,16 @@ export default function About() {
           src="/assets/conference-concept.png"
           alt="Conference Concept"
           style={{
-              objectFit: 'fill',
-              width: '100%',
-              height: '100%',
-            } }
+            objectFit: 'fill',
+            width: '100%',
+            height: '100%',
+          }}
         />
       </Box>
 
-      <Paper 
-        elevation={3} 
-        sx={{ 
+      <Paper
+        elevation={3}
+        sx={{
           position: 'relative',  // Added to stay above background
           zIndex: 1,            // Added to stay above background
           padding: { xs: 2, md: 4 },
@@ -82,8 +82,8 @@ export default function About() {
             to: { opacity: 1, transform: 'translateY(0)' }
           }
         }}>
-          <Typography 
-            variant="body1" 
+          <Typography
+            variant="body1"
             paragraph
             sx={{
               fontFamily: 'Lora, serif',
@@ -107,14 +107,14 @@ export default function About() {
         </Box>
 
         {/* Why Research Fest Section - With Image */}
-        <Box sx={{ 
+        <Box sx={{
           marginTop: 6,
           textAlign: 'center',
           position: 'relative'
         }}>
-          <Typography 
-            variant="h5" 
-            component="h2" 
+          <Typography
+            variant="h5"
+            component="h2"
             sx={{
               fontFamily: 'Playfair Display, serif',
               position: 'relative',
@@ -148,7 +148,7 @@ export default function About() {
             {/* Content Section */}
             <Box sx={{
               flex: 1,
-              '& ul': { 
+              '& ul': {
                 listStyleType: 'none',
                 padding: 0,
                 margin: '0 auto'
@@ -156,8 +156,8 @@ export default function About() {
             }}>
               <ul>
                 <li>
-                  <Typography 
-                    variant="body1" 
+                  <Typography
+                    variant="body1"
                     paragraph
                     sx={{
                       fontFamily: 'Inter, sans-serif',
@@ -177,21 +177,21 @@ export default function About() {
                       }
                     }}
                   >
-                    <strong style={{ 
-                      color: '#3f51b5', 
+                    <strong style={{
+                      color: '#3f51b5',
                       fontFamily: 'Playfair Display, serif',
                       display: 'block',
                       marginBottom: '0.5rem'
                     }}>
                       A Stage for Brilliance
-                    </strong> 
+                    </strong>
                     Celebrate the achievements of talented researchers as they present their groundbreaking papers and innovative projects.
                   </Typography>
                 </li>
 
                 <li>
-                  <Typography 
-                    variant="body1" 
+                  <Typography
+                    variant="body1"
                     paragraph
                     sx={{
                       fontFamily: 'Inter, sans-serif',
@@ -211,21 +211,21 @@ export default function About() {
                       }
                     }}
                   >
-                    <strong style={{ 
-                      color: '#3f51b5', 
+                    <strong style={{
+                      color: '#3f51b5',
                       fontFamily: 'Playfair Display, serif',
                       display: 'block',
                       marginBottom: '0.5rem'
                     }}>
                       A Hub for Collaboration
-                    </strong> 
+                    </strong>
                     Connect with peers across disciplines, explore synergies, and create impactful partnerships that extend beyond the event.
                   </Typography>
                 </li>
 
                 <li>
-                  <Typography 
-                    variant="body1" 
+                  <Typography
+                    variant="body1"
                     paragraph
                     sx={{
                       fontFamily: 'Inter, sans-serif',
@@ -245,21 +245,21 @@ export default function About() {
                       }
                     }}
                   >
-                    <strong style={{ 
-                      color: '#3f51b5', 
+                    <strong style={{
+                      color: '#3f51b5',
                       fontFamily: 'Playfair Display, serif',
                       display: 'block',
                       marginBottom: '0.5rem'
                     }}>
                       A Celebration of Curiosity
-                    </strong> 
+                    </strong>
                     Recognize the invaluable contributions of our research community and fuel the passion for discovery in others.
                   </Typography>
                 </li>
 
                 <li>
-                  <Typography 
-                    variant="body1" 
+                  <Typography
+                    variant="body1"
                     paragraph
                     sx={{
                       fontFamily: 'Inter, sans-serif',
@@ -279,14 +279,14 @@ export default function About() {
                       }
                     }}
                   >
-                    <strong style={{ 
-                      color: '#3f51b5', 
+                    <strong style={{
+                      color: '#3f51b5',
                       fontFamily: 'Playfair Display, serif',
                       display: 'block',
                       marginBottom: '0.5rem'
                     }}>
                       A Learning Ground
-                    </strong> 
+                    </strong>
                     Gain hands-on experience through a professional conference-like environment, equipping you for future academic endeavors.
                   </Typography>
                 </li>
@@ -355,18 +355,18 @@ export default function About() {
         </Box>
 
         {/* What to Expect Section - Now Centered */}
-        <Box sx={{ 
+        <Box sx={{
           marginTop: 6,
           textAlign: 'center',
-          '& ul': { 
+          '& ul': {
             listStyleType: 'none',
             padding: 0,
             maxWidth: '800px',
             margin: '0 auto'
           }
         }}>
-          <Typography 
-            variant="h5" 
+          <Typography
+            variant="h5"
             component="h2"
             sx={{
               fontFamily: 'Playfair Display, serif',
@@ -389,11 +389,11 @@ export default function About() {
           >
             What to Expect
           </Typography>
-          
+
           <ul>
             <li>
-              <Typography 
-                variant="body1" 
+              <Typography
+                variant="body1"
                 paragraph
                 sx={{
                   fontFamily: 'Inter, sans-serif',
@@ -410,20 +410,20 @@ export default function About() {
                   }
                 }}
               >
-                <strong style={{ 
-                color: '#3f51b5', 
-                fontFamily: 'Playfair Display, serif',
-                display: 'block',  // Added to force next line
-                marginBottom: '0.5rem'  // Added spacing between title and description
-              }}>
+                <strong style={{
+                  color: '#3f51b5',
+                  fontFamily: 'Playfair Display, serif',
+                  display: 'block',  // Added to force next line
+                  marginBottom: '0.5rem'  // Added spacing between title and description
+                }}>
                   Paper Presentations
-                </strong> 
+                </strong>
                 Dive deep into impactful research as participants present their published or accepted papers, sparking insightful discussions.
               </Typography>
             </li>
             <li>
-              <Typography 
-                variant="body1" 
+              <Typography
+                variant="body1"
                 paragraph
                 sx={{
                   fontFamily: 'Inter, sans-serif',
@@ -440,14 +440,14 @@ export default function About() {
                   }
                 }}
               >
-               <strong style={{ 
-                color: '#3f51b5', 
-                fontFamily: 'Playfair Display, serif',
-                display: 'block',  // Added to force next line
-                marginBottom: '0.5rem'  // Added spacing between title and description
-              }}>
+                <strong style={{
+                  color: '#3f51b5',
+                  fontFamily: 'Playfair Display, serif',
+                  display: 'block',  // Added to force next line
+                  marginBottom: '0.5rem'  // Added spacing between title and description
+                }}>
                   Poster Sessions
-                </strong> 
+                </strong>
                 Experience visually engaging presentations that bring research to life, offering a chance to interact and exchange ideas.
               </Typography>
             </li>
@@ -455,7 +455,7 @@ export default function About() {
         </Box>
 
         {/* Who Can Join Section - Now Centered */}
-        <Box sx={{ 
+        <Box sx={{
           marginTop: 6,
           textAlign: 'center',
           animation: 'fadeIn 0.8s ease-out',
@@ -464,8 +464,8 @@ export default function About() {
             to: { opacity: 1, transform: 'translateY(0)' }
           }
         }}>
-          <Typography 
-            variant="h5" 
+          <Typography
+            variant="h5"
             component="h2"
             sx={{
               fontFamily: 'Playfair Display, serif',
@@ -489,8 +489,8 @@ export default function About() {
           >
             Who Can Join?
           </Typography>
-          <Typography 
-            variant="body1" 
+          <Typography
+            variant="body1"
             paragraph
             sx={{
               fontFamily: 'Lora, serif',
