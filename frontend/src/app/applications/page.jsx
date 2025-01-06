@@ -1,6 +1,8 @@
 import ApplicationsClient from 'components/applicationsClient';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import {  redirect } from 'next/navigation';
+import { Box, Button } from '@mui/material';
+import Link from 'next/link';
 
 const AUTHORIZED_EMAILS = [
   'dileepkumar.adari@students.iiit.ac.in',
@@ -37,11 +39,6 @@ export default async function ApplicationsPage() {
       return redirect('/api/login');
     }
 
-    // Check if the user is authorized
-    if (AUTHORIZED_EMAILS.includes(user.email)) {
-      return redirect('/applications/submissions');
-    }
-
     // Fetch user submissions
     const submissionsResponse = await fetch(`${BACKEND_URL}/submissions/${user.roll}`, {
       method: 'GET',
@@ -56,6 +53,31 @@ export default async function ApplicationsPage() {
       ? await submissionsResponse.json()
       : [];
 
-    return <ApplicationsClient submitted={submissions} user={user} />;
+    return (
+      <Box
+      sx={{
+        m: 3,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center', // Center items horizontally
+        justifyContent: 'center', // Center items vertically if needed
+      }}
+    >
+      {AUTHORIZED_EMAILS.includes(user.email) && (
+        <Link href="/applications/submissions" passHref>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              mt: 4,
+            }}
+          >
+            View all Submissions
+          </Button>
+        </Link>
+      )}
+      <ApplicationsClient submitted={submissions} user={user} />
+    </Box>
+    );
 
 }

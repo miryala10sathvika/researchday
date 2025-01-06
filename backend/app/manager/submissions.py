@@ -28,6 +28,7 @@ class SubmissionResponse(BaseModel):
     authors: str
     file_url: str
     acceptance_proof: str
+    is_poster: bool = False
     status: str
     review_comments: Optional[str]
     submitted_at: datetime
@@ -45,10 +46,11 @@ class SubmissionLogic:
             "abstract": submission["abstract"],
             "authors": submission["authors"],
             "file_url": submission["file_url"],
+            "is_poster": submission["is_poster"],
             "acceptance_proof": submission["acceptance_proof"],
             "status": "Pending",
             "review_comments": None,
-            "submitted_at": datetime.utcnow(),
+            "submitted_at": datetime.utcnow().replace(microsecond=0).isoformat(),
             "reviewed_at": None,
         }
         db.submissions.insert_one(new_submission)
@@ -82,6 +84,13 @@ class SubmissionLogic:
     @staticmethod
     async def get_submission_by_roll_no(db: AsyncIOMotorDatabase, roll_no: str) -> SubmissionResponse:
         submission = await db.submissions.find_one({"user_roll_no": roll_no})
+        if not submission:
+            raise ValueError("Submission not found.")
+        return SubmissionResponse(**submission)
+    
+    @staticmethod
+    async def get_submission_by_id(db: AsyncIOMotorDatabase, submission_id: UUID) -> SubmissionResponse:
+        submission = await db.submissions.find_one({"submission_id": str(submission_id)})
         if not submission:
             raise ValueError("Submission not found.")
         return SubmissionResponse(**submission)

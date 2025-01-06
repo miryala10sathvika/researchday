@@ -18,6 +18,7 @@ async def create_submission(
     authors: str = Form(...),  # Comma-separated authors
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
+    is_poster: bool = Form(...),
     db=Depends(get_db),
 ):
     try:
@@ -40,6 +41,7 @@ async def create_submission(
             "authors": authors,
             "file_url": file_url_path,
             "acceptance_proof": acceptance_proof_path,
+            "is_poster": is_poster,
         }
 
         # Create the submission in the database
@@ -63,6 +65,16 @@ async def get_submission(roll_no: str, db=Depends(get_db)):
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"-{str(e)}")
+
+#  get submission by submission id
+@sub_router.get("/submission/{submission_id}", response_model=SubmissionResponse)
+async def get_submission(submission_id: UUID, db=Depends(get_db)):
+    try:
+        return await SubmissionLogic.get_submission_by_id(db, submission_id)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=f"{str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"{str(e)}")
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)

@@ -33,7 +33,7 @@ export default function NewClient({ user }) {
         if (!formData.title) newErrors.title = 'Title is required';
         if (!formData.abstract) newErrors.abstract = 'Abstract is required';
         if (!formData.authors) newErrors.authors = 'Authors are required';
-        if (!files.mainFile) newErrors.mainFile = `${isPoster ? 'Poster' : 'Paper'} file is required`;
+        if (!files.mainFile) newErrors.mainFile = 'Paper file is required';
         if (!files.proof) newErrors.proof = 'Proof of acceptance is required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -66,6 +66,7 @@ export default function NewClient({ user }) {
             formDataToSend.append('authors', formData.authors);
             formDataToSend.append('file_url', files.mainFile);
             formDataToSend.append('acceptance_proof', files.proof);
+            formDataToSend.append('is_poster', isPoster);
 
             const response = await fetch(`${process.env.BACKEND_URL || "http://localhost:8000/api"}/submissions`, {
                 method: 'POST',
@@ -103,7 +104,7 @@ export default function NewClient({ user }) {
                             mb: 4,
                         }}
                     >
-                        Submit Your {isPoster ? 'Poster' : 'Paper'}
+                        Submit Your Paper
                     </Typography>
 
                     <Box>
@@ -168,7 +169,7 @@ export default function NewClient({ user }) {
                             <FormHelperText>{errors.mainFile}</FormHelperText>
                         </FormControl>
                         <Typography variant="caption" display="block" gutterBottom>
-                            Upload {isPoster ? 'Poster' : 'Paper'} (PDF, PNG, JPG, JPEG)
+                            Upload Paper (PDF, PNG, JPG, JPEG)
                         </Typography>
                     </Box>
 

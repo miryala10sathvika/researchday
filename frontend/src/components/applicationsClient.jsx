@@ -34,7 +34,7 @@ export default function ApplicationsClient({ submitted, user }) {
                     gutterBottom
                     sx={{ fontWeight: 'bold', color: '#333' }}
                 >
-                    Application Status
+                    Your Application Status
                 </Typography>
                 <Typography
                     variant="body1"
@@ -66,6 +66,7 @@ export default function ApplicationsClient({ submitted, user }) {
                                 { label: 'Title', value: submitted.title },
                                 { label: 'Abstract', value: submitted.abstract },
                                 { label: 'Authors', value: submitted.authors },
+                                { label: 'Registration Type', value: submitted.is_poster ? 'Poster' : 'Paper' },
                             ].map((detail, index) => (
                                 <Grid item xs={12} key={index}>
                                     <Typography variant="subtitle1" color="primary">

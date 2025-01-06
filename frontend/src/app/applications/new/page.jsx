@@ -37,11 +37,6 @@ export default async function NewSubmissionPage() {
       return redirect('/api/login');
     }
 
-    // Check if the user is authorized
-    if (AUTHORIZED_EMAILS.includes(user.email)) {
-      return redirect('/applications/submissions');
-    }
-
     // Fetch user submissions
     const submissionsResponse = await fetch(`${BACKEND_URL}/submissions/${user.roll}`, {
       method: 'GET',
