@@ -38,8 +38,16 @@ export default function SubmissionDetails({ submission }) {
     return (
         <Box sx={{ p: 4 }}>
             {/* Buttons */}
-
-            <Box display="flex" justifyContent="flex-end" sx={{ mt: 2 }}>
+            <Box display="flex" justifyContent="flex-end" sx={{ mt: 2, gap: 2 }}>
+                <Box display="flex" justifyContent="flex-start">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => router.push('/applications/submissions')}
+                    >
+                        Back
+                    </Button>
+                </Box>
                 {(submission.status === 'Pending' || submission.status === 'Rejected') && (
                     <Button
                         variant="contained"
@@ -87,27 +95,33 @@ export default function SubmissionDetails({ submission }) {
                                 {submission.status}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <Typography variant="h6">Abstract:</Typography>
                             <Typography variant="body1">{submission.abstract}</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Typography variant="h6">Submitted At:</Typography>
+                            <Typography variant="body1">
+                                {formattedDate || 'Loading...'}
+                            </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Typography variant="h6">Authors:</Typography>
                             <Typography variant="body1">{submission.authors}</Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="h6">Presentation Type:</Typography>
-                            <Typography variant="body1">{submission.is_poster ? 'Poster' : 'Paper'}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
                             <Typography variant="h6">Paper Pdf:</Typography>
                             <a href={submission.paper} target="_blank" rel="noopener noreferrer">
                                 <Button variant="outlined" size="small">
-                                    View Proof
+                                    View Paper
                                 </Button>
                             </a>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
+                            <Typography variant="h6">Presentation Type:</Typography>
+                            <Typography variant="body1">{submission.is_poster ? 'Poster' : 'Paper'}</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
                             <Typography variant="h6">Acceptance Proof:</Typography>
                             <a href={submission.acceptance_proof} target="_blank" rel="noopener noreferrer">
                                 <Button variant="outlined" size="small">
@@ -115,15 +129,9 @@ export default function SubmissionDetails({ submission }) {
                                 </Button>
                             </a>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <Typography variant="h6">Review Comments:</Typography>
                             <Typography variant="body1">{submission.review_comments || 'None'}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="h6">Submitted At:</Typography>
-                            <Typography variant="body1">
-                                {formattedDate || 'Loading...'}
-                            </Typography>
                         </Grid>
                     </Grid>
                 </CardContent>
