@@ -1,13 +1,18 @@
 from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, Form
 from typing import List
 from uuid import UUID, uuid4
-from manager.submissions import SubmissionLogic, SubmissionCreate, SubmissionUpdateStatus, SubmissionResponse
+from manager.submissions import (
+    SubmissionLogic,
+    SubmissionCreate,
+    SubmissionUpdateStatus,
+    SubmissionResponse,
+)
 from db import get_db
 import uuid
 from fastapi.responses import FileResponse
 import os
 
-sub_router = APIRouter()    
+sub_router = APIRouter()
 
 
 @sub_router.post("/submissions", response_model=SubmissionResponse)
@@ -36,7 +41,7 @@ async def create_submission(
 
         # Prepare submission data
         submission_data = {
-            "user_roll_no":user_roll_no,
+            "user_roll_no": user_roll_no,
             "title": title,
             "abstract": abstract,
             "authors": authors,
@@ -52,13 +57,13 @@ async def create_submission(
         raise HTTPException(status_code=400, detail=f"Error: {str(e)}")
 
 
-
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
 async def get_all_submissions(db=Depends(get_db)):
     try:
         return await SubmissionLogic.get_all_submissions(db)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"{str(e)}")
+
 
 @sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
 async def get_submission(roll_no: str, db=Depends(get_db)):
@@ -68,6 +73,7 @@ async def get_submission(roll_no: str, db=Depends(get_db)):
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"-{str(e)}")
+
 
 #  get submission by submission id
 @sub_router.get("/submission/{submission_id}", response_model=SubmissionResponse)
@@ -81,14 +87,17 @@ async def get_submission(submission_id: UUID, db=Depends(get_db)):
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)
-async def update_submission_status(submission_id: UUID, update: SubmissionUpdateStatus, db=Depends(get_db)):
+async def update_submission_status(
+    submission_id: UUID, update: SubmissionUpdateStatus, db=Depends(get_db)
+):
     try:
         return await SubmissionLogic.update_submission_status(db, submission_id, update)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"{str(e)}")
-    
+
+
 @sub_router.get("/get-pdf/{folder_name}/{uuid}")
 async def get_pdf(folder_name: str, uuid: str, db=Depends(get_db)):
     try:

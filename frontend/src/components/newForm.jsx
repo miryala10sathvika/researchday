@@ -74,7 +74,7 @@ export default function NewClient({ user }) {
       formDataToSend.append("is_poster", isPoster);
 
       const response = await fetch(
-        `${process.env.BACKEND_URL || "http://backend:8000/api"}/submissions`,
+        `/api/submissions`,
         {
           method: "POST",
           body: formDataToSend,

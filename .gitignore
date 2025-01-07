@@ -64,3 +64,5 @@ Thumbs.db
 
 # MongoDB dump files (if any)
 dump/
+
+uploads/
