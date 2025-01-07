@@ -161,7 +161,7 @@ export default function NewClient({ user }) {
                     <Box sx={{ mt: 3 }}>
                         <FormControl fullWidth error={!!errors.mainFile}>
                             <input
-                                accept=".pdf,.png,.jpg,.jpeg"
+                                accept=".pdf"
                                 type="file"
                                 onChange={handleFileChange('mainFile')}
                                 style={{ padding: '10px 0', fontSize: '1rem' }}
@@ -169,14 +169,14 @@ export default function NewClient({ user }) {
                             <FormHelperText>{errors.mainFile}</FormHelperText>
                         </FormControl>
                         <Typography variant="caption" display="block" gutterBottom>
-                            Upload Paper (PDF, PNG, JPG, JPEG)
+                            Upload Paper (PDF)
                         </Typography>
                     </Box>
 
                     <Box sx={{ mt: 3 }}>
                         <FormControl fullWidth error={!!errors.proof}>
                             <input
-                                accept=".pdf,.png,.jpg,.jpeg"
+                                accept=".pdf"
                                 type="file"
                                 onChange={handleFileChange('proof')}
                                 style={{ padding: '10px 0', fontSize: '1rem' }}
@@ -184,7 +184,7 @@ export default function NewClient({ user }) {
                             <FormHelperText>{errors.proof}</FormHelperText>
                         </FormControl>
                         <Typography variant="caption" display="block" gutterBottom>
-                            Upload Proof of Acceptance (PDF, PNG, JPG, JPEG)
+                            Upload Proof of Acceptance (PDF)
                         </Typography>
                     </Box>
 

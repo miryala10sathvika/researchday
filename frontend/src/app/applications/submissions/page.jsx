@@ -8,8 +8,6 @@ const AUTHORIZED_EMAILS = [
   "adaridileep@students.iiit.ac.in",
 ];
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000/api";
-
 export default async function NewSubmissionPage() {
   const user = await getUser();
 

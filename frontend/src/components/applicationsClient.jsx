@@ -147,9 +147,9 @@ export default function ApplicationsClient({ submitted, user }) {
                                 lineHeight: 1.8,
                             }}
                         >
-                            <li>Submit your most recent published paper for the presentation.</li>
+                            <li>Submit your most recent published paper for the presentation or poster.</li>
                             <li>Ensure all information is accurate and up-to-date.</li>
-                            <li>Upload required documents in PDF, PNG, JPG, or JPEG formats only.</li>
+                            <li>Upload required documents in PDF format only.</li>
                             <li>Review your application before final submission.</li>
                         </Typography>
                     </Box>
