@@ -53,7 +53,9 @@ export default function SubmissionDetails({ submission }) {
   const handleDialogConfirm = async () => {
     try {
       const response = await fetch(
-        `/api/submissions/${submission?.submission_id}`,
+        `${process.env.BACKEND_URL || "http://backend:8000/api"}/submissions/${
+          submission?.submission_id
+        }`,
         {
           method: "PATCH",
           headers: {

@@ -27,7 +27,7 @@ services:
     volumes:
       - ./frontend:/web
     environment:
-      - BACKEND_URL=http://localhost/api
+      - BACKEND_URL=http://backend:8000/api
 
   nginx:
     build: ./nginx

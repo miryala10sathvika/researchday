@@ -24,7 +24,7 @@ else:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost"],  # Your frontend URL
+    allow_origins=["*"],  # Your frontend URL
     allow_credentials=True,  # This is required to send cookies
     allow_methods=["*"],
     allow_headers=["*"],

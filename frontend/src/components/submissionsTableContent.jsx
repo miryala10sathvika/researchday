@@ -65,7 +65,7 @@ export default function SubmissionsTableContent({ user, submissions }) {
 
   const handleDialogConfirm = async () => {
     try {
-      const response = await fetch(`/api/submissions/${submissionId}`, {
+      const response = await fetch(`${process.env.BACKEND_URL || "http://backend:8000/api"}/submissions/${submissionId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
