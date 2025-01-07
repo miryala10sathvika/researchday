@@ -1,24 +1,19 @@
-# Use the official Python image
-FROM python:3.10-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies
+# cache dependencies
+FROM python:3.12 AS python_cache
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+WORKDIR /cache/
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m venv /venv
+RUN pip install -r requirements.txt
 
-# Copy application files
-COPY app/ /app/app/
-RUN mkdir -p /app/uploads/paper /app/uploads/proof
-
-# Expose the application port (for backend)
+# build and start
+FROM python:3.12-slim AS build
 EXPOSE 8000
-
-# Command to run the app with hot-reloading for dev
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+WORKDIR /app
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=python_cache /venv /venv
+COPY . .
+RUN mkdir uploads/{paper,proof}
+CMD [ "uvicorn", "main:app", "--host", "0.0.0.0" ,"--port","8000", "--reload" ]

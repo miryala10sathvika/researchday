@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, Form
 from typing import List
 from uuid import UUID, uuid4
-from app.manager.submissions import SubmissionLogic, SubmissionCreate, SubmissionUpdateStatus, SubmissionResponse
-from app.db import get_db
+from manager.submissions import SubmissionLogic, SubmissionCreate, SubmissionUpdateStatus, SubmissionResponse
+from db import get_db
 import uuid
 from fastapi.responses import FileResponse
 import os

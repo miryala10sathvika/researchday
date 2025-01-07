@@ -1,9 +1,12 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-import os
+from os import getenv
 
-# Retrieve the MongoDB URI from environment variables or use a default value
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017")
-DATABASE_NAME = os.getenv("DATABASE_NAME", "conference")
+MONGO_URI = "mongodb://{}:{}@mongo:{}/".format(
+    getenv("MONGO_USERNAME", default="username"),
+    getenv("MONGO_PASSWORD", default="password"),
+    getenv("MONGO_PORT", default="27017"),
+)
+DATABASE_NAME = getenv("MONGO_DATABASE", default="default")
 
 
 async def get_db():
