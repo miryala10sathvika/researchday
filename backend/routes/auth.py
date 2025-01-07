@@ -7,7 +7,11 @@ from os import getenv
 import logging
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG if getenv("GLOBAL_DEBUG", "False").lower() in ("true", "1", "t") else logging.INFO)
+logging.basicConfig(
+    level=logging.DEBUG
+    if getenv("GLOBAL_DEBUG", "False").lower() in ("true", "1", "t")
+    else logging.INFO
+)
 logger = logging.getLogger("auth_router")
 
 # Configuration
@@ -28,6 +32,7 @@ cas_client = CASClient(
 
 # Initialize the router
 auth_router = APIRouter()
+
 
 @auth_router.get("/login")
 async def login(request: Request):
@@ -53,10 +58,16 @@ async def login(request: Request):
         user, attributes, _ = cas_client.verify_ticket(ticket)
         if not user:
             logger.error("Failed to verify CAS ticket.")
-            raise HTTPException(status_code=400, detail="Failed to verify ticket with CAS")
+            raise HTTPException(
+                status_code=400, detail="Failed to verify ticket with CAS"
+            )
 
         # Generate JWT token
-        payload = {"uid": attributes["uid"], "roll": attributes["RollNo"], "email": attributes["E-Mail"]}
+        payload = {
+            "uid": attributes["uid"],
+            "roll": attributes["RollNo"],
+            "email": attributes["E-Mail"],
+        }
         token = encode(payload, JWT_SECRET, algorithm="HS256")
 
         # Set JWT token in cookies
@@ -76,13 +87,14 @@ async def login(request: Request):
         logger.exception("An error occurred during login.")
         return JSONResponse({"message": f"Login failed: {str(e)}"}, status_code=500)
 
+
 @auth_router.get("/logout")
 async def logout(request: Request):
     """
     CAS logout endpoint. Logs out the user and clears the JWT token.
     """
     try:
-        cas_logout_url = cas_client.get_logout_url(redirect_url=SERVICE_URL)
+        cas_logout_url = cas_client.get_logout_url(redirect_url=REDIRECT_URL)
         response = RedirectResponse(url=cas_logout_url)
         response.delete_cookie("Authorization")
         logger.info("User logged out successfully.")
@@ -90,6 +102,7 @@ async def logout(request: Request):
     except Exception as e:
         logger.exception("An error occurred during logout.")
         return JSONResponse({"message": f"Logout failed: {str(e)}"}, status_code=500)
+
 
 @auth_router.get("/user")
 async def profile(request: Request):
@@ -104,7 +117,9 @@ async def profile(request: Request):
     try:
         payload = decode(token, JWT_SECRET, algorithms=["HS256"])
         logger.info("User profile retrieved successfully.")
-        return JSONResponse({"message": "Profile retrieved", "user": payload}, status_code=200)
+        return JSONResponse(
+            {"message": "Profile retrieved", "user": payload}, status_code=200
+        )
     except ExpiredSignatureError:
         logger.warning("Token expired during profile retrieval.")
         return JSONResponse({"message": "Token expired"}, status_code=401)

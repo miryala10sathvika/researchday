@@ -2,7 +2,15 @@
 
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Typography, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import Icon from "components/Icon";
 
@@ -10,11 +18,16 @@ export default function SubmissionsTableContent({ user, submissions }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [currentAction, setCurrentAction] = useState(null);
   const [submissionId, setSubmissionId] = useState(null);
-  const [dialogType, setDialogType] = useState('');
+  const [dialogType, setDialogType] = useState("");
   const router = useRouter();
 
-  const pendingSubmissions = submissions.filter((submission) => submission.status === "Pending");
-  const approvedRejectedSubmissions = submissions.filter((submission) => submission.status === "Approved" || submission.status === "Rejected");
+  const pendingSubmissions = submissions.filter(
+    (submission) => submission.status === "Pending"
+  );
+  const approvedRejectedSubmissions = submissions.filter(
+    (submission) =>
+      submission.status === "Approved" || submission.status === "Rejected"
+  );
 
   const formatDateTime = (dateTimeString) => {
     const date = new Date(dateTimeString);
@@ -22,24 +35,24 @@ export default function SubmissionsTableContent({ user, submissions }) {
       console.error("Invalid date format:", dateTimeString);
       return { dateString: "Invalid Date", timeString: "Invalid Time" };
     }
-    
+
     const dateString = date.toISOString().substring(0, 10); // YYYY-MM-DD
     const timeString = date.toTimeString().substring(0, 5); // HH:MM
-    
+
     return { dateString, timeString };
   };
 
   const handleApprove = (submissionId) => {
-    setCurrentAction('Approve');
+    setCurrentAction("Approve");
     setSubmissionId(submissionId);
-    setDialogType('approve');
+    setDialogType("approve");
     setOpenDialog(true);
   };
 
   const handleReject = (submissionId) => {
-    setCurrentAction('Reject');
+    setCurrentAction("Reject");
     setSubmissionId(submissionId);
-    setDialogType('reject');
+    setDialogType("reject");
     setOpenDialog(true);
   };
 
@@ -47,7 +60,7 @@ export default function SubmissionsTableContent({ user, submissions }) {
     setOpenDialog(false);
     setSubmissionId(null);
     setCurrentAction(null);
-    setDialogType('');
+    setDialogType("");
   };
 
   const handleDialogConfirm = async () => {
@@ -68,7 +81,11 @@ export default function SubmissionsTableContent({ user, submissions }) {
         // Reload or update the state accordingly
         router.refresh();
       } else {
-        alert(`Failed to ${currentAction.toLowerCase()} submission: ${result.detail}`);
+        alert(
+          `Failed to ${currentAction.toLowerCase()} submission: ${
+            result.detail
+          }`
+        );
       }
     } catch (error) {
       console.error("Error updating submission:", error);
@@ -82,12 +99,15 @@ export default function SubmissionsTableContent({ user, submissions }) {
   const columns = [
     { field: "user_roll_no", headerName: "User ID", flex: 1 },
     { field: "title", headerName: "Title", flex: 2 },
-    { field: "is_poster", headerName: "Poster", flex: 1,
+    {
+      field: "is_poster",
+      headerName: "Poster",
+      flex: 1,
       renderCell: ({ value }) => (
         <Icon
-            variant={value ? "check" : "cancel"}
-            color={value ? "success.main" : "error.main"}
-          />
+          variant={value ? "check" : "cancel"}
+          color={value ? "success.main" : "error.main"}
+        />
       ),
     },
     {
@@ -96,16 +116,21 @@ export default function SubmissionsTableContent({ user, submissions }) {
       flex: 1,
       renderCell: ({ value }) => (
         <Typography
-        variant="body2"
-        sx={{
-          color: value === "Pending" ? "warning.main" : value === "Approved" ? "success.main" : "error.main",
-          display: 'flex',
-          alignItems: 'center',
-          height: '100%',
-        }}
-      >
-        {value}
-      </Typography>
+          variant="body2"
+          sx={{
+            color:
+              value === "Pending"
+                ? "warning.main"
+                : value === "Approved"
+                ? "success.main"
+                : "error.main",
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          {value}
+        </Typography>
       ),
     },
     {
@@ -118,9 +143,9 @@ export default function SubmissionsTableContent({ user, submissions }) {
           <Typography
             variant="body2"
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              height: '100%',
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
             }}
           >
             {dateString} {timeString}
@@ -133,11 +158,15 @@ export default function SubmissionsTableContent({ user, submissions }) {
       headerName: "Actions",
       flex: 1,
       renderCell: ({ row }) => (
-        <Box sx={{ display: "flex", gap: 1, alignItems: "center", height: "100%" }}>
+        <Box
+          sx={{ display: "flex", gap: 1, alignItems: "center", height: "100%" }}
+        >
           <Button
             variant="contained"
             size="small"
-            onClick={() => router.push(`/applications/submissions/${row.submission_id}`)}
+            onClick={() =>
+              router.push(`/applications/submissions/${row.submission_id}`)
+            }
           >
             Open
           </Button>
@@ -150,7 +179,7 @@ export default function SubmissionsTableContent({ user, submissions }) {
             >
               Approve
             </Button>
-            )}
+          )}
           {(row?.status === "Pending" || row?.status === "Approved") && (
             <Button
               variant="contained"
