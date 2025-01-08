@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends
 from typing import List
 from uuid import UUID, uuid4
 from manager.submissions import (
@@ -10,6 +10,7 @@ from manager.submissions import (
 from db import db
 from fastapi.responses import FileResponse
 import os
+from utils.helpers import get_current_user, check_admin
 
 sub_router = APIRouter()
 
@@ -23,7 +24,11 @@ async def create_submission(
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     is_poster: bool = Form(...),
+    user: bool = Depends(get_current_user),
 ):
+    if user:
+        raise HTTPException(status_code=401, detail="Already Logged In")
+
     try:
         sub_id = str(uuid4())
 
@@ -56,7 +61,11 @@ async def create_submission(
 
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
-async def get_all_submissions():
+async def get_all_submissions(
+    admin: bool = Depends(get_current_user),
+):
+    if not admin:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
     try:
         return await SubmissionLogic.get_all_submissions(db)
     except Exception as e:
@@ -64,9 +73,9 @@ async def get_all_submissions():
 
 
 @sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
-async def get_submission(roll_no: str):
+async def get_submission(roll_no: str, admin: bool = Depends(get_current_user)):
     try:
-        return await SubmissionLogic.get_submission_by_roll_no(db, roll_no)
+        return await SubmissionLogic.get_submission_by_roll_no(db, roll_no, admin)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
@@ -75,9 +84,12 @@ async def get_submission(roll_no: str):
 
 #  get submission by submission id
 @sub_router.get("/submission/{submission_id}", response_model=SubmissionResponse)
-async def get_submission_by_id(submission_id: UUID):
+async def get_submission_by_id(
+    submission_id: UUID,
+    admin: bool = Depends(get_current_user),
+):
     try:
-        return await SubmissionLogic.get_submission_by_id(db, submission_id)
+        return await SubmissionLogic.get_submission_by_id(db, submission_id, admin)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
@@ -85,7 +97,14 @@ async def get_submission_by_id(submission_id: UUID):
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)
-async def update_submission_status(submission_id: UUID, update: SubmissionUpdateStatus):
+async def update_submission_status(
+    submission_id: UUID,
+    update: SubmissionUpdateStatus,
+    admin: bool = Depends(get_current_user),
+):
+    if not admin:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+    
     try:
         return await SubmissionLogic.update_submission_status(db, submission_id, update)
     except ValueError as e:
@@ -98,6 +117,7 @@ async def update_submission_status(submission_id: UUID, update: SubmissionUpdate
 async def get_pdf(
     folder_name: str,
     uuid: str,
+    admin: bool = Depends(get_current_user),
 ):
     try:
         return FileResponse(f"uploads/{folder_name}/{uuid}.pdf")

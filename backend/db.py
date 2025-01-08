@@ -18,7 +18,7 @@ async def setup_db():
     Creates collections if they don't exist.
     """
     collections = [
-        "users",
+        "admins",
         "submissions",
         "research_tracks",
         "announcements",
@@ -43,5 +43,18 @@ async def setup_db():
         }
         for key, value in schedule.items():
             await db.dates.insert_one({key: value})
+
+    # Check if admins is empty
+    if await db.admins.count_documents({}) == 0:
+        admins = [
+            "aparajitha.allamraju@research.iiit.ac.in",
+            "shodasakshari.vidya@research.iiit.ac.in",
+            "furqan.shaik@research.iiit.ac.in",
+            "sudarshan.srinivasan@research.iiit.ac.in",
+            "bhav.beri@research.iiit.ac.in"
+        ]
+        print("Inserting default admins.")
+        for admin in admins:
+            await db.admins.insert_one({"username": admin})
 
     print("Database setup complete.")

@@ -1,6 +1,7 @@
 import NewForm from 'components/newForm';
 import { redirect } from 'next/navigation';
-import { getUser, getSubmissionByRoll } from 'utils/verification';
+import { getUser } from 'utils/verification';
+import {getSubmissionByRoll} from "utils/backend_calls";
 
 
 export default async function NewSubmissionPage() {

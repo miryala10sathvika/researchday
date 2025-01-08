@@ -5,6 +5,7 @@ from jwt import encode, decode, ExpiredSignatureError, DecodeError
 from urllib.parse import quote_plus
 from os import getenv
 import logging
+from db import db
 
 # Configure logging
 logging.basicConfig(
@@ -126,3 +127,11 @@ async def profile(request: Request):
     except DecodeError:
         logger.warning("Failed to decode JWT token.")
         return JSONResponse({"message": "Failed to decode token"}, status_code=400)
+
+@auth_router.get("/admins")
+async def get_admins(request: Request):
+    """
+    Retrieve a list of admins from the database.
+    """
+    admins = await db.admins.find().to_list(None)
+    return admins

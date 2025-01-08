@@ -45,6 +45,15 @@ class SubmissionLogic:
     async def create_submission(
         sub_id: str, db: AsyncIOMotorDatabase, submission: dict
     ) -> SubmissionResponse:
+        presenter_registration_deadline = await db.dates.find_one(
+            {"presenter_registration_deadline": {"$exists": True}}
+        )
+
+        if create_ist_time() > datetime.fromisoformat(
+            presenter_registration_deadline["presenter_registration_deadline"]
+        ):
+            raise ValueError("Presenter registration deadline has passed.")
+
         new_submission = {
             "user_roll_no": submission["user_roll_no"],
             "submission_id": sub_id,  # Auto-generate submission_id
@@ -61,6 +70,7 @@ class SubmissionLogic:
             "reviewed_at": None,
         }
         db.submissions.insert_one(new_submission)
+
         return SubmissionResponse(**new_submission)
 
     @staticmethod
@@ -73,15 +83,6 @@ class SubmissionLogic:
     async def update_submission_status(
         db: AsyncIOMotorDatabase, submission_id: UUID, update: SubmissionUpdateStatus
     ) -> SubmissionResponse:
-        presenter_registration_deadline = await db.dates.find_one(
-            {"presenter_registration_deadline": {"$exists": True}}
-        )
-
-        if create_ist_time() > datetime.fromisoformat(
-            presenter_registration_deadline["presenter_registration_deadline"]
-        ):
-            raise ValueError("Presenter registration deadline has passed.")
-
         result = await db.submissions.find_one_and_update(
             {"submission_id": str(submission_id)},
             {
@@ -99,7 +100,7 @@ class SubmissionLogic:
 
     @staticmethod
     async def get_submission_by_roll_no(
-        db: AsyncIOMotorDatabase, roll_no: str
+        db: AsyncIOMotorDatabase, roll_no: str, admin: bool
     ) -> SubmissionResponse:
         submission = await db.submissions.find_one({"user_roll_no": roll_no})
         if not submission:
@@ -108,7 +109,9 @@ class SubmissionLogic:
         return_result = SubmissionResponse(**submission)
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
-        if create_ist_time() < datetime.fromisoformat(results_day["results_day"]):
+        if not admin and create_ist_time() < datetime.fromisoformat(
+            results_day["results_day"]
+        ):
             # Make status Pending with no review comments
             return_result.status = "Pending"
             return_result.review_comments = None
@@ -118,7 +121,7 @@ class SubmissionLogic:
 
     @staticmethod
     async def get_submission_by_id(
-        db: AsyncIOMotorDatabase, submission_id: UUID
+        db: AsyncIOMotorDatabase, submission_id: UUID, admin: bool
     ) -> SubmissionResponse:
         submission = await db.submissions.find_one(
             {"submission_id": str(submission_id)}
@@ -129,7 +132,9 @@ class SubmissionLogic:
         return_result = SubmissionResponse(**submission)
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
-        if create_ist_time() < datetime.fromisoformat(results_day["results_day"]):
+        if not admin and create_ist_time() < datetime.fromisoformat(
+            results_day["results_day"]
+        ):
             # Make status Pending with no review comments
             return_result.status = "Pending"
             return_result.review_comments = None
