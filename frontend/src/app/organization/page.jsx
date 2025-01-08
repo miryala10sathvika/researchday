@@ -13,6 +13,23 @@ const organizers = [
     ],
   },
   {
+    position: 'Publicity Team',
+    members: [
+      { name: 'Anagha Pradeep', institute: 'IIIT Hyderabad' },
+      { name: 'Bhav Beri', institute: 'IIIT Hyderabad' },
+      { name: 'Gargie Tambe', institute: 'IIIT Hyderabad' },
+    ],
+  },
+  {
+    position: 'Tech Team',
+    members: [
+      { name: 'Miryala Sathvika', institute: 'IIIT Hyderabad' },
+      { name: 'Dileep Adari', institute: 'IIIT Hyderabad' },
+      { name: 'Aaditya Vardhan Narain', institute: 'IIIT Hyderabad' },
+      { name: 'D Sree Yashaswinee', institute: 'IIIT Hyderabad' },
+    ],
+  },
+  {
     position: 'Organizing Committee',
     members: [
       { name: 'Chandrasekar S', institute: 'IIIT Hyderabad' },
@@ -24,19 +41,11 @@ const organizers = [
       { name: 'Aaryan Sharma', institute: 'IIIT Hyderabad' },
     ],
   },
-  {
-    position: 'Publicity Team',
-    members: [
-      { name: 'Anagha Pradeep', institute: 'IIIT Hyderabad' },
-      { name: 'Bhav Beri', institute: 'IIIT Hyderabad' },
-      { name: 'Gargie Tambe', institute: 'IIIT Hyderabad' },
-    ],
-  },
 ];
 
 export default function Organization() {
   return (
-    <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, gap: '20px', padding: '20px', ml: { xs: 0, lg: 25 }, mr: { xs: 0, lg: 25 }, mt:15 }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '20px', padding: '20px', ml: { xs: 0, lg: 25 }, mr: { xs: 0, lg: 25 }, mt:15, alignItems: 'flex-start' }}>
       {/* First Column */}
       <Box
         sx={{
@@ -47,7 +56,7 @@ export default function Organization() {
         }}
       >
         {organizers
-          .slice(0, 4)
+          .slice(0, 3)
           .map((item, index) => (
             <Card key={index} position={item.position} members={item.members} />
           ))}
@@ -63,7 +72,7 @@ export default function Organization() {
         }}
       >
         {organizers
-        .slice(4, 5)
+        .slice(3, 5)
         .map((item, index) => (
             <Card key={index} position={item.position} members={item.members} />
           ))}
