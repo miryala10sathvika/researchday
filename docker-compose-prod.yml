@@ -41,8 +41,11 @@ services:
       - ./nginx:/etc/nginx/conf.d:ro
       - ./backend/app/uploads:/usr/share/nginx/html/uploads:ro
     depends_on:
-      - frontend
-      - backend
+      frontend:
+        condition: service_started
+      backend:
+        condition: service_healthy
+        restart: true
     networks:
       web_network:
         ipv4_address: 172.18.0.2
