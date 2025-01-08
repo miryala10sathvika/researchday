@@ -1,43 +1,34 @@
 import { Box, Typography, Paper } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
+import { getImportantDates } from "../utils/backend_calls";
 
-const importantDates = [
-  {
-    date: "January 1st week",
-    event: "Release of the registrations",
-  },
-  {
-    date: "January 2nd week",
-    event: "Presentation Registration Submission Deadline",
-  },
-  {
-    date: "January 3rd week",
-    event: "Participation Registration Submission Deadline",
-  },
-  {
-    date: "January 3rd week",
-    event: "Notification of Acceptance",
-  },
-  {
-    date: "February 2nd week",
-    event: "Conference Dates",
-  },
-];
+const importantDatesMapping = {
+  attendee_registration_start: "Attendee Registration Start Date",
+  attendee_registration_end: "Attendee Registration End Date",
+  presenter_registration_deadline: "Presenter Registration Deadline",
+  results_day: "Results Day",
+};
 
 const news = [
   {
-    date: "January 1st week",
+    date: "January 9",
     content: "Registration portal is now open",
   },
-  {
-    date: "January 3rd week",
-    content: "Acceptance of presentations and posters is released",
-  },
+  // {
+  //   date: "January 3rd week",
+  //   content: "Acceptance of presentations and posters is released",
+  // },
 ];
 
 const bannerImage = "/assets/banner.jpg";
-export default function Home() {
+export default async function Home() {
+  const importantDates = await getImportantDates();
+  const currentDate = new Date(); // Get current date
+  const sortedDates = Object.entries(importantDates).sort((a, b) => {
+    return new Date(a[1]) - new Date(b[1]); // Sort by date in ascending order
+  });
+
   return (
     <Box
       sx={{
@@ -146,37 +137,6 @@ export default function Home() {
 
         {/* Right Content */}
         <Box flex={2} sx={{ margin: "20px", backgroundColor: "white" }}>
-          {/* Important Dates */}
-          <Paper
-            elevation={3}
-            sx={{ padding: 3, backgroundColor: "white", marginBottom: 4 }}
-          >
-            <Typography
-              variant="h5"
-              gutterBottom
-              sx={{
-                color: "#1976d2",
-                borderBottom: "2px solid #1976d2",
-                paddingBottom: 1,
-              }}
-            >
-              Important Dates
-            </Typography>
-            {importantDates.map((item, index) => (
-              <Box key={index} sx={{ mb: 2 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                  {item.date}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ color: "#666", fontSize: "1.1rem" }}
-                >
-                  {item.event}
-                </Typography>
-              </Box>
-            ))}
-          </Paper>
-
           {/* Latest News */}
           <Paper elevation={3} sx={{ padding: 3, backgroundColor: "white" }}>
             <Typography
@@ -203,6 +163,69 @@ export default function Home() {
                 </Typography>
               </Box>
             ))}
+          </Paper>
+
+          {/* Important Dates */}
+          <Paper
+            elevation={3}
+            sx={{ padding: 3, backgroundColor: "white", marginTop: 4 }}
+          >
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{
+                color: "#1976d2",
+                borderBottom: "2px solid #1976d2",
+                paddingBottom: 1,
+              }}
+            >
+              Important Dates
+            </Typography>
+            <Box>
+              {sortedDates.map(([key, value], index) => {
+                const isPastDate = new Date(value) < currentDate; // Check if the date is in the past
+
+                return (
+                  <Box key={index} sx={{ mb: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                      {importantDatesMapping[key]}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "#666",
+                        fontSize: "1.1rem",
+                        textDecoration: isPastDate ? "line-through" : "none", // Apply strike-through if the date is past
+                      }}
+                    >
+                      {new Date(value).toLocaleString("en-US", {
+                        weekday: "long",
+                        // year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </Typography>
+                  </Box>
+                );
+              })}
+            </Box>
+            {/* {
+              // importantDates.map((item, index) => (
+              importantDates.map((item, index) => (
+              <Box key={index} sx={{ mb: 2 }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                  {
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ color: "#666", fontSize: "1.1rem" }}
+                >
+                  {
+                </Typography>
+              </Box>
+            ))} */}
           </Paper>
         </Box>
       </Box>

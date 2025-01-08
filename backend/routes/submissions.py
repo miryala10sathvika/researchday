@@ -125,3 +125,17 @@ async def get_pdf(
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"{str(e)}")
+
+@sub_router.get("/important-dates")
+async def get_important_dates(
+):
+    dates = db.dates.find({})
+    dates = await dates.to_list(length=None)
+
+    return_dates = {}
+    for date in dates:
+        for key in date:
+            if key != "_id":
+                return_dates[key] = date[key]
+    
+    return return_dates
