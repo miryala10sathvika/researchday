@@ -67,7 +67,7 @@ export default function Header({ user = null }) {
         backgroundColor: "white",
         color: "black",
         zIndex: 999,
-        height: 90,
+        height: 95,
       }}
     >
       <Toolbar>
@@ -75,7 +75,7 @@ export default function Header({ user = null }) {
         <Box
           display="flex"
           alignItems="center"
-          sx={{ ml: { xs: 0, md: 2 }, pl: { xs: 0, md: 2 } }}
+          sx={{ ml: { xs: 0, md: 2 }, pl: { xs: 0, md: 2 }, mt: 0.75 }}
           p={1}
         >
           <Image src={logo} width={150} height={80} alt="IIITH Logo" />
@@ -158,6 +158,12 @@ export default function Header({ user = null }) {
             color="inherit"
             aria-label="menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            sx={{
+              backgroundColor: mobileMenuOpen ? "grey" : "transparent",
+              borderRadius: "50%",
+              padding: 1, // Add padding to ensure the circle is properly sized
+              transition: "background-color 0.3s ease", // Smooth transition for bg color
+            }}
           >
             <MenuIcon />
           </IconButton>
