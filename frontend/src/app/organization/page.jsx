@@ -4,56 +4,48 @@ import { Box } from '@mui/material';
 
 const organizers = [
   {
-    position: 'Program Committee Chair',
-    members: [{ name: 'Arnab Bhattacharya', institute: 'IIT Kanpur' }],
-  },
-  {
-    position: 'Organizing Chair',
-    members: [{ name: 'Martin Gluckman', institute: 'Sanskrit Research Institute' }],
-  },
-  {
-    position: 'Web Chair',
-    members: [{ name: 'Hrishikesh Terdalkar', institute: 'IIT Kanpur, Kanpur, India' }],
-  },
-  {
-    position: 'Steering Committee',
+    position: 'Program Chair',
     members: [
-      { name: 'Amba Kulkarni', institute: 'University of Hyderabad, Hyderabad, India' },
-      { name: 'Arnab Bhattacharya', institute: 'IIT Kanpur, Kanpur, India' },
-      { name: 'Brendan Gillon', institute: 'McGill University, Montreal, Canada' },
-      { name: 'Gérard Huet', institute: 'INRIA, Paris, France' },
-      { name: 'Malhar Kulkarni', institute: 'IIT Bombay, Mumbai, India' },
-      { name: 'Pawan Goyal', institute: 'IIT Kharagpur, Kharagpur, India' },
-      { name: 'Peter Scharf', institute: 'The Sanskrit Library, USA' },
+      { name: 'A Aparajitha', institute: 'IIIT Hyderabad' },
+      { name: 'Shodasakshari Vidya', institute: 'IIIT Hyderabad' },
+      { name: 'Furqan Shaik', institute: 'IIIT Hyderabad' },
+      { name: 'Sudarshan Srinivasan', institute: 'IIIT Hyderabad' },
     ],
   },
   {
-    position: 'Technical Program Committee',
+    position: 'Publicity Team',
     members: [
-      { name: 'Amba Kulkarni', institute: 'University of Hyderabad, Hyderabad, India' },
-      { name: 'Amrith Krishna', institute: 'Manipal Academy of Higher Education, Bengaluru, India' },
-      { name: 'Arjuna S R', institute: 'Manipal Academy of Higher Education, Bengaluru, India' },
-      { name: 'Arnab Bhattacharya', institute: 'IIT Kanpur, Kanpur, India' },
-      { name: 'Brendan Gillon', institute: 'McGill University, Montreal, Canada' },
-      { name: 'Chaitali Dangarikar', institute: 'IIT Kanpur, Kanpur, India' },
-      { name: 'Ganesh Ramakrishnan', institute: 'IIT Bombay, Mumbai, India' },
-      { name: 'Gérard Huet', institute: 'INRIA, Paris, France' },
-      { name: 'Malhar Kulkarni', institute: 'IIT Bombay, Mumbai, India' },
-      { name: 'Oliver Hellwig', institute: 'University of Zurich, Zurich, Switzerland' },
-      { name: 'Patrick McAllister', institute: 'Austrian Academy of Sciences, Austria' },
-      { name: 'Pavankumar Satuluri', institute: 'Indian Institute of Technology Roorkee, Roorkee, India' },
-      { name: 'Pawan Goyal', institute: 'IIT Kharagpur, Kharagpur, India' },
-      { name: 'Peter Scharf', institute: 'The Sanskrit Library, USA' },
-      { name: 'Sebastian Nehrdich', institute: 'University of Hamburg, Hamburg, Germany' },
-      { name: 'Shivani V', institute: 'Karnataka Sanskrit University, Karnataka, India' },
-      { name: 'Tanuja P Ajotikar', institute: 'The Sanskrit Library, USA' },
+      { name: 'Anagha Pradeep', institute: 'IIIT Hyderabad' },
+      { name: 'Bhav Beri', institute: 'IIIT Hyderabad' },
+      { name: 'Gargie Tambe', institute: 'IIIT Hyderabad' },
+    ],
+  },
+  {
+    position: 'Tech Team',
+    members: [
+      { name: 'Miryala Sathvika', institute: 'IIIT Hyderabad' },
+      { name: 'Dileep Adari', institute: 'IIIT Hyderabad' },
+      { name: 'Aaditya Vardhan Narain', institute: 'IIIT Hyderabad' },
+      { name: 'D Sree Yashaswinee', institute: 'IIIT Hyderabad' },
+    ],
+  },
+  {
+    position: 'Organizing Committee',
+    members: [
+      { name: 'Chandrasekar S', institute: 'IIIT Hyderabad' },
+      { name: 'Kaveri Anuranjana', institute: 'IIIT Hyderabad' },
+      { name: 'Vedula Bhaskara Hanuma', institute: 'IIIT Hyderabad' },
+      { name: 'Janaksinh Ven', institute: 'IIIT Hyderabad' },
+      { name: 'Rasheed', institute: 'IIIT Hyderabad' },
+      { name: 'Lokesh V', institute: 'IIIT Hyderabad' },
+      { name: 'Aaryan Sharma', institute: 'IIIT Hyderabad' },
     ],
   },
 ];
 
 export default function Organization() {
   return (
-    <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, gap: '20px', padding: '20px', ml: { xs: 0, lg: 25 }, mr: { xs: 0, lg: 25 }, mt:15 }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '20px', padding: '20px', ml: { xs: 0, lg: 25 }, mr: { xs: 0, lg: 25 }, mt:15, alignItems: 'flex-start' }}>
       {/* First Column */}
       <Box
         sx={{
@@ -64,7 +56,7 @@ export default function Organization() {
         }}
       >
         {organizers
-          .slice(0, 4)
+          .slice(0, 3)
           .map((item, index) => (
             <Card key={index} position={item.position} members={item.members} />
           ))}
@@ -80,7 +72,7 @@ export default function Organization() {
         }}
       >
         {organizers
-        .slice(4, 5)
+        .slice(3, 5)
         .map((item, index) => (
             <Card key={index} position={item.position} members={item.members} />
           ))}

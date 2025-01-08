@@ -23,6 +23,7 @@ services:
       - /mnt/share/files:/app/uploads
     depends_on:
       - mongo
+    restart: unless-stopped
 
   frontend:
     build:
@@ -30,10 +31,9 @@ services:
       dockerfile: Dockerfile
       args:
         - ENV=production
-    volumes:
-      - ./frontend:/web
     environment:
       - BACKEND_URL=http://backend:8000/api
+    restart: unless-stopped
 
   nginx:
     build: ./nginx
@@ -41,8 +41,12 @@ services:
       - ./nginx:/etc/nginx/conf.d:ro
       - ./backend/app/uploads:/usr/share/nginx/html/uploads:ro
     depends_on:
-      - frontend
-      - backend
+      frontend:
+        condition: service_started
+      backend:
+        condition: service_healthy
+        restart: true
     networks:
       web_network:
         ipv4_address: 172.18.0.2
+    restart: unless-stopped
