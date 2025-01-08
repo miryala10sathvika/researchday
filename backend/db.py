@@ -8,23 +8,40 @@ MONGO_URI = "mongodb://{}:{}@mongo:{}/".format(
 )
 DATABASE_NAME = getenv("MONGO_DATABASE", default="default")
 
+client = AsyncIOMotorClient(MONGO_URI)
+db = client[DATABASE_NAME]
 
-async def get_db():
-    """
-    Function to get the database connection asynchronously.
-    Returns:
-        db: The MongoDB database object.
-    """
-    client = AsyncIOMotorClient(MONGO_URI)
-    return client[DATABASE_NAME]
 
 async def setup_db():
     """
     Function to set up the database asynchronously.
     Creates collections if they don't exist.
     """
-    db = await get_db()  # Use `await` since `get_db()` is asynchronous
-    collections = ["users", "submissions", "research_tracks", "announcements", "schedule", "registrations"]
+    collections = [
+        "users",
+        "submissions",
+        "research_tracks",
+        "announcements",
+        "schedule",
+        "registrations",
+        "dates",
+    ]
+    existing_collections = await db.list_collection_names()
     for collection in collections:
-        if collection not in await db.list_collection_names():  # Use await here too
+        if collection not in existing_collections:
+            print(f"Creating collection: {collection}")
             await db.create_collection(collection)
+
+    # Check if dates collection is empty
+    if await db.dates.count_documents({}) == 0:
+        print("Inserting default dates.")
+        schedule = {
+            "presenter_registration_deadline": "2025-01-20T23:59:59",
+            "attendee_registration_start": "2025-01-18T23:59:59",
+            "attendee_registration_end": "2025-01-25T23:59:59",
+            "results_day": "2025-01-27T00:00:00",
+        }
+        for key, value in schedule.items():
+            await db.dates.insert_one({key: value})
+
+    print("Database setup complete.")

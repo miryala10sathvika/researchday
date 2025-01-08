@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, Form
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from typing import List
 from uuid import UUID, uuid4
 from manager.submissions import (
@@ -7,8 +7,7 @@ from manager.submissions import (
     SubmissionUpdateStatus,
     SubmissionResponse,
 )
-from db import get_db
-import uuid
+from db import db
 from fastapi.responses import FileResponse
 import os
 
@@ -24,7 +23,6 @@ async def create_submission(
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     is_poster: bool = Form(...),
-    db=Depends(get_db),
 ):
     try:
         sub_id = str(uuid4())
@@ -58,7 +56,7 @@ async def create_submission(
 
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
-async def get_all_submissions(db=Depends(get_db)):
+async def get_all_submissions():
     try:
         return await SubmissionLogic.get_all_submissions(db)
     except Exception as e:
@@ -66,7 +64,7 @@ async def get_all_submissions(db=Depends(get_db)):
 
 
 @sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
-async def get_submission(roll_no: str, db=Depends(get_db)):
+async def get_submission(roll_no: str):
     try:
         return await SubmissionLogic.get_submission_by_roll_no(db, roll_no)
     except ValueError as e:
@@ -77,7 +75,7 @@ async def get_submission(roll_no: str, db=Depends(get_db)):
 
 #  get submission by submission id
 @sub_router.get("/submission/{submission_id}", response_model=SubmissionResponse)
-async def get_submission(submission_id: UUID, db=Depends(get_db)):
+async def get_submission_by_id(submission_id: UUID):
     try:
         return await SubmissionLogic.get_submission_by_id(db, submission_id)
     except ValueError as e:
@@ -87,9 +85,7 @@ async def get_submission(submission_id: UUID, db=Depends(get_db)):
 
 
 @sub_router.patch("/submissions/{submission_id}", response_model=SubmissionResponse)
-async def update_submission_status(
-    submission_id: UUID, update: SubmissionUpdateStatus, db=Depends(get_db)
-):
+async def update_submission_status(submission_id: UUID, update: SubmissionUpdateStatus):
     try:
         return await SubmissionLogic.update_submission_status(db, submission_id, update)
     except ValueError as e:
@@ -99,7 +95,10 @@ async def update_submission_status(
 
 
 @sub_router.get("/get-pdf/{folder_name}/{uuid}")
-async def get_pdf(folder_name: str, uuid: str, db=Depends(get_db)):
+async def get_pdf(
+    folder_name: str,
+    uuid: str,
+):
     try:
         return FileResponse(f"uploads/{folder_name}/{uuid}.pdf")
     except ValueError as e:

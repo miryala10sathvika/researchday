@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routes.auth import auth_router
 from routes.submissions import sub_router
-from db import get_db
+from db import setup_db
 from fastapi.middleware.cors import CORSMiddleware
 from os import getenv
 
@@ -31,11 +31,15 @@ app.add_middleware(
 )
 
 
+# Set up the database on startup
+@app.on_event("startup")
+async def startup_event():
+    await setup_db()
+
+
 @app.get("/")
-def read_root():
-    db = get_db()  # Get the database connection
-    return "Hello World!"
-    # return {"client_info": str(db.client)}  # Return the MongoDB client information as a response
+def ping():
+    return "Backend is running!"
 
 
 # Include the routes

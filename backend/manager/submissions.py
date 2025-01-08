@@ -2,8 +2,13 @@ from typing import List, Optional
 from uuid import UUID
 import uuid
 from datetime import datetime
+from pytz import timezone
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from pydantic import BaseModel
+
+
+def create_ist_time():
+    return datetime.now(timezone("Asia/Kolkata"))
 
 
 # Request and Response Models
@@ -15,7 +20,7 @@ class SubmissionCreate(BaseModel):
 
 
 class SubmissionUpdateStatus(BaseModel):
-    status: str 
+    status: str
     review_comments: Optional[str] = None
 
 
@@ -37,7 +42,9 @@ class SubmissionResponse(BaseModel):
 
 class SubmissionLogic:
     @staticmethod
-    async def create_submission(sub_id:str,db: AsyncIOMotorDatabase, submission: dict) -> SubmissionResponse:
+    async def create_submission(
+        sub_id: str, db: AsyncIOMotorDatabase, submission: dict
+    ) -> SubmissionResponse:
         new_submission = {
             "user_roll_no": submission["user_roll_no"],
             "submission_id": sub_id,  # Auto-generate submission_id
@@ -50,7 +57,7 @@ class SubmissionLogic:
             "acceptance_proof": submission["acceptance_proof"],
             "status": "Pending",
             "review_comments": None,
-            "submitted_at": datetime.utcnow().replace(microsecond=0).isoformat(),
+            "submitted_at": create_ist_time().replace(microsecond=0).isoformat(),
             "reviewed_at": None,
         }
         db.submissions.insert_one(new_submission)
@@ -58,21 +65,30 @@ class SubmissionLogic:
 
     @staticmethod
     async def get_all_submissions(db: AsyncIOMotorDatabase) -> List[SubmissionResponse]:
-        submissions_cursor =db.submissions.find()
-        submissions= await submissions_cursor.to_list(length=None)
+        submissions_cursor = db.submissions.find()
+        submissions = await submissions_cursor.to_list(length=None)
         return [SubmissionResponse(**submission) for submission in submissions]
 
     @staticmethod
     async def update_submission_status(
         db: AsyncIOMotorDatabase, submission_id: UUID, update: SubmissionUpdateStatus
     ) -> SubmissionResponse:
+        presenter_registration_deadline = await db.dates.find_one(
+            {"presenter_registration_deadline": {"$exists": True}}
+        )
+
+        if create_ist_time() > datetime.fromisoformat(
+            presenter_registration_deadline["presenter_registration_deadline"]
+        ):
+            raise ValueError("Presenter registration deadline has passed.")
+
         result = await db.submissions.find_one_and_update(
             {"submission_id": str(submission_id)},
             {
                 "$set": {
                     "status": update.status,
                     "review_comments": update.review_comments,
-                    "reviewed_at": datetime.utcnow(),
+                    "reviewed_at": create_ist_time(),
                 }
             },
             return_document=True,
@@ -80,17 +96,43 @@ class SubmissionLogic:
         if not result:
             raise ValueError("Submission not found.")
         return SubmissionResponse(**result)
-    
+
     @staticmethod
-    async def get_submission_by_roll_no(db: AsyncIOMotorDatabase, roll_no: str) -> SubmissionResponse:
+    async def get_submission_by_roll_no(
+        db: AsyncIOMotorDatabase, roll_no: str
+    ) -> SubmissionResponse:
         submission = await db.submissions.find_one({"user_roll_no": roll_no})
         if not submission:
             raise ValueError("Submission not found.")
-        return SubmissionResponse(**submission)
-    
+
+        return_result = SubmissionResponse(**submission)
+
+        results_day = await db.dates.find_one({"results_day": {"$exists": True}})
+        if create_ist_time() < datetime.fromisoformat(results_day["results_day"]):
+            # Make status Pending with no review comments
+            return_result.status = "Pending"
+            return_result.review_comments = None
+            return_result.reviewed_at = None
+
+        return return_result
+
     @staticmethod
-    async def get_submission_by_id(db: AsyncIOMotorDatabase, submission_id: UUID) -> SubmissionResponse:
-        submission = await db.submissions.find_one({"submission_id": str(submission_id)})
+    async def get_submission_by_id(
+        db: AsyncIOMotorDatabase, submission_id: UUID
+    ) -> SubmissionResponse:
+        submission = await db.submissions.find_one(
+            {"submission_id": str(submission_id)}
+        )
         if not submission:
             raise ValueError("Submission not found.")
-        return SubmissionResponse(**submission)
+
+        return_result = SubmissionResponse(**submission)
+
+        results_day = await db.dates.find_one({"results_day": {"$exists": True}})
+        if create_ist_time() < datetime.fromisoformat(results_day["results_day"]):
+            # Make status Pending with no review comments
+            return_result.status = "Pending"
+            return_result.review_comments = None
+            return_result.reviewed_at = None
+
+        return return_result
