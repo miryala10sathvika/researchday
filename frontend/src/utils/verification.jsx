@@ -51,11 +51,16 @@ export async function getAdmins() {
     return null;
   }
 
-  const { admins } = await adminsResponse.json();
-
+  const admins = await adminsResponse.json();
   if (!admins) {
     return null;
   }
 
-  return admins;
+  // Make a list of the admin usernames
+  const adminsList = [];
+  for (const admin of admins) {
+    adminsList.push(admin.username);
+  }
+
+  return adminsList;
 }

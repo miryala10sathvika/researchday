@@ -133,5 +133,12 @@ async def get_admins(request: Request):
     """
     Retrieve a list of admins from the database.
     """
-    admins = await db.admins.find().to_list(None)
-    return admins
+    admins = db.admins.find()
+    admins_list = await admins.to_list(length=None)
+
+    for admin in admins_list:
+        if "_id" in admin:
+            admin["_id"] = str(admin["_id"])
+            
+    print(admins_list)
+    return admins_list
