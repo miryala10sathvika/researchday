@@ -1,4 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
 import React from "react";
 
 export default function MemberCard({ position, members }) {
@@ -37,24 +38,42 @@ export default function MemberCard({ position, members }) {
                 my={1}
               />
             )}
-            <Box>
-              <Box
-                component="p"
-                color="#333333"
-                fontSize="1em"
-                fontWeight="600"
-                mb={1}
-              >
-                {person.name}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box>
+                <Box
+                  component="p"
+                  color="#333333"
+                  fontSize="1em"
+                  fontWeight="600"
+                  mb={1}
+                >
+                  {person.name}
+                </Box>
+                <Box
+                  component="p"
+                  color="#666666"
+                  fontSize="0.9em"
+                  textAlign={"left"}
+                >
+                  {person.institute}
+                </Box>
               </Box>
-              <Box
-                component="p"
-                color="#666666"
-                fontSize="0.9em"
-                textAlign={"left"}
-              >
-                {person.institute}
-              </Box>
+              {person.email && (
+                <IconButton
+                  href={`mailto:${person.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Email ${person.name}`}
+                >
+                  <EmailIcon color="primary" />
+                </IconButton>
+              )}
             </Box>
           </React.Fragment>
         ))}
