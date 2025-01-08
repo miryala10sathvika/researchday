@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends
-from typing import List
+from typing import List, Optional
 from uuid import UUID, uuid4
 from manager.submissions import (
     SubmissionLogic,
@@ -11,6 +11,7 @@ from db import db
 from fastapi.responses import FileResponse
 import os
 from utils.helpers import get_current_user, check_admin
+from datetime import datetime
 
 sub_router = APIRouter()
 
@@ -21,6 +22,13 @@ async def create_submission(
     title: str = Form(...),
     abstract: str = Form(...),
     authors: str = Form(...),  # Comma-separated authors
+    lab_name: str = Form(...),
+    advisor_name: str = Form(...),
+    co_author_names: Optional[str] = Form(None),
+    submission_type: str = Form(...),
+    forum_name: str = Form(...),
+    forum_level: str = Form(...),
+    acceptance_date: str = Form(...),  # Will be converted to datetime
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     is_poster: bool = Form(...),
@@ -48,6 +56,13 @@ async def create_submission(
             "title": title,
             "abstract": abstract,
             "authors": authors,
+            "lab_name": lab_name,
+            "advisor_name": advisor_name,
+            "co_author_names": co_author_names,
+            "submission_type": submission_type,
+            "forum_name": forum_name,
+            "forum_level": forum_level,
+            "acceptance_date": datetime.fromisoformat(acceptance_date),
             "file_url": file_url_path,
             "acceptance_proof": acceptance_proof_path,
             "is_poster": is_poster,

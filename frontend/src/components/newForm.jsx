@@ -19,6 +19,13 @@ export default function NewClient({ user }) {
     title: "",
     abstract: "",
     authors: "",
+    labName: "",
+    advisorName: "",
+    coAuthorNames: "",
+    submissionType: "",
+    forumName: "",
+    forumLevel: "",
+    acceptanceDate: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -38,6 +45,12 @@ export default function NewClient({ user }) {
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.abstract) newErrors.abstract = "Abstract is required";
     if (!formData.authors) newErrors.authors = "Authors are required";
+    if (!formData.labName) newErrors.labName = "Lab name is required";
+    if (!formData.advisorName) newErrors.advisorName = "Advisor name is required";
+    if (!formData.submissionType) newErrors.submissionType = "Submission type is required";
+    if (!formData.forumName) newErrors.forumName = "Forum name is required";
+    if (!formData.forumLevel) newErrors.forumLevel = "Forum level is required";
+    if (!formData.acceptanceDate) newErrors.acceptanceDate = "Acceptance date is required";
     if (!files.mainFile) newErrors.mainFile = "Paper file is required";
     if (!files.proof) newErrors.proof = "Proof of acceptance is required";
     setErrors(newErrors);
@@ -72,6 +85,13 @@ export default function NewClient({ user }) {
       formDataToSend.append("file_url", files.mainFile);
       formDataToSend.append("acceptance_proof", files.proof);
       formDataToSend.append("is_poster", isPoster);
+      formDataToSend.append("lab_name", formData.labName);
+      formDataToSend.append("advisor_name", formData.advisorName);
+      formDataToSend.append("co_author_names", formData.coAuthorNames);
+      formDataToSend.append("submission_type", formData.submissionType);
+      formDataToSend.append("forum_name", formData.forumName);
+      formDataToSend.append("forum_level", formData.forumLevel);
+      formDataToSend.append("acceptance_date", formData.acceptanceDate);
 
       const response = await fetch(
         `/api/submissions`,
@@ -170,6 +190,94 @@ export default function NewClient({ user }) {
               sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.authors}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.labName}>
+            <TextField
+              id="labName"
+              value={formData.labName}
+              onChange={handleChange("labName")}
+              label="Lab Name"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.labName}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.advisorName}>
+            <TextField
+              id="advisorName"
+              value={formData.advisorName}
+              onChange={handleChange("advisorName")}
+              label="Advisor(s) Name"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.advisorName}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.coAuthorNames}>
+            <TextField
+              id="coAuthorNames"
+              value={formData.coAuthorNames}
+              onChange={handleChange("coAuthorNames")}
+              label="Co-author Names"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.coAuthorNames}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.submissionType}>
+            <TextField
+              id="submissionType"
+              value={formData.submissionType}
+              onChange={handleChange("submissionType")}
+              label="Original Submission Type"
+              variant="outlined"
+              helperText="Workshop, Short Paper, Full Paper, Journal, etc."
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.submissionType}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.forumName}>
+            <TextField
+              id="forumName"
+              value={formData.forumName}
+              onChange={handleChange("forumName")}
+              label="Conference/Journal/Forum Name"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.forumName}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.forumLevel}>
+            <TextField
+              id="forumLevel"
+              value={formData.forumLevel}
+              onChange={handleChange("forumLevel")}
+              label="Level of the Forum"
+              variant="outlined"
+              helperText="A*/A/B/Below B/Workshop/Others"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.forumLevel}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.acceptanceDate}>
+            <TextField
+              id="acceptanceDate"
+              type="date"
+              value={formData.acceptanceDate}
+              onChange={handleChange("acceptanceDate")}
+              label="Date of Original Submission Acceptance"
+              variant="outlined"
+              InputLabelProps={{ shrink: true }}
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.acceptanceDate}</FormHelperText>
           </FormControl>
 
           <Box sx={{ mt: 3 }}>

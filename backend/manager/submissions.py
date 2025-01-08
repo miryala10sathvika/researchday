@@ -17,6 +17,13 @@ class SubmissionCreate(BaseModel):
     title: str
     abstract: str
     authors: str
+    lab_name: str
+    advisor_name: str
+    co_author_names: Optional[str]
+    submission_type: str
+    forum_name: str
+    forum_level: str
+    acceptance_date: datetime
 
 
 class SubmissionUpdateStatus(BaseModel):
@@ -31,6 +38,13 @@ class SubmissionResponse(BaseModel):
     title: str
     abstract: str
     authors: str
+    lab_name: str
+    advisor_name: str
+    co_author_names: Optional[str]
+    submission_type: str
+    forum_name: str
+    forum_level: str
+    acceptance_date: datetime
     file_url: str
     acceptance_proof: str
     is_poster: bool = False
@@ -56,11 +70,18 @@ class SubmissionLogic:
 
         new_submission = {
             "user_roll_no": submission["user_roll_no"],
-            "submission_id": sub_id,  # Auto-generate submission_id
-            "track_id": str(uuid.uuid4()),  # Auto-generate track_id
+            "submission_id": sub_id,
+            "track_id": str(uuid.uuid4()),
             "title": submission["title"],
             "abstract": submission["abstract"],
             "authors": submission["authors"],
+            "lab_name": submission["lab_name"],
+            "advisor_name": submission["advisor_name"],
+            "co_author_names": submission.get("co_author_names"),
+            "submission_type": submission["submission_type"],
+            "forum_name": submission["forum_name"],
+            "forum_level": submission["forum_level"],
+            "acceptance_date": submission["acceptance_date"],
             "file_url": submission["file_url"],
             "is_poster": submission["is_poster"],
             "acceptance_proof": submission["acceptance_proof"],
@@ -69,7 +90,7 @@ class SubmissionLogic:
             "submitted_at": create_ist_time().replace(microsecond=0).isoformat(),
             "reviewed_at": None,
         }
-        db.submissions.insert_one(new_submission)
+        await db.submissions.insert_one(new_submission)
 
         return SubmissionResponse(**new_submission)
 
