@@ -74,7 +74,14 @@ export default function Home() {
             backgroundColor: "rgba(0, 0, 0, 0.4)", // optional dark overlay
           }}
         >
-          <Typography variant="h3" component="h1" gutterBottom>
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            sx={{
+              ml: { xs: 2, md: 0 },
+            }}
+          >
             IIITH Research Fest 2025
           </Typography>
           <Typography variant="h6" gutterBottom>
@@ -94,7 +101,7 @@ export default function Home() {
           color: "#1a1a1a",
         }}
       >
-        <Box flex={1} sx={{ backgroundColor: "white" }}>
+        <Box flex={3} sx={{ backgroundColor: "white" }}>
           <div
             style={{
               fontFamily: "Arial, sans-serif",
@@ -105,7 +112,7 @@ export default function Home() {
             <Typography variant="h3" gutterBottom>
               Research Fest @ IIITH - 2025
             </Typography>
-            <Typography paragraph sx={{ fontSize: "1.5rem" }}>
+            <Typography paragraph sx={{ fontSize: "1.25rem" }}>
               The Research Fest is an annual event celebrating research and
               innovation on our campus. Designed as a mini internal conference,
               it provides a platform for students to present their accepted or
@@ -114,7 +121,7 @@ export default function Home() {
               interdisciplinary discussions, highlights academic excellence, and
               encourages networking within the research community.
             </Typography>
-            <Typography paragraph sx={{ fontSize: "1.5rem" }}>
+            <Typography paragraph sx={{ fontSize: "1.25rem" }}>
               Open to Dual Degree, Masters, and PhD students, the Research Fest
               offers a unique opportunity to share ideas, explore diverse
               projects, and gain hands-on experience in presenting research.
@@ -138,7 +145,7 @@ export default function Home() {
         </Box>
 
         {/* Right Content */}
-        <Box flex={1} sx={{ margin: "20px", backgroundColor: "white" }}>
+        <Box flex={2} sx={{ margin: "20px", backgroundColor: "white" }}>
           {/* Important Dates */}
           <Paper
             elevation={3}
