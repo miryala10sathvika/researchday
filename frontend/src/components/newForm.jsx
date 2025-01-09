@@ -9,6 +9,9 @@ import {
   Paper,
   FormControl,
   FormHelperText,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 
@@ -42,11 +45,14 @@ export default function NewClient({ user }) {
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.abstract) newErrors.abstract = "Abstract is required";
     if (!formData.labName) newErrors.labName = "Lab name is required";
-    if (!formData.advisorName) newErrors.advisorName = "Advisor name is required";
-    if (!formData.submissionType) newErrors.submissionType = "Submission type is required";
+    if (!formData.advisorName)
+      newErrors.advisorName = "Advisor name is required";
+    if (!formData.submissionType)
+      newErrors.submissionType = "Submission type is required";
     if (!formData.forumName) newErrors.forumName = "Forum name is required";
     if (!formData.forumLevel) newErrors.forumLevel = "Forum level is required";
-    if (!formData.acceptanceDate) newErrors.acceptanceDate = "Acceptance date is required";
+    if (!formData.acceptanceDate)
+      newErrors.acceptanceDate = "Acceptance date is required";
     if (!files.mainFile) newErrors.mainFile = "Paper file is required";
     if (!files.proof) newErrors.proof = "Proof of acceptance is required";
     setErrors(newErrors);
@@ -89,14 +95,11 @@ export default function NewClient({ user }) {
       formDataToSend.append("file_url", files.mainFile);
       formDataToSend.append("acceptance_proof", files.proof);
 
-      const response = await fetch(
-        `/api/submissions`,
-        {
-          withCredentials: true,
-          method: "POST",
-          body: formDataToSend,
-        }
-      );
+      const response = await fetch(`/api/submissions`, {
+        withCredentials: true,
+        method: "POST",
+        body: formDataToSend,
+      });
       if (response.ok) {
         router.push(`/applications`);
       } else {
@@ -112,7 +115,7 @@ export default function NewClient({ user }) {
   return (
     <Box
       sx={{
-        p: 6,
+        p: { xs: 2, sm: 4 },
         maxWidth: 1000,
         mx: "auto",
       }}
@@ -135,9 +138,8 @@ export default function NewClient({ user }) {
               mb: 4,
             }}
           >
-            Submit Your Paper
+            Apply to Present your Research
           </Typography>
-
         </Box>
 
         <form onSubmit={handleSubmit}>
@@ -203,19 +205,6 @@ export default function NewClient({ user }) {
             <FormHelperText>{errors.coAuthorNames}</FormHelperText>
           </FormControl>
 
-          <FormControl fullWidth margin="normal" error={!!errors.submissionType}>
-            <TextField
-              id="submissionType"
-              value={formData.submissionType}
-              onChange={handleChange("submissionType")}
-              label="Original Submission Type"
-              variant="outlined"
-              helperText="Workshop, Short Paper, Full Paper, Journal, etc."
-              sx={{ fontSize: "1.2rem" }}
-            />
-            <FormHelperText>{errors.submissionType}</FormHelperText>
-          </FormControl>
-
           <FormControl fullWidth margin="normal" error={!!errors.forumName}>
             <TextField
               id="forumName"
@@ -241,7 +230,39 @@ export default function NewClient({ user }) {
             <FormHelperText>{errors.forumLevel}</FormHelperText>
           </FormControl>
 
-          <FormControl fullWidth margin="normal" error={!!errors.acceptanceDate}>
+          <FormControl
+            fullWidth
+            margin="normal"
+            error={!!errors.submissionType}
+          >
+            <InputLabel id="dropdown-label">
+              Original Submission Type
+            </InputLabel>
+            <Select
+              labelId="dropdown-label"
+              id="submissionType"
+              value={formData.submissionType}
+              onChange={handleChange("submissionType")}
+              label="Original Submission Type"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            >
+              <MenuItem value="Full Paper">Full Paper</MenuItem>
+              <MenuItem value="Short Paper">Short Paper</MenuItem>
+              <MenuItem value="Workshop Paper">Workshop Paper</MenuItem>
+              <MenuItem value="Journal Paper">Journal Paper</MenuItem>
+              <MenuItem value="Poster">Poster</MenuItem>
+              <MenuItem value="Abstract">Abstract</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+            </Select>
+            <FormHelperText>{errors.submissionType}</FormHelperText>
+          </FormControl>
+
+          <FormControl
+            fullWidth
+            margin="normal"
+            error={!!errors.acceptanceDate}
+          >
             <TextField
               id="acceptanceDate"
               type="date"
@@ -250,6 +271,10 @@ export default function NewClient({ user }) {
               label="Date of Original Submission Acceptance"
               variant="outlined"
               InputLabelProps={{ shrink: true }}
+              inputProps={{
+                min: "2023-10-01",
+                max: "2024-11-30",
+              }}
               sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.acceptanceDate}</FormHelperText>
