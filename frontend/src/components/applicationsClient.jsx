@@ -32,10 +32,10 @@ export default function ApplicationsClient({ submitted, user, admins }) {
             submitted?.status === "Accepted"
               ? "#28a745"
               : submitted?.status === "Rejected"
-                ? "#dc3545"
-                : submitted?.status === "Revision Requested"
-                  ? "#ff8f07"
-                  : "#777",
+              ? "#dc3545"
+              : submitted?.status === "Revision Requested"
+              ? "#ff8f07"
+              : "#777",
           marginTop: "30px",
           fontSize: "1.2rem",
           textAlign: "center",
@@ -43,12 +43,14 @@ export default function ApplicationsClient({ submitted, user, admins }) {
       >
         {isSubmitted
           ? submitted.status === "Accepted"
-            ? `Your application has been accepted for ${submitted.is_poster ? "poster" : "Paper"} presentation . Congratulations!`
+            ? `Your application has been accepted for ${
+                submitted.is_poster ? "poster" : "Paper"
+              } presentation. Congratulations!`
             : submitted.status === "Rejected"
-              ? "Your application has been rejected. Don't worry, you can try again."
-              : submitted.status === "Revision Requested"
-                ? "Your application has been reviewed and revision is requested."
-                : "Your application is under review."
+            ? "Your application has been rejected. Don't worry, you can try again next time."
+            : submitted.status === "Revision Requested"
+            ? "Your application has been reviewed and revision is requested."
+            : "Your application is under review."
           : "You have not yet submitted your application."}
       </Typography>
 
@@ -59,7 +61,9 @@ export default function ApplicationsClient({ submitted, user, admins }) {
               Feedback Comments
             </Typography>
             <Divider sx={{ my: 2 }} />
-            <Typography variant="body1" flexWrap="wrap">{submitted.review_comments}</Typography>
+            <Typography variant="body1" flexWrap="wrap">
+              {submitted.review_comments}
+            </Typography>
           </Paper>
         </Box>
       )}
@@ -75,24 +79,31 @@ export default function ApplicationsClient({ submitted, user, admins }) {
             <Grid container spacing={2} textAlign={"left"}>
               {[
                 { label: "Student Roll No", value: submitted.user_roll_no },
-                { label: "Title", value: submitted.title },
+                { label: "Email", value: submitted.email },
                 {
-                  label: "Author", value: user.uid
+                  label: "Author",
+                  value: user.uid
                     .split(".")
                     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-                    .join(" ")
+                    .join(" "),
                 },
                 { label: "Co-Authors", value: submitted.co_author_names },
                 { label: "Lab", value: submitted.lab_name },
-                { label: "Advisor", value: submitted.advisor_name },
-                { label: "Submission Type", value: submitted.submission_type },
+                { label: "Advisor(s)", value: submitted.advisor_name },
                 { label: "Forum", value: submitted.forum_name },
                 { label: "Forum Level", value: submitted.forum_level },
                 {
                   label: "Acceptance Date",
-                  value: getDatetimeformat(submitted.acceptance_date).dateString,
+                  value: getDatetimeformat(submitted.acceptance_date)
+                    .dateString,
                 },
-                { label: "Submitted On", value: getDatetimeformat(submitted.submitted_at).dateString },
+                {
+                  label: "Submitted On",
+                  value: getDatetimeformat(submitted.submitted_at).dateString,
+                },
+                { label: "Submission Type", value: submitted.submission_type },
+                { label: "", value: "" },
+                { label: "Title", value: submitted.title },
               ].map((detail, index) => (
                 <Grid item xs={12} sm={6} key={index}>
                   {/* Half on left and right */}
@@ -105,12 +116,18 @@ export default function ApplicationsClient({ submitted, user, admins }) {
                 </Grid>
               ))}
 
-            <Grid item xs={12} sm={12}>
-              <Typography variant="subtitle1" color="primary">
-                Abstract
-              </Typography>
-              <Typography variant="body1" sx={{ wordBreak: "break-all" }} dangerouslySetInnerHTML={{ __html: submitted?.abstract?.replace('\n', '<br />') }} />
-            </Grid>
+              <Grid item xs={12} sm={12}>
+                <Typography variant="subtitle1" color="primary">
+                  Abstract
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ wordBreak: "break-all" }}
+                  dangerouslySetInnerHTML={{
+                    __html: submitted?.abstract?.replace("\n", "<br />"),
+                  }}
+                />
+              </Grid>
               <Grid item xs={12} sm={6}>
                 <Typography variant="subtitle1" color="primary">
                   Uploaded Paper
