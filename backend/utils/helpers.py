@@ -1,9 +1,9 @@
 # # Dependency for User Authentication
-# async def get_current_user(access_token_se_p3: str = Cookie(None)):
-#     if access_token_se_p3 is None:
+# async def get_current_user(Authorization_se_p3: str = Cookie(None)):
+#     if Authorization_se_p3 is None:
 #         raise HTTPException(status_code=401, detail="Not Authenticated")
 #     try:
-#         payload = jwt.decode(access_token_se_p3, SECRET_KEY, algorithms=[ALGORITHM])
+#         payload = jwt.decode(Authorization_se_p3, SECRET_KEY, algorithms=[ALGORITHM])
 #         username = payload.get("sub")
 #         if username is None:
 #             raise HTTPException(
@@ -33,11 +33,11 @@ from db import db
 JWT_SECRET = getenv("JWT_SECRET", "jwt-secret-very-very-secret")
 
 
-async def get_current_user(access_token: str = Cookie(None)):
-    if access_token is None:
+async def get_current_user(Authorization: str = Cookie(None)):
+    if Authorization is None:
         return False
     try:
-        payload = decode(access_token, JWT_SECRET, algorithms=["HS256"])
+        payload = decode(Authorization, JWT_SECRET, algorithms=["HS256"])
         email = payload.get("email")
         if email is None:
             return False
@@ -48,27 +48,23 @@ async def get_current_user(access_token: str = Cookie(None)):
         return False
 
 
-async def check_admin(access_token: str = Cookie(None)):
-    if access_token is None:
-        raise HTTPException(status_code=401, detail="Not Authenticated")
+async def check_admin(Authorization: str = Cookie(None)):
+    if Authorization is None:
+        return False
     try:
-        payload = decode(access_token, JWT_SECRET, algorithms=["HS256"])
+        payload = decode(Authorization, JWT_SECRET, algorithms=["HS256"])
         email = payload.get("email")
         if email is None:
-            raise HTTPException(
-                status_code=401, detail="Invalid authentication credentials"
-            )
-
-        admins = await db.admins.find()
+            return False
+        admins = db.admins.find()
+        admins_list = await admins.to_list(length=None)
 
         # return the user if the user is an admin
-        for admin in admins:
-            if admin["email"] == email:
+        for admin in admins_list:
+            if admin["username"] == email:
                 return True
         return False
     except ExpiredSignatureError:
-        raise HTTPException(status_code=401, detail="Token has expired")
+        return False
     except DecodeError:
-        raise HTTPException(
-            status_code=401, detail="Invalid authentication credentials"
-        )
+        return False

@@ -19,7 +19,15 @@ class Submission(BaseModel):
     track_id: UUID
     title: str
     abstract: str
-    authors: List[UUID]  # Array of user_ids (Presenters)
+    lab_name: str
+    advisor_name: str
+    author: str
+    email: str
+    co_author_names: Optional[str]
+    submission_type: str  # Workshop, Short Paper, Full Paper, Journal, etc.
+    forum_name: str      # Conference/Journal/Forum Name
+    forum_level: str     # A*/A/B/Below B/Workshop/Others
+    acceptance_date: datetime
     file_url: str # path of the stored submission file
     acceptance_proof: str # path of the stored acceptance proof
     status: Literal['Pending', 'Accepted', 'Rejected', 'Revision Requested']

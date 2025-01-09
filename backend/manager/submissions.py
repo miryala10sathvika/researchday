@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Literal
 from uuid import UUID
 import uuid
 from datetime import datetime
@@ -16,12 +16,21 @@ class SubmissionCreate(BaseModel):
     track_id: UUID
     title: str
     abstract: str
-    authors: str
+    lab_name: str
+    advisor_name: str
+    author: str
+    email: str
+    co_author_names: Optional[str]
+    submission_type: str
+    forum_name: str
+    forum_level: str
+    acceptance_date: datetime
 
 
 class SubmissionUpdateStatus(BaseModel):
-    status: str
+    status: Literal['Pending', 'Accepted', 'Rejected', 'Revision Requested']
     review_comments: Optional[str] = None
+    is_poster: bool = False
 
 
 class SubmissionResponse(BaseModel):
@@ -30,7 +39,15 @@ class SubmissionResponse(BaseModel):
     track_id: str
     title: str
     abstract: str
-    authors: str
+    lab_name: str
+    advisor_name: str
+    author: str
+    email: str
+    co_author_names: Optional[str]
+    submission_type: str
+    forum_name: str
+    forum_level: str
+    acceptance_date: datetime
     file_url: str
     acceptance_proof: str
     is_poster: bool = False
@@ -49,9 +66,8 @@ class SubmissionLogic:
             {"presenter_registration_deadline": {"$exists": True}}
         )
 
-        if create_ist_time() > datetime.fromisoformat(
-            presenter_registration_deadline["presenter_registration_deadline"]
-        ):
+        deadline = datetime.fromisoformat(presenter_registration_deadline["presenter_registration_deadline"])
+        if create_ist_time() > timezone('Asia/Kolkata').localize(deadline):
             raise ValueError("Presenter registration deadline has passed.")
 
         new_submission = {
@@ -60,16 +76,23 @@ class SubmissionLogic:
             "track_id": str(uuid.uuid4()),  # Auto-generate track_id
             "title": submission["title"],
             "abstract": submission["abstract"],
-            "authors": submission["authors"],
+            "lab_name": submission["lab_name"],
+            "advisor_name": submission["advisor_name"],
+            "author" : submission["author"],
+            "email": submission["email"],
+            "co_author_names": submission.get("co_author_names"),
+            "submission_type": submission["submission_type"],
+            "forum_name": submission["forum_name"],
+            "forum_level": submission["forum_level"],
+            "acceptance_date": submission["acceptance_date"],
             "file_url": submission["file_url"],
-            "is_poster": submission["is_poster"],
             "acceptance_proof": submission["acceptance_proof"],
             "status": "Pending",
             "review_comments": None,
             "submitted_at": create_ist_time().replace(microsecond=0).isoformat(),
             "reviewed_at": None,
         }
-        db.submissions.insert_one(new_submission)
+        await db.submissions.insert_one(new_submission)
 
         return SubmissionResponse(**new_submission)
 
@@ -89,6 +112,7 @@ class SubmissionLogic:
                 "$set": {
                     "status": update.status,
                     "review_comments": update.review_comments,
+                    "is_poster": update.is_poster,
                     "reviewed_at": create_ist_time(),
                 }
             },
@@ -109,13 +133,17 @@ class SubmissionLogic:
         return_result = SubmissionResponse(**submission)
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
-        if not admin and create_ist_time() < datetime.fromisoformat(
-            results_day["results_day"]
-        ):
-            # Make status Pending with no review comments
-            return_result.status = "Pending"
-            return_result.review_comments = None
-            return_result.reviewed_at = None
+        if not admin:
+            results_day_dt = timezone('Asia/Kolkata').localize(datetime.fromisoformat(results_day["results_day"]))
+            if create_ist_time() < results_day_dt:
+                # Make status Pending with no review comments
+                if not return_result.status == "Revision Requested":
+                    return_result.status = "Pending"
+                    return_result.review_comments = None
+                    return_result.reviewed_at = None
+
+
+
 
         return return_result
 
@@ -132,12 +160,13 @@ class SubmissionLogic:
         return_result = SubmissionResponse(**submission)
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
-        if not admin and create_ist_time() < datetime.fromisoformat(
+        if not admin and create_ist_time() < timezone('Asia/Kolkata').localize(datetime.fromisoformat(
             results_day["results_day"]
-        ):
-            # Make status Pending with no review comments
-            return_result.status = "Pending"
-            return_result.review_comments = None
-            return_result.reviewed_at = None
+        )):
+            if not return_result.status == "Revision Requested":
+                # Make status Pending with no review comments
+                return_result.status = "Pending"
+                return_result.review_comments = None
+                return_result.reviewed_at = None
 
         return return_result

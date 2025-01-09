@@ -68,6 +68,7 @@ async def login(request: Request):
             "uid": attributes["uid"],
             "roll": attributes["RollNo"],
             "email": attributes["E-Mail"],
+            "name": attributes["Name"]
         }
         token = encode(payload, JWT_SECRET, algorithm="HS256")
 
@@ -95,7 +96,7 @@ async def logout(request: Request):
     CAS logout endpoint. Logs out the user and clears the JWT token.
     """
     try:
-        cas_logout_url = cas_client.get_logout_url(redirect_url=REDIRECT_URL)
+        cas_logout_url = cas_client.get_logout_url()
         response = RedirectResponse(url=cas_logout_url)
         response.delete_cookie("Authorization")
         logger.info("User logged out successfully.")
@@ -139,6 +140,4 @@ async def get_admins(request: Request):
     for admin in admins_list:
         if "_id" in admin:
             admin["_id"] = str(admin["_id"])
-            
-    print(admins_list)
     return admins_list
