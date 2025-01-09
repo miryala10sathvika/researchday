@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -12,10 +12,11 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Grid,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-export default function NewClient({ user }) {
+export default function NewClient({ user, deadline }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
@@ -112,6 +113,43 @@ export default function NewClient({ user }) {
     }
   };
 
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(deadline));
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft(deadline));
+    }, 1000 * 60);
+
+    return () => clearInterval(timer); // Cleanup timer on unmount
+  }, [deadline]);
+
+  if (timeLeft.total <= 0) {
+    return (
+      <Box
+        sx={{
+          p: { xs: 2, sm: 4 },
+          maxWidth: 1000,
+          mx: "auto",
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{
+            fontWeight: 700,
+            fontSize: "1.7rem",
+            textAlign: "center",
+            mb: 4,
+            mt: 3,
+          }}
+        >
+          The deadline for submitting applications has passed.
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{
@@ -125,7 +163,9 @@ export default function NewClient({ user }) {
           sx={{
             textAlign: "center",
             display: "flex",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            alignItems: "center",
+            mb: 4,
           }}
         >
           <Typography
@@ -140,6 +180,17 @@ export default function NewClient({ user }) {
           >
             Apply to Present your Research
           </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "1.2rem",
+              textAlign: "center",
+              color: timeLeft.days < 4 ? "error.main" : "text.secondary", // Conditionally set color
+            }}
+          >
+            Approaching deadline in{" "}
+            {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m`}
+          </Typography>
         </Box>
 
         <form onSubmit={handleSubmit}>
@@ -150,7 +201,6 @@ export default function NewClient({ user }) {
               onChange={handleChange("title")}
               label="Title"
               variant="outlined"
-              sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.title}</FormHelperText>
           </FormControl>
@@ -167,6 +217,18 @@ export default function NewClient({ user }) {
               sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.abstract}</FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth margin="normal" error={!!errors.coAuthorNames}>
+            <TextField
+              id="coAuthorNames"
+              value={formData.coAuthorNames}
+              onChange={handleChange("coAuthorNames")}
+              label="Co-author Names (if any)"
+              variant="outlined"
+              sx={{ fontSize: "1.2rem" }}
+            />
+            <FormHelperText>{errors.coAuthorNames}</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth margin="normal" error={!!errors.labName}>
@@ -191,18 +253,6 @@ export default function NewClient({ user }) {
               sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.advisorName}</FormHelperText>
-          </FormControl>
-
-          <FormControl fullWidth margin="normal" error={!!errors.coAuthorNames}>
-            <TextField
-              id="coAuthorNames"
-              value={formData.coAuthorNames}
-              onChange={handleChange("coAuthorNames")}
-              label="Co-author Names (if any)"
-              variant="outlined"
-              sx={{ fontSize: "1.2rem" }}
-            />
-            <FormHelperText>{errors.coAuthorNames}</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth margin="normal" error={!!errors.forumName}>
@@ -280,35 +330,39 @@ export default function NewClient({ user }) {
             <FormHelperText>{errors.acceptanceDate}</FormHelperText>
           </FormControl>
 
-          <Box sx={{ mt: 3 }}>
-            <FormControl fullWidth error={!!errors.mainFile}>
-              <input
-                accept=".pdf"
-                type="file"
-                onChange={handleFileChange("mainFile")}
-                style={{ padding: "10px 0", fontSize: "1rem" }}
-              />
-              <FormHelperText>{errors.mainFile}</FormHelperText>
-            </FormControl>
-            <Typography variant="caption" display="block" gutterBottom>
-              Upload Paper (PDF)
-            </Typography>
-          </Box>
+          <Grid container spacing={3} sx={{ mt: 1 }}>
+            {/* Upload Paper (PDF) */}
+            <Grid item xs={12} md={6}>
+              <FormControl fullWidth error={!!errors.mainFile}>
+                <input
+                  accept=".pdf"
+                  type="file"
+                  onChange={handleFileChange("mainFile")}
+                  style={{ padding: "10px 0", fontSize: "1rem" }}
+                />
+                <FormHelperText>{errors.mainFile}</FormHelperText>
+              </FormControl>
+              <Typography variant="caption" display="block" gutterBottom>
+                Upload Paper (PDF)
+              </Typography>
+            </Grid>
 
-          <Box sx={{ mt: 3 }}>
-            <FormControl fullWidth error={!!errors.proof}>
-              <input
-                accept=".pdf"
-                type="file"
-                onChange={handleFileChange("proof")}
-                style={{ padding: "10px 0", fontSize: "1rem" }}
-              />
-              <FormHelperText>{errors.proof}</FormHelperText>
-            </FormControl>
-            <Typography variant="caption" display="block" gutterBottom>
-              Upload Proof of Acceptance (PDF)
-            </Typography>
-          </Box>
+            {/* Upload Proof of Acceptance (PDF) */}
+            <Grid item xs={12} md={6}>
+              <FormControl fullWidth error={!!errors.proof}>
+                <input
+                  accept=".pdf"
+                  type="file"
+                  onChange={handleFileChange("proof")}
+                  style={{ padding: "10px 0", fontSize: "1rem" }}
+                />
+                <FormHelperText>{errors.proof}</FormHelperText>
+              </FormControl>
+              <Typography variant="caption" display="block" gutterBottom>
+                Upload Proof of Acceptance (PDF)
+              </Typography>
+            </Grid>
+          </Grid>
 
           <Button
             type="submit"
@@ -335,3 +389,19 @@ export default function NewClient({ user }) {
     </Box>
   );
 }
+
+const calculateTimeLeft = (deadline) => {
+  const difference = new Date(deadline) - new Date();
+
+  if (difference > 0) {
+    return {
+      total: difference,
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  return { total: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
+};

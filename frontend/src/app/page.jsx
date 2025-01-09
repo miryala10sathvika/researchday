@@ -1,7 +1,7 @@
 import { Box, Typography, Paper } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import { getImportantDates } from "../utils/backend_calls";
+import { getImportantDates } from "utils/backend_calls";
 
 const importantDatesMapping = {
   attendee_registration_start: "Attendee Registration Start Date",
