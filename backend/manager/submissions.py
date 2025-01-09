@@ -28,7 +28,7 @@ class SubmissionCreate(BaseModel):
 
 
 class SubmissionUpdateStatus(BaseModel):
-    status: Literal['Pending', 'Accepted', 'Rejected', 'Revision Requested']
+    status: Literal["Pending", "Accepted", "Rejected", "Revision Requested"]
     review_comments: Optional[str] = None
     is_poster: bool = False
 
@@ -66,8 +66,10 @@ class SubmissionLogic:
             {"presenter_registration_deadline": {"$exists": True}}
         )
 
-        deadline = datetime.fromisoformat(presenter_registration_deadline["presenter_registration_deadline"])
-        if create_ist_time() > timezone('Asia/Kolkata').localize(deadline):
+        deadline = datetime.fromisoformat(
+            presenter_registration_deadline["presenter_registration_deadline"]
+        )
+        if create_ist_time() > timezone("Asia/Kolkata").localize(deadline):
             raise ValueError("Presenter registration deadline has passed.")
 
         new_submission = {
@@ -78,7 +80,7 @@ class SubmissionLogic:
             "abstract": submission["abstract"],
             "lab_name": submission["lab_name"],
             "advisor_name": submission["advisor_name"],
-            "author" : submission["author"],
+            "author": submission["author"],
             "email": submission["email"],
             "co_author_names": submission.get("co_author_names"),
             "submission_type": submission["submission_type"],
@@ -134,16 +136,15 @@ class SubmissionLogic:
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
         if not admin:
-            results_day_dt = timezone('Asia/Kolkata').localize(datetime.fromisoformat(results_day["results_day"]))
+            results_day_dt = timezone("Asia/Kolkata").localize(
+                datetime.fromisoformat(results_day["results_day"])
+            )
             if create_ist_time() < results_day_dt:
                 # Make status Pending with no review comments
                 if not return_result.status == "Revision Requested":
                     return_result.status = "Pending"
                     return_result.review_comments = None
                     return_result.reviewed_at = None
-
-
-
 
         return return_result
 
@@ -160,9 +161,9 @@ class SubmissionLogic:
         return_result = SubmissionResponse(**submission)
 
         results_day = await db.dates.find_one({"results_day": {"$exists": True}})
-        if not admin and create_ist_time() < timezone('Asia/Kolkata').localize(datetime.fromisoformat(
-            results_day["results_day"]
-        )):
+        if not admin and create_ist_time() < timezone("Asia/Kolkata").localize(
+            datetime.fromisoformat(results_day["results_day"])
+        ):
             if not return_result.status == "Revision Requested":
                 # Make status Pending with no review comments
                 return_result.status = "Pending"
