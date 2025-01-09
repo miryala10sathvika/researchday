@@ -192,7 +192,7 @@ export default function SubmissionDetails({ submission }) {
           ))}
           <Grid item xs={12} sm={12}>
             <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-              Abstract
+              ABSTRACT
             </Typography>
             <Typography
               variant="body1"
@@ -220,7 +220,7 @@ export default function SubmissionDetails({ submission }) {
 
           <Grid item xs={12} sm={6}>
             <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-              Proof of Acceptance
+              ACCEPTANCE PROOF
             </Typography>
             {submission.acceptance_proof && (
               <Button
@@ -235,14 +235,14 @@ export default function SubmissionDetails({ submission }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-              Status
+              STATUS
             </Typography>
             <Typography variant="body1">{submission.status}</Typography>
           </Grid>
           {submission?.status !== "Pending" && (
             <Grid item xs={12} sm={6}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                Review Comments
+                REVIEW COMMENTS
               </Typography>
               <Typography variant="body1">
                 {submission.review_comments}
@@ -252,7 +252,7 @@ export default function SubmissionDetails({ submission }) {
           {submission?.status === "Accepted" && (
             <Grid item xs={12} sm={6}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                Type of Presentation
+                PRESENTATION TYPE
               </Typography>
               <Typography variant="body1">
                 {submission.is_poster ? "Poster" : "Paper"}
@@ -262,7 +262,7 @@ export default function SubmissionDetails({ submission }) {
           {submission?.status !== "Pending" && (
             <Grid item xs={12} sm={6}>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                Reviewed date
+                REVIEWED AT
               </Typography>
               <Typography variant="body1">
                 {reviewed_at}
