@@ -1,37 +1,45 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 export function getDatetimeformat(dateTimeString) {
-  const date = new Date(dateTimeString);
+  const [formattedDate, setFormattedDate] = useState({ dateString: "", timeString: "" });
 
-  if (isNaN(date)) {
-    console.error("Invalid date format:", dateTimeString);
-    return { dateString: "Invalid Date", timeString: "Invalid Time" };
-  }
+  useEffect(() => {
+    const date = new Date(dateTimeString);
 
-  // Options for formatting the date in IST
-  const dateOptions = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    timeZone: "Asia/Kolkata",
-  };
-  const timeOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: "Asia/Kolkata",
-  };
+    if (isNaN(date)) {
+      console.error("Invalid date format:", dateTimeString);
+      setFormattedDate({ dateString: "Invalid Date", timeString: "Invalid Time" });
+      return;
+    }
 
-  // Format date and time
-  const dateString = new Intl.DateTimeFormat("en-IN", dateOptions)
-    .format(date)
-    .split("/")
-    .reverse()
-    .join("-"); // Format to YYYY-MM-DD
+    // Options for formatting the date in IST
+    const dateOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      timeZone: "Asia/Kolkata",
+    };
+    const timeOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Kolkata",
+    };
 
-  const timeString = new Intl.DateTimeFormat("en-IN", timeOptions)
-    .format(date)
-    .replace(/:\d{2}$/, ""); // HH:mm (removes seconds if present)
+    // Format date and time
+    const dateString = new Intl.DateTimeFormat("en-IN", dateOptions)
+      .format(date)
+      .split("/")
+      .join("-"); // Format to YYYY-MM-DD
 
-  return { dateString, timeString };
+    const timeString = new Intl.DateTimeFormat("en-IN", timeOptions)
+      .format(date)
+      .replace(/:\d{2}$/, ""); // HH:mm (removes seconds if present)
+
+    setFormattedDate({ dateString, timeString });
+  }, [dateTimeString]);
+
+  return formattedDate;
 }
