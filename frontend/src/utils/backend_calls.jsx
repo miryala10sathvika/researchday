@@ -20,6 +20,24 @@ export async function getImportantDates() {
   return [];
 }
 
+export async function getAnnouncements() {
+  const announcementsResponse = await fetch(`${BACKEND_URL}/announcements`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (announcementsResponse.ok) {
+    const announcements = await announcementsResponse.json();
+    if (announcements) {
+      return announcements;
+    }
+  }
+
+  return [];
+}
+
 export async function getSubmissionByRoll(user) {
   const cookeys = await cookies();
   const cookieHeader = cookeys
