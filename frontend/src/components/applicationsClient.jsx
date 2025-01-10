@@ -21,6 +21,9 @@ export default function ApplicationsClient({ submitted, user, admins }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const isSubmitted = submitted && submitted.length !== 0;
+  const allowedDomains = ["research.iiit.ac.in"]; // Add allowed domains here
+  const userDomain = user.email.split("@")[1];
+  const allowed_to_submit = allowedDomains.includes(userDomain);
 
   const handleDeleteClick = () => {
     setDialogOpen(true);
@@ -75,6 +78,7 @@ export default function ApplicationsClient({ submitted, user, admins }) {
         variant="body2"
         sx={{
           color:
+            !allowed_to_submit ? "#dc3545" : 
             submitted?.status === "Accepted"
               ? "#28a745"
               : submitted?.status === "Rejected"
@@ -87,15 +91,19 @@ export default function ApplicationsClient({ submitted, user, admins }) {
           textAlign: "center",
         }}
       >
-        {isSubmitted
-          ? submitted.status === "Accepted"
-            ? `Your application has been accepted for presentation. Congratulations!`
-            : submitted.status === "Rejected"
-            ? "Your application has been rejected. Don't worry, you can try again next time."
-            : submitted.status === "Revision Requested"
-            ? "Your application has been reviewed and revision is requested."
-            : "Your application is under review."
-          : "You have not yet submitted your application."}
+        {allowed_to_submit
+          ? isSubmitted
+            ? submitted.status === "Accepted"
+              ? `Your application has been accepted for ${
+                  submitted.is_poster ? "poster" : "Paper"
+                } presentation. Congratulations!`
+              : submitted.status === "Rejected"
+              ? "Your application has been rejected. Don't worry, you can try again next time."
+              : submitted.status === "Revision Requested"
+              ? "Your application has been reviewed and revision is requested."
+              : "Your application is under review."
+            : "You have not yet submitted your application."
+          : "You are not allowed to submit applications. Please contact the Program Chairs for more information"}
       </Typography>
 
       {isSubmitted && submitted.status !== "Pending" && (
@@ -310,7 +318,7 @@ export default function ApplicationsClient({ submitted, user, admins }) {
             </Button>
           </Link>
         )}
-        {!isSubmitted && (
+        {!isSubmitted && allowed_to_submit && (
           <Link href="/applications/new" passHref>
             <Button
               variant="contained"

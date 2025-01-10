@@ -14,6 +14,26 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const user = await getUser();
 
+  const menuItems = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    {
+      label: "Organization",
+      href: "/organization",
+      // submenu: [
+      //     { label: "Submenu 1", href: "/organization/submenu1" },
+      //     { label: "Submenu 2", href: "/organization/submenu2" },
+      //     { label: "Submenu 3", href: "/organization/submenu3" },
+      // ],
+    },
+    ...(user
+      ? [
+          { label: "Application", href: "/applications" },
+          { label: "Logout", href: "/api/logout" },
+        ]
+      : [{ label: "Login", href: "/api/login" }]),
+  ];
+
   return (
     <html lang="en">
       <head>

@@ -1,7 +1,7 @@
 import { Box, Typography, Paper } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import { getImportantDates } from "utils/backend_calls";
+import { getImportantDates, getAnnouncements } from "utils/backend_calls";
 
 const importantDatesMapping = {
   attendee_registration_start: "Attendee Registration Start Date",
@@ -10,23 +10,17 @@ const importantDatesMapping = {
   results_day: "Results Day",
 };
 
-const news = [
-  {
-    date: "January 9",
-    content: "Registration portal is now open",
-  },
-  // {
-  //   date: "January 3rd week",
-  //   content: "Acceptance of presentations and posters is released",
-  // },
-];
-
 const bannerImage = "/assets/banner.jpg";
 export default async function Home() {
   const importantDates = await getImportantDates();
   const currentDate = new Date(); // Get current date
   const sortedDates = Object.entries(importantDates).sort((a, b) => {
     return new Date(a[1]) - new Date(b[1]); // Sort by date in ascending order
+  });
+
+  const announcements = await getAnnouncements();
+  const sortedAnnouncements = announcements.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date); // Sort by date in descending order
   });
 
   return (
@@ -150,10 +144,14 @@ export default async function Home() {
             >
               Latest News
             </Typography>
-            {news.map((item, index) => (
+            {sortedAnnouncements.map((item, index) => (
               <Box key={index} sx={{ mb: 2 }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                  {item.date}
+                  {new Date(item.date).toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </Typography>
                 <Typography
                   variant="body1"

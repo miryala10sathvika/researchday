@@ -15,6 +15,7 @@ from utils.helpers import get_current_user, check_admin
 
 sub_router = APIRouter()
 
+
 @sub_router.post("/submissions", response_model=SubmissionResponse)
 async def create_submission(
     user_roll_no: str = Form(...),
@@ -28,7 +29,7 @@ async def create_submission(
     submission_type: str = Form(...),
     forum_name: str = Form(...),
     forum_level: str = Form(...),
-    acceptance_date: str = Form(...),  # Will be converted to datetime    
+    acceptance_date: str = Form(...),  # Will be converted to datetime
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     # is_poster: bool = Form(...),
@@ -37,7 +38,9 @@ async def create_submission(
     if not user or user_roll_no != user["roll_no"]:
         raise HTTPException(status_code=401, detail="Not Authenticated")
     try:
-        existing_submission = await SubmissionLogic.get_submission_by_roll_no(db=db, roll_no=user_roll_no, admin=False)
+        existing_submission = await SubmissionLogic.get_submission_by_roll_no(
+            db=db, roll_no=user_roll_no, admin=False
+        )
     except ValueError as e:
         existing_submission = None
     if existing_submission:
@@ -165,10 +168,7 @@ async def get_all_submissions(
 
 
 @sub_router.get("/submissions/{roll_no}", response_model=SubmissionResponse)
-async def get_submission(
-    roll_no: str,
-    admin: bool = Depends(check_admin)
-):
+async def get_submission(roll_no: str, admin: bool = Depends(check_admin)):
     try:
         return await SubmissionLogic.get_submission_by_roll_no(db, roll_no, admin)
     except ValueError as e:
@@ -221,9 +221,9 @@ async def get_pdf(
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"{str(e)}")
 
+
 @sub_router.get("/important-dates")
-async def get_important_dates(
-):
+async def get_important_dates():
     dates = db.dates.find({})
     dates = await dates.to_list(length=None)
 
@@ -232,5 +232,35 @@ async def get_important_dates(
         for key in date:
             if key != "_id":
                 return_dates[key] = date[key]
-    
+
     return return_dates
+
+
+@sub_router.get("/announcements")
+async def get_announcements():
+    announcements = db.announcements.find({})
+    announcements = await announcements.to_list(length=None)
+
+    return_announcements = []
+    for announcement in announcements:
+        return_announcements.append(
+            {"content": announcement["content"], "date": announcement["date"]}
+        )
+
+    return return_announcements
+
+
+@sub_router.post("/add-announcement")
+async def add_announcement(
+    content: str,
+    date: str,
+    admin: bool = Depends(check_admin),
+):
+    if not admin:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+
+    announcement = {"content": content, "date": date}
+
+    db.announcements.insert_one(announcement)
+
+    return {"message": "Announcement added successfully"}

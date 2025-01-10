@@ -1,43 +1,16 @@
-# # Dependency for User Authentication
-# async def get_current_user(Authorization_se_p3: str = Cookie(None)):
-#     if Authorization_se_p3 is None:
-#         raise HTTPException(status_code=401, detail="Not Authenticated")
-#     try:
-#         payload = jwt.decode(Authorization_se_p3, SECRET_KEY, algorithms=[ALGORITHM])
-#         username = payload.get("sub")
-#         if username is None:
-#             raise HTTPException(
-#                 status_code=401, detail="Invalid authentication credentials"
-#             )
-#         user = get_user_by_username(username)
-#         if user is None:
-#             raise HTTPException(
-#                 status_code=401, detail="Invalid authentication credentials"
-#             )
-#         del user.password
-#         return user
-#     except JWTError:
-#         raise HTTPException(
-#             status_code=401, detail="Invalid authentication credentials"
-#         )
-
-from fastapi import HTTPException, Cookie
-from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import RedirectResponse, JSONResponse
-from cas import CASClient
+from fastapi import Cookie
 from jwt import encode, decode, ExpiredSignatureError, DecodeError
-from urllib.parse import quote_plus
 from os import getenv
 from db import db
 
 JWT_SECRET = getenv("JWT_SECRET", "jwt-secret-very-very-secret")
 
 
-async def get_current_user(Authorization: str = Cookie(None)):
-    if Authorization is None:
+async def get_current_user(RF_Auth: str = Cookie(None)):
+    if RF_Auth is None:
         return False
     try:
-        payload = decode(Authorization, JWT_SECRET, algorithms=["HS256"])
+        payload = decode(RF_Auth, JWT_SECRET, algorithms=["HS256"])
         email = payload.get("email")
         roll_no = payload.get("roll")
         if email is None:
@@ -49,11 +22,11 @@ async def get_current_user(Authorization: str = Cookie(None)):
         return False
 
 
-async def check_admin(Authorization: str = Cookie(None)):
-    if Authorization is None:
+async def check_admin(RF_Auth: str = Cookie(None)):
+    if RF_Auth is None:
         return False
     try:
-        payload = decode(Authorization, JWT_SECRET, algorithms=["HS256"])
+        payload = decode(RF_Auth, JWT_SECRET, algorithms=["HS256"])
         email = payload.get("email")
         if email is None:
             return False
