@@ -1,11 +1,57 @@
 "use client";
 
-import { Box, Button, Typography, Paper, Grid, Divider } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  Paper,
+  Grid,
+  Divider,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { getDatetimeformat } from "utils/dateTime";
 import Link from "next/link";
 
 export default function ApplicationsClient({ submitted, user, admins }) {
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
   const isSubmitted = submitted && submitted.length !== 0;
+
+  const handleDeleteClick = () => {
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
+  const confirmDeleteApplication = async () => {
+    setDialogOpen(false);
+    console.log("Deleting application");
+    const res = await fetch(`/api/submissions`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_roll_no: user?.roll }),
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      console.log("Application deleted successfully");
+      location.reload();
+    } else {
+      const errorData = await res.json();
+      console.error("Error deleting application:", errorData);
+      alert(`Error: ${errorData.detail}`);
+    }
+  };
+
 
   return (
     <Box
@@ -43,9 +89,7 @@ export default function ApplicationsClient({ submitted, user, admins }) {
       >
         {isSubmitted
           ? submitted.status === "Accepted"
-            ? `Your application has been accepted for ${
-                submitted.is_poster ? "poster" : "Paper"
-              } presentation. Congratulations!`
+            ? `Your application has been accepted for presentation. Congratulations!`
             : submitted.status === "Rejected"
             ? "Your application has been rejected. Don't worry, you can try again next time."
             : submitted.status === "Revision Requested"
@@ -57,8 +101,13 @@ export default function ApplicationsClient({ submitted, user, admins }) {
       {isSubmitted && submitted.status !== "Pending" && (
         <Box sx={{ p: 3, maxWidth: 800, mx: "auto" }}>
           <Paper elevation={3} sx={{ p: 3 }}>
-            <Typography variant="h5" gutterBottom>
-              Feedback Comments
+            {submitted.status === "Accepted" && (
+              <Typography variant="h6" gutterBottom textAlign="left">
+                Presentation Track : {submitted.is_poster ? "Poster" : "Paper"}
+              </Typography>
+            )}
+            <Typography variant="h6" gutterBottom textAlign="left">
+              Feedback Comments:
             </Typography>
             <Divider sx={{ my: 2 }} />
             <Typography variant="body1" flexWrap="wrap">
@@ -72,9 +121,28 @@ export default function ApplicationsClient({ submitted, user, admins }) {
       {isSubmitted && (
         <Box sx={{ p: 3, maxWidth: 800, mx: "auto" }}>
           <Paper elevation={3} sx={{ p: 3 }}>
-            <Typography variant="h5" gutterBottom>
-              Application Details
-            </Typography>
+            <Box display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={2}>
+              <Typography variant="h5">
+                Application Details
+              </Typography>
+              <Box display="flex" justifyContent="space-between" gap={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  component={Link}
+                  href="/applications/edit"
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleDeleteClick}
+                >
+                  Withdraw
+                </Button>
+              </Box>
+            </Box>
             <Divider sx={{ my: 2 }} />
             <Grid container spacing={2} textAlign={"left"}>
               {[
@@ -267,6 +335,27 @@ export default function ApplicationsClient({ submitted, user, admins }) {
           </Link>
         )}
       </Box>
+      <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
+        <DialogTitle>Confirm Withdraw</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to Withdraw this application? This action
+            cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cancel
+          </Button>
+          <Button
+            onClick={confirmDeleteApplication}
+            color="error"
+            variant="contained"
+          >
+            Confirm Withdraw
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

@@ -16,22 +16,26 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-export default function NewClient({ user, deadline }) {
+export default function NewForm({ user, deadline, edit = false, submission = null }) {
   const router = useRouter();
+  console.log(submission);
   const [formData, setFormData] = useState({
-    title: "",
-    abstract: "",
-    labName: "",
-    advisorName: "",
-    coAuthorNames: "",
-    submissionType: "",
-    forumName: "",
-    forumLevel: "",
-    acceptanceDate: "",
+    title: edit && submission ? submission?.title : "",
+    abstract: edit && submission ? submission?.abstract : "",
+    labName: edit && submission ? submission?.lab_name : "",
+    advisorName: edit && submission ? submission?.advisor_name : "",
+    coAuthorNames: edit && submission ? submission?.co_author_names : "",
+    submissionType: edit && submission ? submission?.submission_type : "",
+    forumName: edit && submission ? submission?.forum_name : "",
+    forumLevel: edit && submission ? submission?.forum_level : "",
+    acceptanceDate: edit && submission ? submission?.acceptance_date : "",
   });
 
   const [errors, setErrors] = useState({});
-  const [files, setFiles] = useState({ mainFile: null, proof: null });
+  const [files, setFiles] = useState({
+    mainFile: null,
+    proof: null,
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const allowedFileTypes = [
@@ -46,16 +50,13 @@ export default function NewClient({ user, deadline }) {
     if (!formData.title) newErrors.title = "Title is required";
     if (!formData.abstract) newErrors.abstract = "Abstract is required";
     if (!formData.labName) newErrors.labName = "Lab name is required";
-    if (!formData.advisorName)
-      newErrors.advisorName = "Advisor name is required";
-    if (!formData.submissionType)
-      newErrors.submissionType = "Submission type is required";
+    if (!formData.advisorName) newErrors.advisorName = "Advisor name is required";
+    if (!formData.submissionType) newErrors.submissionType = "Submission type is required";
     if (!formData.forumName) newErrors.forumName = "Forum name is required";
     if (!formData.forumLevel) newErrors.forumLevel = "Forum level is required";
-    if (!formData.acceptanceDate)
-      newErrors.acceptanceDate = "Acceptance date is required";
-    if (!files.mainFile) newErrors.mainFile = "Paper file is required";
-    if (!files.proof) newErrors.proof = "Proof of acceptance is required";
+    if (!formData.acceptanceDate) newErrors.acceptanceDate = "Acceptance date is required";
+    if (!files.mainFile && !edit) newErrors.mainFile = "Paper file is required";
+    if (!files.proof && !edit) newErrors.proof = "Proof of acceptance is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -93,13 +94,14 @@ export default function NewClient({ user, deadline }) {
       formDataToSend.append("forum_name", formData.forumName);
       formDataToSend.append("forum_level", formData.forumLevel);
       formDataToSend.append("acceptance_date", formData.acceptanceDate);
-      formDataToSend.append("file_url", files.mainFile);
-      formDataToSend.append("acceptance_proof", files.proof);
+
+      if (files.mainFile) formDataToSend.append("file_url", files.mainFile);
+      if (files.proof) formDataToSend.append("acceptance_proof", files.proof);
 
       const response = await fetch(`/api/submissions`, {
-        withCredentials: true,
-        method: "POST",
+        method: edit ? "PUT" : "POST",
         body: formDataToSend,
+        credentials: "include",
       });
       if (response.ok) {
         router.push(`/applications`);
@@ -178,7 +180,7 @@ export default function NewClient({ user, deadline }) {
               mb: 4,
             }}
           >
-            Apply to Present your Research
+            {edit ? "Edit Your Research Submission" : "Apply to Present Your Research"}
           </Typography>
           <Typography
             variant="h6"
@@ -280,22 +282,14 @@ export default function NewClient({ user, deadline }) {
             <FormHelperText>{errors.forumLevel}</FormHelperText>
           </FormControl>
 
-          <FormControl
-            fullWidth
-            margin="normal"
-            error={!!errors.submissionType}
-          >
-            <InputLabel id="dropdown-label">
-              Original Submission Type
-            </InputLabel>
+          <FormControl fullWidth margin="normal" error={!!errors.submissionType}>
+            <InputLabel id="submissionType-label">Submission Type</InputLabel>
             <Select
-              labelId="dropdown-label"
+              labelId="submissionType-label"
               id="submissionType"
               value={formData.submissionType}
               onChange={handleChange("submissionType")}
-              label="Original Submission Type"
-              variant="outlined"
-              sx={{ fontSize: "1.2rem" }}
+              label="Submission Type"
             >
               <MenuItem value="Full Paper">Full Paper</MenuItem>
               <MenuItem value="Short Paper">Short Paper</MenuItem>
@@ -308,24 +302,19 @@ export default function NewClient({ user, deadline }) {
             <FormHelperText>{errors.submissionType}</FormHelperText>
           </FormControl>
 
-          <FormControl
-            fullWidth
-            margin="normal"
-            error={!!errors.acceptanceDate}
-          >
+          <FormControl fullWidth margin="normal" error={!!errors.acceptanceDate}>
             <TextField
               id="acceptanceDate"
               type="date"
-              value={formData.acceptanceDate}
+              value={formData.acceptanceDate ? formData.acceptanceDate.split("T")[0] : ""}
               onChange={handleChange("acceptanceDate")}
-              label="Date of Original Submission Acceptance"
+              label="Acceptance Date"
               variant="outlined"
               InputLabelProps={{ shrink: true }}
               inputProps={{
                 min: "2023-10-01",
                 max: "2024-11-30",
               }}
-              sx={{ fontSize: "1.2rem" }}
             />
             <FormHelperText>{errors.acceptanceDate}</FormHelperText>
           </FormControl>

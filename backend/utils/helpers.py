@@ -39,9 +39,10 @@ async def get_current_user(Authorization: str = Cookie(None)):
     try:
         payload = decode(Authorization, JWT_SECRET, algorithms=["HS256"])
         email = payload.get("email")
+        roll_no = payload.get("roll")
         if email is None:
             return False
-        return True
+        return {"email": email, "roll_no": roll_no}
     except ExpiredSignatureError:
         return False
     except DecodeError:

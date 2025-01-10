@@ -1,10 +1,11 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends, Body
 from typing import List, Optional
 from uuid import UUID, uuid4
 from manager.submissions import (
     SubmissionLogic,
     SubmissionUpdateStatus,
     SubmissionResponse,
+    DeleteSubmissionRequest
 )
 import os
 from db import db
@@ -31,9 +32,9 @@ async def create_submission(
     file_url: UploadFile = File(...),
     acceptance_proof: UploadFile = File(...),
     # is_poster: bool = Form(...),
-    user: bool = Depends(get_current_user),
+    user: dict = Depends(get_current_user),
 ):
-    if not user:
+    if not user or user_roll_no != user["roll_no"]:
         raise HTTPException(status_code=401, detail="Not Authenticated")
     try:
         existing_submission = await SubmissionLogic.get_submission_by_roll_no(db=db, roll_no=user_roll_no, admin=False)
@@ -82,6 +83,74 @@ async def create_submission(
         print(f"Error: {str(e)}")  # Log the error in your backend logs
         raise HTTPException(status_code=400, detail=f"Error: {str(e)}")
 
+@sub_router.put("/submissions", response_model=SubmissionResponse)
+async def update_submission(
+    user_roll_no: str = Form(...),
+    title: str = Form(...),
+    abstract: str = Form(...),
+    lab_name: str = Form(...),
+    advisor_name: str = Form(...),
+    author: str = Form(...),
+    email: str = Form(...),
+    co_author_names: Optional[str] = Form(None),
+    submission_type: str = Form(...),
+    forum_name: str = Form(...),
+    forum_level: str = Form(...),
+    acceptance_date: str = Form(...),
+    file_url: UploadFile = File(None),
+    acceptance_proof: UploadFile = File(None),
+    user: dict = Depends(get_current_user),
+):
+    if not user or user_roll_no != user["roll_no"]:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+    try:
+        if file_url:
+            file_url_path = f"uploads/paper/{user_roll_no}_paper.pdf"
+            os.makedirs(os.path.dirname(file_url_path), exist_ok=True)
+            with open(file_url_path, "wb+") as f:
+                f.write(await file_url.read())
+        if acceptance_proof:
+            acceptance_proof_path = f"uploads/proof/{user_roll_no}_proof.pdf"
+            os.makedirs(os.path.dirname(acceptance_proof_path), exist_ok=True)
+            with open(acceptance_proof_path, "wb+") as f:
+                f.write(await acceptance_proof.read())
+
+        submission_data = {
+            "title": title,
+            "abstract": abstract,
+            "lab_name": lab_name,
+            "advisor_name": advisor_name,
+            "author": author,
+            "email": email,
+            "co_author_names": co_author_names,
+            "submission_type": submission_type,
+            "forum_name": forum_name,
+            "forum_level": forum_level,
+            "acceptance_date": datetime.fromisoformat(acceptance_date),
+        }
+
+        return await SubmissionLogic.update_submission(db, user_roll_no, submission_data)
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"{str(e)}")
+
+@sub_router.delete("/submissions")
+async def delete_submission(
+    request: DeleteSubmissionRequest,  # Parse body as a Pydantic model
+    user: dict = Depends(get_current_user),
+) -> SubmissionResponse:
+    user_roll_no = request.user_roll_no
+    if not user or user_roll_no != user["roll_no"]:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+    try:
+        deleted_submission = await SubmissionLogic.delete_submission(db, user_roll_no)
+        os.remove(deleted_submission.file_url)
+        os.remove(deleted_submission.acceptance_proof)
+        return deleted_submission
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=f"{str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"{str(e)}")
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
 async def get_all_submissions(

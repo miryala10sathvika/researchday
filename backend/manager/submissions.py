@@ -56,6 +56,9 @@ class SubmissionResponse(BaseModel):
     submitted_at: datetime
     reviewed_at: Optional[datetime]
 
+class DeleteSubmissionRequest(BaseModel):
+    user_roll_no: str
+
 
 class SubmissionLogic:
     @staticmethod
@@ -97,6 +100,32 @@ class SubmissionLogic:
         await db.submissions.insert_one(new_submission)
 
         return SubmissionResponse(**new_submission)
+
+    @staticmethod
+    async def update_submission(
+        db: AsyncIOMotorDatabase, user_roll_no: UUID, submission: dict
+    ) -> SubmissionResponse:
+        result = await db.submissions.find_one_and_update(
+            {"user_roll_no": user_roll_no},
+            {"$set": submission},
+            return_document=True,
+        )
+
+        if not result:
+            raise ValueError("Submission not found.")
+        return SubmissionResponse(**result)
+
+    @staticmethod
+    async def delete_submission(
+        db: AsyncIOMotorDatabase, user_roll_no: str
+    ) -> SubmissionResponse:
+        result = await db.submissions.find_one_and_delete(
+            {"user_roll_no": user_roll_no}
+        )
+        if not result:
+            raise ValueError("Submission not found.")
+
+        return SubmissionResponse(**result)
 
     @staticmethod
     async def get_all_submissions(db: AsyncIOMotorDatabase) -> List[SubmissionResponse]:
