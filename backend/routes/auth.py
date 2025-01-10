@@ -80,7 +80,6 @@ async def login(request: Request):
             httponly=True,
             secure=SECURE_COOKIES,
             max_age=COOKIE_MAX_AGE,
-            path="/",
         )
         logger.info("User successfully authenticated and JWT token set.")
         return response
