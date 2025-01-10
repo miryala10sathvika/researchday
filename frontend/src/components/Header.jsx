@@ -14,7 +14,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -26,6 +26,7 @@ export default function Header({ user = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const pathname = usePathname(); // Initialize usepathname
+  const [menuItems, setMenuItems] = useState([]);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,25 +40,30 @@ export default function Header({ user = null }) {
     setOpenSubmenu((prev) => (prev === index ? null : index));
   };
 
-  const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    {
-      label: "Organization",
-      href: "/organization",
-      // submenu: [
-      //     { label: "Submenu 1", href: "/organization/submenu1" },
-      //     { label: "Submenu 2", href: "/organization/submenu2" },
-      //     { label: "Submenu 3", href: "/organization/submenu3" },
-      // ],
-    },
-    ...(user
-      ? [
-          { label: "Application", href: "/applications" },
-          { label: "Logout", href: "/api/logout" },
-        ]
-      : [{ label: "Login", href: "/api/login" }]),
-  ];
+  useEffect(() => {
+    if (user) {
+      setMenuItems([
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        {
+          label: "Organization",
+          href: "/organization",
+        },
+        { label: "Application", href: "/applications" },
+        { label: "Logout", href: "/api/logout" },
+      ]);
+    } else {
+      setMenuItems([
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        {
+          label: "Organization",
+          href: "/organization",
+        },
+        { label: "Login", href: "/api/login" },
+      ]);
+    }
+  }, [user]);
 
   return (
     <AppBar
@@ -116,15 +122,17 @@ export default function Header({ user = null }) {
                   >
                     {item.submenu.map((subItem, subIndex) => (
                       <MenuItem key={subIndex} onClick={handleMenuClose}>
-                        <Link href={subItem.href} passHref>
-                          {subItem.label}
+                        <Link href={subItem.href} passHref prefetch={false}>
+                          <Button component="a">
+                            <Typography>{subItem.label}</Typography>
+                          </Button>
                         </Link>
                       </MenuItem>
                     ))}
                   </Menu>
                 </Box>
               ) : (
-                <Link href={item.href} passHref>
+                <Link href={item.href} passHref prefetch={false}>
                   <Button
                     color="inherit"
                     sx={{
@@ -136,8 +144,9 @@ export default function Header({ user = null }) {
                       color: pathname === item.href ? "white" : "black",
                       borderRadius: { xs: "0px", md: "4px" },
                     }}
+                    component="a"
                   >
-                    {item.label}
+                    <Typography>{item.label}</Typography>
                   </Button>
                 </Link>
               )}
@@ -210,7 +219,7 @@ export default function Header({ user = null }) {
                       sx={{ backgroundColor: "#efeded", padding: "8px 0" }}
                     >
                       {item.submenu.map((subItem, subIndex) => (
-                        <Link key={subIndex} href={subItem.href} passHref>
+                        <Link key={subIndex} href={subItem.href} passHref prefetch={false}>
                           <Button
                             color="inherit"
                             fullWidth
@@ -224,7 +233,7 @@ export default function Header({ user = null }) {
                               borderRadius: { xs: "0px", md: "4px" },
                             }}
                           >
-                            {subItem.label}
+                            <Typography>{subItem.label}</Typography>
                           </Button>
                         </Link>
                       ))}
@@ -232,9 +241,10 @@ export default function Header({ user = null }) {
                   </Collapse>
                 </Box>
               ) : (
-                <Link href={item.href} passHref>
+                <Link href={item.href} passHref prefetch={false}>
                   <Button
                     color="inherit"
+                    passHref
                     sx={{
                       fontWeight: "bold",
                       padding: 1.3,
@@ -248,7 +258,7 @@ export default function Header({ user = null }) {
                     fullWidth
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    <Typography>{item.label}</Typography>
                   </Button>
                 </Link>
               )}

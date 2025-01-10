@@ -40,9 +40,13 @@ async def login(request: Request):
     """
     CAS login endpoint. Handles user authentication and sets a JWT token in cookies.
     """
+    params = request.query_params
+    if "_rsc" in params:
+        return JSONResponse({"message": "Login successful"})
+
     try:
         # Check if the user is already logged in
-        if "Authorization" in request.cookies:
+        if "RF_Auth" in request.cookies:
             logger.info("User is already logged in. Redirecting to home.")
             return RedirectResponse(url=REDIRECT_URL)
 
@@ -68,14 +72,14 @@ async def login(request: Request):
             "uid": attributes["uid"],
             "roll": attributes["RollNo"],
             "email": attributes["E-Mail"],
-            "name": attributes["Name"]
+            "name": attributes["Name"],
         }
         token = encode(payload, JWT_SECRET, algorithm="HS256")
 
         # Set JWT token in cookies
         response = RedirectResponse(url=next_url)
         response.set_cookie(
-            key="Authorization",
+            key="RF_Auth",
             value=token,
             httponly=True,
             secure=SECURE_COOKIES,
@@ -94,10 +98,14 @@ async def logout(request: Request):
     """
     CAS logout endpoint. Logs out the user and clears the JWT token.
     """
+    params = request.query_params
+    if "_rsc" in params:
+        return JSONResponse({"message": "Login successful"})
+
     try:
         cas_logout_url = cas_client.get_logout_url()
         response = RedirectResponse(url=cas_logout_url)
-        response.delete_cookie("Authorization")
+        response.delete_cookie("RF_Auth")
         logger.info("User logged out successfully.")
         return response
     except Exception as e:
@@ -110,7 +118,7 @@ async def profile(request: Request):
     """
     Retrieve user profile information using the JWT token from cookies.
     """
-    token = request.cookies.get("Authorization")
+    token = request.cookies.get("RF_Auth")
     if not token:
         logger.warning("Unauthorized access attempt. No token provided.")
         raise HTTPException(status_code=401, detail="Unauthorized. No token provided.")
@@ -127,6 +135,7 @@ async def profile(request: Request):
     except DecodeError:
         logger.warning("Failed to decode JWT token.")
         return JSONResponse({"message": "Failed to decode token"}, status_code=400)
+
 
 @auth_router.get("/admins")
 async def get_admins(request: Request):

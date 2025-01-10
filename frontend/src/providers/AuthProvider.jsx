@@ -12,8 +12,8 @@
 //     const router = useRouter();
 
 //     useEffect(() => {
-//         // Check if the user is logged in by checking the Authorization cookie
-//         const token = document.cookie.split('; ').find(row => row.startsWith('Authorization='));
+//         // Check if the user is logged in by checking the RF_Auth cookie
+//         const token = document.cookie.split('; ').find(row => row.startsWith('RF_Auth='));
 
 //         if (token) {
 //             setIsAuthenticated(true);
