@@ -179,3 +179,19 @@ async def get_announcements():
         )
 
     return return_announcements
+
+
+@sub_router.post("/add-announcement")
+async def add_announcement(
+    content: str,
+    date: str,
+    admin: bool = Depends(check_admin),
+):
+    if not admin:
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+
+    announcement = {"content": content, "date": date}
+
+    db.announcements.insert_one(announcement)
+
+    return {"message": "Announcement added successfully"}
