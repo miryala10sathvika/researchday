@@ -123,7 +123,7 @@ export default function Header({ user = null }) {
                     {item.submenu.map((subItem, subIndex) => (
                       <MenuItem key={subIndex} onClick={handleMenuClose}>
                         <Link href={subItem.href} passHref prefetch={false}>
-                          <Button component="a">
+                          <Button>
                             <Typography>{subItem.label}</Typography>
                           </Button>
                         </Link>
@@ -144,7 +144,6 @@ export default function Header({ user = null }) {
                       color: pathname === item.href ? "white" : "black",
                       borderRadius: { xs: "0px", md: "4px" },
                     }}
-                    component="a"
                   >
                     <Typography>{item.label}</Typography>
                   </Button>
@@ -152,6 +151,7 @@ export default function Header({ user = null }) {
               )}
             </Box>
           ))}
+
         </Box>
 
         {/* Mobile Menu Icon */}
