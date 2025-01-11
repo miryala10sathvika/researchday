@@ -11,10 +11,15 @@ import os
 from db import db
 from fastapi.responses import FileResponse
 from datetime import datetime
+from pytz import timezone
 from utils.helpers import get_current_user, check_admin
 
 sub_router = APIRouter()
 
+
+
+def create_ist_time():
+    return datetime.now(timezone("Asia/Kolkata"))
 
 @sub_router.post("/submissions", response_model=SubmissionResponse)
 async def create_submission(
@@ -130,6 +135,11 @@ async def update_submission(
             "forum_name": forum_name,
             "forum_level": forum_level,
             "acceptance_date": datetime.fromisoformat(acceptance_date),
+            "is_poster": False,
+            "status": "Pending",
+            "review_comments": None,
+            "submitted_at": create_ist_time().replace(microsecond=0).isoformat(),
+            "reviewed_at": None,
         }
 
         return await SubmissionLogic.update_submission(db, user_roll_no, submission_data)
