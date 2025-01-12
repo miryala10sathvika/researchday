@@ -313,7 +313,7 @@ export default function NewForm({ user, deadline, edit = false, submission = nul
               InputLabelProps={{ shrink: true }}
               inputProps={{
                 min: "2023-10-01",
-                max: "2024-11-30",
+                max: "2024-12-31",
               }}
             />
             <FormHelperText>{errors.acceptanceDate}</FormHelperText>
