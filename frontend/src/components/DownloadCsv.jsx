@@ -62,8 +62,8 @@ export default function DownloadCsv({ submissions }) {
                             escapeCsvField(item?.status),
                             escapeCsvField(`https://research.iiit.ac.in/api/get-pdf/paper/${item?.user_roll_no}_paper`),
                             escapeCsvField(`https://research.iiit.ac.in/api/get-pdf/proof/${item?.user_roll_no}_proof`),
-                            item?.approved ? escapeCsvField(item?.is_poster ? "Poster" : "Paper") : "N/A",
-                            item?.approved ? escapeCsvField(item?.review_comments) : "N/A"
+                            item?.status === "Accepted" ? escapeCsvField(item?.is_poster ? "Poster" : "Paper") : "N/A",
+                            item?.status === "Accepted" ? escapeCsvField(item?.review_comments) : "N/A"
                         ].join(",")
                     )
                 )
@@ -106,7 +106,7 @@ export default function DownloadCsv({ submissions }) {
                     }}
                 >
                     <Typography variant="h6" gutterBottom>
-                        Select Submission Types to Download
+                        Select Required status to Download
                     </Typography>
                     <FormGroup>
                         <FormControlLabel
