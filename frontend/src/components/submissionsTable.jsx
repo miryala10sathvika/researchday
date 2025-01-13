@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { getDatetimeformat } from "utils/dateTime";
+import DownloadCsv from "components/DownloadCsv";
 
 export default function SubmissionsTable({ user, submissions }) {
   const [loading, setLoading] = useState(true);
@@ -123,12 +124,17 @@ export default function SubmissionsTable({ user, submissions }) {
 
   return (
     <Box sx={{ p: 4 }}>
-      <Typography variant="h5" gutterBottom>
-        Welcome, {user.uid
-          .split(".") // Split the UID by dots
-          .map((part) => part.charAt(0).toUpperCase() + part.slice(1)) // Capitalize each part
-          .join(" ")}! Here are the submissions:
-      </Typography>
+      <Box sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}>
+        <Typography variant="h5" gutterBottom>
+          Welcome, {user?.name}! Here are the submissions:
+        </Typography>
+        <DownloadCsv submissions={submissions} />
+      </Box>
 
       {/* Pending Submissions Table */}
       <Box sx={{ mt: 4, p: 2, border: "1px solid #ccc", borderRadius: "8px" }}>
