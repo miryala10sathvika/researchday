@@ -7,7 +7,7 @@ const importantDatesMapping = {
   attendee_registration_start: "Attendee Registration Start Date",
   attendee_registration_end: "Attendee Registration End Date",
   presenter_registration_deadline: "Presenter Registration Deadline",
-  results_day: "Results Day",
+  results_day: "Notifications",
 };
 
 const bannerImage = "/assets/banner.jpg";
