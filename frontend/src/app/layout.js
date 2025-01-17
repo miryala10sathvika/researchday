@@ -5,10 +5,10 @@ import Footer from "components/Footer";
 import { getUser } from 'utils/verification';
 
 export const metadata = {
-  title: "Student Conference IIITH",
+  title: "Research Fest @ IIITH - 2025"
   description:
-    "A student conference organized by students to show case their work",
-  authors: ["SERC Students"],
+    "A mini internal conference organized by students to show case their work and present their accepted or published papers",
+  authors: ["SERC Students, IIITH"],
 };
 
 export default async function RootLayout({ children }) {
