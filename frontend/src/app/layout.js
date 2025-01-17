@@ -2,13 +2,13 @@ import "./globals.css";
 import { Box } from "@mui/material";
 import Header from "components/Header";
 import Footer from "components/Footer";
-import { getUser } from 'utils/verification';
+import { getUser } from "utils/verification";
 
 export const metadata = {
-  title: "Research Fest @ IIITH - 2025"
+  title: "Research Fest @ IIITH - 2025",
   description:
     "A mini internal conference organized by students to show case their work and present their accepted or published papers",
-  authors: ["SERC Students, IIITH"],
+  authors: ["Researchfest Web Team, IIITH"],
 };
 
 export default async function RootLayout({ children }) {
