@@ -21,7 +21,7 @@ export default function ApplicationsClient({ submitted, user, admins }) {
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const isSubmitted = submitted && submitted.length !== 0;
-  const allowedDomains = ["research.iiit.ac.in"]; // Add allowed domains here
+  const allowedDomains = ["research.iiit.ac.in", "students.iiit.ac.in"]; // Add allowed domains here
   const userDomain = user.email.split("@")[1];
   const allowed_to_submit = allowedDomains.includes(userDomain);
 
