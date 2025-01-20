@@ -3,14 +3,20 @@
 import { useState, useEffect } from "react";
 
 export function getDatetimeformat(dateTimeString) {
-  const [formattedDate, setFormattedDate] = useState({ dateString: "", timeString: "" });
+  const [formattedDate, setFormattedDate] = useState({
+    dateString: "",
+    timeString: "",
+  });
 
   useEffect(() => {
     const date = new Date(dateTimeString);
 
     if (isNaN(date)) {
       console.error("Invalid date format:", dateTimeString);
-      setFormattedDate({ dateString: "Invalid Date", timeString: "Invalid Time" });
+      setFormattedDate({
+        dateString: "Invalid Date",
+        timeString: "Invalid Time",
+      });
       return;
     }
 
@@ -34,9 +40,9 @@ export function getDatetimeformat(dateTimeString) {
       .split("/")
       .join("-"); // Format to YYYY-MM-DD
 
-    const timeString = new Intl.DateTimeFormat("en-IN", timeOptions)
-      .format(date)
-      .replace(/:\d{2}$/, ""); // HH:mm (removes seconds if present)
+    const timeString = new Intl.DateTimeFormat("en-IN", timeOptions).format(
+      date
+    );
 
     setFormattedDate({ dateString, timeString });
   }, [dateTimeString]);
