@@ -312,7 +312,7 @@ export default function NewForm({ user, deadline, edit = false, submission = nul
               variant="outlined"
               InputLabelProps={{ shrink: true }}
               inputProps={{
-                min: "2023-10-01",
+                // min: "2023-10-01",
                 max: "2024-12-31",
               }}
             />
