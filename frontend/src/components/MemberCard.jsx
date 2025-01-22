@@ -61,7 +61,7 @@ export default function MemberCard({ position, members }) {
                   fontSize="0.9em"
                   textAlign={"left"}
                 >
-                  {person.institute}
+                  {person.batch}
                 </Box>
               </Box>
               {person.email && (
