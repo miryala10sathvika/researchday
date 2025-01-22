@@ -34,22 +34,23 @@ const organizers = [
       { name: "Bhav Beri", batch: "CSD 2k21" },
       { name: "Aaditya Narain", batch: "CSD 2k22" },
       { name: "Adari Dileepkumar", batch: "CSE 2k22" },
-      { name: "Sathvika Miryala", batch: "CSE 2k22" },
-      { name: "D Sree Yashaswinee", batch: "CSE 2k22" },
+      { name: "Sathvika Miryala", batch: "CSD 2k22" },
+      { name: "D Sree Yashaswinee", batch: "CSD 2k22" },
     ],
   },
   {
     position: "Publicity Team",
     members: [
       { name: "Anagha Pradeep", batch: "PhD(CL) 2k22" },
-      { name: "Bhav Beri", batch: "IIIT Hyderabad" },
-      { name: "Gargie Tambe", batch: "IIIT Hyderabad" },
+      { name: "Bhav Beri", batch: "CSD 2k21" },
+      { name: "Gargie Tambe", batch: "CSD 2k22" },
+      { name : "Hiya Bhatt", batch: "MS(CSE) 2k24"}
     ],
   },
   {
     position: "Organizing Committee",
     members: [
-      { name: "Chandrasekar S", batch: "IIIT Hyderabad" },
+      { name: "Chandrasekar S", batch: "MS(CSE) 2k24" },
       { name: "Kaveri Anuranjana", batch: "IIIT Hyderabad" },
       { name: "Vedula Bhaskara Hanuma", batch: "IIIT Hyderabad" },
       { name: "Janaksinh Ven", batch: "IIIT Hyderabad" },
