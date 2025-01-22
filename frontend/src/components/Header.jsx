@@ -50,6 +50,7 @@ export default function Header({ user = null }) {
           href: "/organization",
         },
         { label: "Application", href: "/applications" },
+        { label: "Attendee Registration", href: "/attendee" },
         { label: "Logout", href: "/api/logout" },
       ]);
     } else {
@@ -60,6 +61,7 @@ export default function Header({ user = null }) {
           label: "Organization",
           href: "/organization",
         },
+        { label: "Attendee Registration", href: "/attendee" },
         { label: "Login", href: "/api/login" },
       ]);
     }
@@ -151,7 +153,6 @@ export default function Header({ user = null }) {
               )}
             </Box>
           ))}
-
         </Box>
 
         {/* Mobile Menu Icon */}
@@ -219,7 +220,12 @@ export default function Header({ user = null }) {
                       sx={{ backgroundColor: "#efeded", padding: "8px 0" }}
                     >
                       {item.submenu.map((subItem, subIndex) => (
-                        <Link key={subIndex} href={subItem.href} passHref prefetch={false}>
+                        <Link
+                          key={subIndex}
+                          href={subItem.href}
+                          passHref
+                          prefetch={false}
+                        >
                           <Button
                             color="inherit"
                             fullWidth
