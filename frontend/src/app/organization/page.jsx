@@ -23,7 +23,7 @@ const organizers = [
       },
       {
         name: "Sudarshan Srinivasan",
-        batch: "PhD(CSE) 223k",
+        batch: "PhD(CSE) 2k23",
         email: "sudarshan.srinivasan@research.iiit.ac.in",
       },
     ],
