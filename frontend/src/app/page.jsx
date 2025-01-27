@@ -55,8 +55,8 @@ export default async function Home() {
             justifyContent: "center",
             alignItems: "center",
             color: "white",
-            textAlign: "left",
-            backgroundColor: "rgba(0, 0, 0, 0.4)", // optional dark overlay
+            textAlign: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.6)", // optional dark overlay
           }}
         >
           <Typography
@@ -69,6 +69,19 @@ export default async function Home() {
           >
             IIITH Research Fest 2025
           </Typography>
+          <Typography variant="h5" gutterBottom sx={{ color: 'white' }}>
+                February 8-9, 2025
+              </Typography>
+              
+              <Typography variant="subtitle1" sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 1,
+                mt: 1,
+                mb: 1,
+              }}>
+                IIIT Hyderabad, Gachibowli
+              </Typography>
           <Typography variant="h6" gutterBottom>
             Ignite Innovation, Inspire Collaboration
           </Typography>
@@ -96,6 +109,9 @@ export default async function Home() {
           >
             <Typography variant="h3" gutterBottom>
               Research Fest @ IIITH - 2025
+            </Typography>
+            <Typography variant="h5" gutterBottom sx={{ color: 'text.secondary' }}>
+              February 8-9, 2025
             </Typography>
             <Typography paragraph sx={{ fontSize: "1.25rem" }}>
               The Research Fest is an annual event celebrating research and

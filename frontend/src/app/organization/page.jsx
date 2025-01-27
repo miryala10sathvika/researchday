@@ -54,7 +54,7 @@ const organizers = [
       { name: "Kaveri Anuranjana", batch: "PhD(CL) 2k23" },
       { name: "Vedula Bhaskara Hanuma", batch: "PhD(CSE) 2k22" },
       { name: "Janaksinh Ven", batch: "MS(ECE) 2k23" },
-      { name: "Rasheed", batch: "PhD(CSE) 2k22" },
+      // { name: "Rasheed", batch: "PhD(CSE) 2k22" },
       { name: "Lokesh V", batch: "CSD UG2k20" },
       { name: "Aaryan Sharma", batch: "LCD 2k22" },
     ],
