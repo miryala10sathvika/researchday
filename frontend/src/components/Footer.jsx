@@ -1,8 +1,8 @@
 import { Box, Typography, Link, IconButton } from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import InstagramIcon from "@mui/icons-material/Instagram";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import TwitterIcon from "@mui/icons-material/Twitter";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+// import InstagramIcon from "@mui/icons-material/Instagram";
 
 export default function Footer() {
   return (
@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Logo and Copyright */}
           <Box display="flex" alignItems="center" gap={2}>
             <Typography variant="body2" color="textSecondary">
-              &copy; 2024 IIITH. All rights reserved.
+              &copy; 2025 IIITH. All rights reserved.
             </Typography>
           </Box>
 
@@ -35,22 +35,29 @@ export default function Footer() {
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
-              gap: 2,
+              gap: 3,
             }}
           >
-            <Link href="#about" underline="hover" color="inherit">
+            {/* <Link href="#about" underline="hover" color="inherit">
               About Us
+            </Link> */}
+            <Link
+              href="mailto:researchfest.iiit.ac.in"
+              underline="hover"
+              color="inherit"
+            >
+              Contact Us
             </Link>
-            <Link href="#contact" underline="hover" color="inherit">
-              Contact
+            <Link href="/organization" underline="hover" color="inherit">
+              Team
             </Link>
-            <Link href="#privacy" underline="hover" color="inherit">
+            {/* <Link href="#privacy" underline="hover" color="inherit">
               Privacy Policy
-            </Link>
+            </Link> */}
           </Box>
 
           {/* Socials */}
-          <Box display="flex" gap={1}>
+          {/* <Box display="flex" gap={1}>
             <IconButton
               href="https://facebook.com"
               target="_blank"
@@ -79,7 +86,7 @@ export default function Footer() {
             >
               <InstagramIcon />
             </IconButton>
-          </Box>
+          </Box> */}
         </Box>
 
         {/* Last Updated */}
@@ -90,7 +97,7 @@ export default function Footer() {
           marginTop={2}
           fontStyle="italic"
         >
-          Last updated: December 25, 2024, 10:56:56.
+          Last updated: January 08, 2025.
         </Typography>
       </Box>
     </footer>

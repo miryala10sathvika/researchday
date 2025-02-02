@@ -66,3 +66,4 @@ Thumbs.db
 dump/
 
 uploads/
+nginx/web.prod.conf

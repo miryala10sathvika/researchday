@@ -2,17 +2,37 @@ import "./globals.css";
 import { Box } from "@mui/material";
 import Header from "components/Header";
 import Footer from "components/Footer";
-import { getUser } from 'utils/verification';
+import { getUser } from "utils/verification";
 
 export const metadata = {
-  title: "Student Conference IIITH",
+  title: "Research Fest @ IIITH - 2025",
   description:
-    "A student conference organized by students to show case their work",
-  authors: ["SERC Students"],
+    "A mini internal conference organized by students to show case their work and present their accepted or published papers",
+  authors: ["Researchfest Web Team, IIITH"],
 };
 
 export default async function RootLayout({ children }) {
   const user = await getUser();
+
+  const menuItems = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    {
+      label: "Organization",
+      href: "/organization",
+      // submenu: [
+      //     { label: "Submenu 1", href: "/organization/submenu1" },
+      //     { label: "Submenu 2", href: "/organization/submenu2" },
+      //     { label: "Submenu 3", href: "/organization/submenu3" },
+      // ],
+    },
+    ...(user
+      ? [
+          { label: "Application", href: "/applications" },
+          { label: "Logout", href: "/api/logout" },
+        ]
+      : [{ label: "Login", href: "/api/login" }]),
+  ];
 
   return (
     <html lang="en">

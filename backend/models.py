@@ -19,9 +19,10 @@ class Submission(BaseModel):
     track_id: UUID
     title: str
     abstract: str
-    authors: List[UUID]  # Array of user_ids (Presenters)
     lab_name: str
     advisor_name: str
+    author: str
+    email: str
     co_author_names: Optional[str]
     submission_type: str  # Workshop, Short Paper, Full Paper, Journal, etc.
     forum_name: str      # Conference/Journal/Forum Name

@@ -1,69 +1,50 @@
-"use client"; // Client component
+"use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  Button,
   Box,
   Typography,
   Card,
-  CardContent,
   Grid,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
-  TextField,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { getDatetimeformat } from "utils/dateTime";
 
 export default function SubmissionDetails({ submission }) {
-  const [openDialog, setOpenDialog] = useState(false);
-  const [currentAction, setCurrentAction] = useState(null);
-  const [dialogType, setDialogType] = useState("");
-  const [formattedDate, setFormattedDate] = useState(null);
-  const [comments, setComments] = useState("");
+  const [status, setStatus] = useState(submission.status);
+  const [reviewComments, setReviewComments] = useState(
+    submission.review_comments || ""
+  );
+  const [presentationType, setPresentationType] = useState(
+    submission.is_poster ? "Poster" : "Paper"
+  );
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (submission?.submitted_at) {
-      const date = new Date(submission.submitted_at);
-      setFormattedDate(date.toLocaleString());
-    }
-  }, [submission.submitted_at]);
-
-  const handleApprove = () => {
-    setCurrentAction("Approve");
-    setDialogType("approve");
-    setOpenDialog(true);
-  };
-
-  const handleReject = () => {
-    setCurrentAction("Reject");
-    setDialogType("reject");
-    setOpenDialog(true);
-  };
-
-  const handleDialogClose = () => {
-    setOpenDialog(false);
-    setCurrentAction(null);
-    setDialogType("");
-    setComments(""); // Reset comments field
-  };
-
-  const handleDialogConfirm = async () => {
+  const handleSave = async () => {
     try {
       const response = await fetch(
-        `${process.env.BACKEND_URL || "http://backend:8000/api"}/submissions/${
-          submission?.submission_id
-        }`,
+        `/api/submissions/${submission?.submission_id}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            status: dialogType === "approve" ? "Approved" : "Rejected",
-            review_comments: comments,
+            status,
+            review_comments: reviewComments,
+            is_poster: presentationType === "Poster",
           }),
           credentials: "include",
         }
@@ -72,162 +53,242 @@ export default function SubmissionDetails({ submission }) {
       const result = await response.json();
 
       if (response.ok) {
-        // Reload or update the state accordingly
+        setIsSuccessModalOpen(true);
         router.refresh();
       } else {
-        alert(
-          `Failed to ${currentAction.toLowerCase()} submission: ${
-            result.detail
-          }`
-        );
+        alert(`Failed to save changes: ${result.detail}`);
       }
     } catch (error) {
       console.error("Error updating submission:", error);
-      alert(`Failed to ${currentAction.toLowerCase()} submission.`);
-    } finally {
-      handleDialogClose();
+      alert("Failed to save changes.");
     }
   };
 
-  return (
-    <>
-      <Box sx={{ p: 4, ml: 4, mt: 4, height: "80vh" }}>
-        {/* Buttons */}
-        <Box display="flex" justifyContent="flex-end" sx={{ mt: 2, gap: 2 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => router.push("/applications/submissions")}
-          >
-            Back
-          </Button>
-          {(submission.status === "Pending" ||
-            submission.status === "Rejected") && (
-            <Button variant="contained" color="success" onClick={handleApprove}>
-              Approve
-            </Button>
-          )}
-          {(submission.status === "Pending" ||
-            submission.status === "Approved") && (
-            <Button variant="contained" color="error" onClick={handleReject}>
-              Decline
-            </Button>
-          )}
-        </Box>
-        <Card sx={{ mt: 4, width: "60%", margin: "auto" }}>
-          <CardContent>
-            <Typography variant="h4" gutterBottom>
-              Submission Details
-            </Typography>
+  const handleCloseSuccessModal = () => {
+    setIsSuccessModalOpen(false); // Close modal
+    router.push("/applications/submissions");
+  };
 
-            <Grid container spacing={2} sx={{ ml: 2 }}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Title:</Typography>
-                <Typography variant="body1">{submission.title}</Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Status:</Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color:
-                      submission.status === "Pending"
-                        ? "warning.main"
-                        : submission.status === "Approved"
-                        ? "success.main"
-                        : "error.main",
-                  }}
+  const reviewed_at = getDatetimeformat(submission?.reviewed_at).dateString;
+
+  return (
+    <Box sx={{ p: 4, ml: 4, mt: 4 }}>
+      {/* Input Section */}
+      <Card sx={{ mb: 4, p: 3, boxShadow: 3 }}>
+        <Typography variant="h5" gutterBottom>
+          Update Submission Details
+        </Typography>
+        <Grid container spacing={3}>
+          {/* Update Status */}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              gap: 2,
+            }}
+          >
+            <Grid>
+              <FormControl fullWidth>
+                <InputLabel id="status-label">Update Status</InputLabel>
+                <Select
+                  labelId="status-label"
+                  label="Update Status"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
                 >
-                  {submission.status}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Abstract:</Typography>
-                <Typography variant="body1">{submission.abstract}</Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Submitted At:</Typography>
-                <Typography variant="body1">
-                  {formattedDate || "Loading..."}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Authors:</Typography>
-                <Typography variant="body1">{submission.authors}</Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Paper Pdf:</Typography>
-                <a
-                  href={`/api/get-pdf/paper/${submission.submission_id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outlined" size="small">
-                    View Paper
-                  </Button>
-                </a>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Presentation Type:</Typography>
-                <Typography variant="body1">
-                  {submission.is_poster ? "Poster" : "Paper"}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Acceptance Proof:</Typography>
-                <a
-                  href={`/api/get-pdf/proof/${submission.submission_id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outlined" size="small">
-                    View Proof
-                  </Button>
-                </a>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h6">Review Comments:</Typography>
-                <Typography variant="body1">
-                  {submission.review_comments || "None"}
-                </Typography>
-              </Grid>
+                  <MenuItem value="Pending" disabled>
+                    Pending
+                  </MenuItem>
+                  <MenuItem value="Accepted">Approve</MenuItem>
+                  {/* <MenuItem value="Revision Requested">Send for Revision</MenuItem> */}
+                  <MenuItem value="Rejected">Reject</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
-          </CardContent>
-        </Card>
-      </Box>
-      {/* Confirmation Dialog */}
-      <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>
-          Are you sure you want to {dialogType} this submission?
-        </DialogTitle>
+
+            {/* Presentation Type */}
+            <Grid>
+              <FormControl fullWidth>
+                <InputLabel id="presentation-type-label">
+                  Type of Presentation
+                </InputLabel>
+                <Select
+                  labelId="presentation-type-label"
+                  value={presentationType}
+                  label="Type of Presentation"
+                  onChange={(e) => setPresentationType(e.target.value)}
+                >
+                  <MenuItem value="Poster">Poster</MenuItem>
+                  <MenuItem value="Paper">Paper</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          {/* Review Comments */}
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Review Comments"
+              multiline
+              rows={4}
+              fullWidth
+              variant="outlined"
+              value={reviewComments}
+              onChange={(e) => setReviewComments(e.target.value)}
+            />
+          </Grid>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              mt: 2,
+              gap: 2,
+              width: "100%",
+            }}
+          >
+            <Button variant="contained" color="primary" onClick={handleSave}>
+              Save Changes
+            </Button>
+          </Box>
+        </Grid>
+      </Card>
+
+      {/* Display Remaining Details */}
+      <Card sx={{ p: 3, boxShadow: 3 }}>
+        <Typography variant="h5" gutterBottom>
+          Submission Details
+        </Typography>
+        <Grid container spacing={2}>
+          {[
+            { label: "Student Roll No", value: submission.user_roll_no },
+            { label: "Email", value: submission.email },
+            { label: "Author", value: submission?.author },
+            { label: "Co-Authors", value: submission.co_author_names },
+            { label: "Lab", value: submission.lab_name },
+            { label: "Advisor(s)", value: submission.advisor_name },
+            { label: "Forum", value: submission.forum_name },
+            { label: "Forum Level", value: submission.forum_level },
+            {
+              label: "Acceptance Date",
+              value: getDatetimeformat(submission.acceptance_date).dateString,
+            },
+            {
+              label: "Submitted On",
+              value: getDatetimeformat(submission.submitted_at).dateString,
+            },
+            { label: "Submission Type", value: submission.submission_type },
+            { label: "", value: "" },
+            { label: "Title", value: submission.title },
+          ].map((detail, index) => (
+            <Grid item xs={12} sm={6} key={index}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                {detail?.label?.toUpperCase()}{detail?.label && detail?.value && ":"}
+              </Typography>
+              <Typography variant="body1">{detail.value}</Typography>
+            </Grid>
+          ))}
+          <Grid item xs={12} sm={12}>
+            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              ABSTRACT
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ wordBreak: "break-all" }}
+              dangerouslySetInnerHTML={{
+                __html: submission?.abstract?.replace("\n", "<br />"),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              UPLOADED PAPER
+            </Typography>
+            {submission.file_url && (
+              <Button
+                variant="outlined"
+                href={`/api/get-pdf/paper/${submission?.user_roll_no}_paper`}
+                target="_blank"
+                sx={{ mt: 1 }}
+              >
+                View Paper
+              </Button>
+            )}
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              ACCEPTANCE PROOF
+            </Typography>
+            {submission.acceptance_proof && (
+              <Button
+                variant="outlined"
+                href={`/api/get-pdf/proof/${submission?.user_roll_no}_proof`}
+                target="_blank"
+                sx={{ mt: 1 }}
+              >
+                View Proof
+              </Button>
+            )}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              STATUS
+            </Typography>
+            <Typography variant="body1">{submission.status}</Typography>
+          </Grid>
+          {submission?.status !== "Pending" && (
+            <Grid item xs={12} sm={6}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                REVIEW COMMENTS
+              </Typography>
+              <Typography variant="body1">
+                {submission.review_comments}
+              </Typography>
+            </Grid>
+          )}
+          {submission?.status === "Accepted" && (
+            <Grid item xs={12} sm={6}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                PRESENTATION TYPE
+              </Typography>
+              <Typography variant="body1">
+                {submission.is_poster ? "Poster" : "Paper"}
+              </Typography>
+            </Grid>
+          )}
+          {submission?.status !== "Pending" && (
+            <Grid item xs={12} sm={6}>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                REVIEWED AT
+              </Typography>
+              <Typography variant="body1">
+                {reviewed_at}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
+      </Card>
+      <Dialog
+        open={isSuccessModalOpen}
+        onClose={handleCloseSuccessModal}
+        aria-labelledby="success-dialog-title"
+        aria-describedby="success-dialog-description"
+      >
+        <DialogTitle id="success-dialog-title">Success</DialogTitle>
         <DialogContent>
-          <Typography variant="body2" gutterBottom>
-            This action will update the status of the submission.
-          </Typography>
-          <TextField
-            fullWidth
-            multiline
-            rows={4}
-            label="Review Comments"
-            variant="outlined"
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
-            sx={{ mt: 2 }}
-          />
+          <DialogContentText id="success-dialog-description">
+            Changes have been saved successfully!
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={handleDialogConfirm}
-            color="primary"
-            disabled={!comments}
-          >
-            Confirm
+          <Button onClick={handleCloseSuccessModal} color="primary">
+            Close
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </Box>
   );
 }

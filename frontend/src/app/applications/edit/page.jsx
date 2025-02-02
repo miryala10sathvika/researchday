@@ -10,12 +10,12 @@ export default async function NewSubmissionPage() {
   }
 
   const submission = await getSubmissionByRoll(user);
-  if (submission) {
-    redirect("/applications");
+  if (!submission) {
+    return redirect("/applications/new");
   }
 
   const importantDates = await getImportantDates();
   const presenter_registration_deadline = new Date(importantDates.presenter_registration_deadline);
 
-  return <NewForm user={user} deadline={presenter_registration_deadline} />;
+  return <NewForm user={user} deadline={presenter_registration_deadline} edit={true} submission={submission}/>;
 }

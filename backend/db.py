@@ -51,10 +51,17 @@ async def setup_db():
             "shodasakshari.vidya@research.iiit.ac.in",
             "furqan.shaik@research.iiit.ac.in",
             "sudarshan.srinivasan@research.iiit.ac.in",
-            "bhav.beri@research.iiit.ac.in"
+            "bhav.beri@research.iiit.ac.in",
         ]
         print("Inserting default admins.")
         for admin in admins:
             await db.admins.insert_one({"username": admin})
+
+    # Check if announcements is empty
+    if await db.announcements.count_documents({}) == 0:
+        print("Inserting default announcement.")
+        await db.announcements.insert_one(
+            {"content": "Registration portal is now open!", "date": "2025-01-09"}
+        )
 
     print("Database setup complete.")
