@@ -9,7 +9,7 @@ import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-const oragneDark = "#dbb07f";
+const orangeDark = "#dbb07f";
 const orangeLight = "#ffdbb3";
 const blueDark = "#7AB2D3";
 const blueLight = "#B9E5E8";
@@ -23,207 +23,181 @@ const purpleDark = "#bf97cf";
 const purpleLight = "#ddb9eb";
 
 const conference_schedule = [
-  {
-    date: "February 8",
-    day: 1,
-    events: [
+  { 
+    "date": "February 8",
+    "day": 1,
+    "events": [
       {
-        time: "14:00 - 15:15",
-        event: "Research Session 1",
-        bgcolor: purpleDark,
-        lightcolor: purpleLight,
-        papers: [
+        "time": "14:00 - 15:00",
+        "event": "Research Session 1",
+        "bgcolor": purpleDark,
+        "lightcolor": purpleLight,
+        "papers": [
           {
-            title: "Design and Optimization of Robust Process Monitors",
-            authors: "Shiva Sharma",
-            lab: "CVEST",
-            advisor: "Dr. Zia Abbas",
-            forum: "Midwest Symposium on Circuits and Systems (MWSCAS)",
-            level: "A",
+            "title": "Design and Optimization of Robust Process Monitors",
+            "authors": "Shiva Sharma",
+            "lab": "CVEST",
+            "advisor": "Dr. Zia Abbas",
+            "forum": "Midwest Symposium on Circuits and Systems (MWSCAS)",
+            "level": "A"
           },
           {
-            title:
-              "Test Case Generation for Requirements in Natural Language - An LLM Comparison Study",
-            authors: "Korraprolu Brahma Reddy",
-            lab: "SERC",
-            advisor: "Y. Raghu Reddy",
-            forum: "ISEC25",
-            level: "Others",
+            "title": "Test Case Generation for Requirements in Natural Language - An LLM Comparison Study",
+            "authors": "Korraprolu Brahma Reddy",
+            "lab": "SERC",
+            "advisor": "Y. Raghu Reddy",
+            "forum": "ISEC25",
+            "level": "Others"
           },
           {
-            title:
-              "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
-            authors: "Chavan Aneesh Samrat",
-            lab: "RRC",
-            advisor: "Madhava Krishna",
-            forum: "WACV",
-            level: "A",
+            "title": "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
+            "authors": "Chavan Aneesh Samrat",
+            "lab": "RRC",
+            "advisor": "Madhava Krishna",
+            "forum": "WACV",
+            "level": "A"
           },
           {
-            title:
-              "Open Vocabulary Keyword Spotting through Transfer Learning from Speech Synthesis",
-            authors: "Kesavaraj V",
-            lab: "LTRC",
-            advisor: "Anil Kumar Vuppala",
-            forum:
-              "International Conference on Signal Processing and Communications",
-            level: "B",
+            "title": "Open Vocabulary Keyword Spotting through Transfer Learning from Speech Synthesis",
+            "authors": "Kesavaraj V",
+            "lab": "LTRC",
+            "advisor": "Anil Kumar Vuppala",
+            "forum": "International Conference on Signal Processing and Communications",
+            "level": "B"
           },
           {
-            title:
-              "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design",
-            authors: "Amar Satyabroto Banerjee",
-            lab: "SERC",
-            advisor: "Dr. Venkatesh Choppella",
-            forum: "IEEE Internet of Things Journal",
-            level: "A*",
-          },
-        ],
+            "title": "Minimalistic Video Saliency Prediction via Efficient Decoder & Spatio Temporal Action Cues",
+            "authors": "Rohit Girmaji",
+            "lab": "CVIT",
+            "advisor": "Vineet Gandhi",
+            "forum": "ICASSP 2025",
+            "level": "A"
+          }
+        ]
       },
       {
-        time: "15:15 - 16:00",
-        event: "Tea Break",
-        bgcolor: blueDark,
+        "time": "15:00 - 16:00",
+        "event": "Research Session 2",
+        "bgcolor": orangeDark,
+        "lightcolor": orangeLight,
+        "papers": [
+          {
+            "title": "Open-set 3D semantic instance maps for vision language navigation",
+            "authors": "Laksh Nanwani",
+            "lab": "RRC",
+            "advisor": "K. Madhava Krishna",
+            "forum": "Advanced Robotics",
+            "level": "Others"
+          },
+          {
+            "title": "Measuring Software Development Waste in Open-Source Software Projects",
+            "authors": "Divij",
+            "lab": "SERC",
+            "advisor": "Y. Raghu Reddy",
+            "forum": "SEAA",
+            "level": "B"
+          },
+          {
+            "title": "StethoSpeech: Speech Generation Through a Clinical Stethoscope Attached to the Skin",
+            "authors": "Neilkumar Milankumar Shah",
+            "lab": "CVIT",
+            "advisor": "Vineet Gandhi",
+            "forum": "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies",
+            "level": "A*"
+          },
+          {
+            "title": "MICap: A Unified Model for Identity-aware Movie Descriptions",
+            "authors": "Haran Raajesh",
+            "lab": "CVIT",
+            "advisor": "Makarand Tapaswi",
+            "forum": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
+            "level": "A*"
+          }
+        ]
       },
       {
-        time: "16:00 - 16:30",
-        event: "Research Session 2",
-        bgcolor: oragneDark,
-        lightcolor: orangeLight,
-        papers: [
+        "time": "17:00 - 18:00",
+        "event": "Research Session 3",
+        "bgcolor": pink2Dark,
+        "lightcolor": pink2Light,
+        "papers": [
           {
-            title:
-              "Open-set 3D semantic instance maps for vision language navigation",
-            authors: "Laksh Nanwani",
-            lab: "RRC",
-            advisor: "K. Madhava Krishna",
-            forum: "Advanced Robotics",
-            level: "Others",
+            "title": "Towards Revolutionized Smart Grids: An AI-Driven Broker for Improved Operational Efficiency",
+            "authors": "Chandlekar Sanjay Rajendrabhai",
+            "lab": "MLL",
+            "advisor": "Sujit Gujar",
+            "forum": "International Joint Conference on Artificial Intelligence (IJCAI-24)",
+            "level": "A*"
           },
-        ],
+          {
+            "title": "Higher Order Structures for Graph Explanations",
+            "authors": "Akshit Sinha",
+            "lab": "Precog",
+            "advisor": "Ponnurangam Kumaraguru",
+            "forum": "AAAI Conference on Artificial Intelligence",
+            "level": "A*"
+          },
+          {
+            "title": "IDD-X: A Multi-View Dataset for Ego-relative Important Object Localization and Explanation in Dense and Unstructured Traffic",
+            "authors": "Chirag Parikh",
+            "lab": "CVIT",
+            "advisor": "Ravi Kiran Sarvadevabhatla",
+            "forum": "2024 IEEE International Conference on Robotics and Automation (ICRA)",
+            "level": "A*"
+          },
+          {
+            "title": "IRaga Space Visualization: Analyzing Melodic Structures in Carnatic and Hindustani Music",
+            "authors": "Soham G Korade",
+            "forum": "2024 IEEE International Conference on Robotics and Automation (ICRA)",
+            "level": "A*"
+          },
+        ]
       },
       {
-        time: "16:30 - 17:00",
-        event: "Research Session 3",
-        bgcolor: pink2Dark,
-        lightcolor: pink2Light,
-        papers: [
+        "time": "18:00 - 19:00",
+        "event": "Research Session 4",
+        "bgcolor": greenDark,
+        "lightcolor": greenLight,
+        "papers": [
           {
-            title:
-              "Measuring Software Development Waste in Open-Source Software Projects",
-            authors: "Shanmukha Mitra V D",
-            lab: "SERC",
-            advisor: "Y. Raghu Reddy",
-            forum: "SEAA",
-            level: "B",
+            title: "Architecting Digital Twin for Smart City Systems: A Case Study",
+            authors: "Kanigolla Naga Venkata Bala Likhith",
+
           },
           {
-            title:
-              "StethoSpeech: Speech Generation Through a Clinical Stethoscope",
-            authors: "Neilkumar Milankumar Shah",
-            lab: "CVIT",
-            advisor: "Vineet Gandhi",
-            forum: "ACM IMWUT",
-            level: "A*",
+            "title": "DashCop: Automated E-Ticket Generation for Two-Wheeler Traffic Violations Using Dashcam Videos",
+            "authors": "Deepti Rawat",
+            "lab": "CVIT",
+            "advisor": "Ravi Kiran Sarvadevabhatla",
+            "forum": "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
+            "level": "A"
           },
           {
-            title:
-              "Mammo-Bench: A Large-scale Benchmark Dataset of Mammography Images",
-            authors: "Bhole Gaurav Hitesh",
-            lab: "CCNSB",
-            advisor: "Nita Parekh",
-            forum: "ICCABS 2025",
-            level: "Not Sure",
+            "title": "Analyzing 6G Satellite IoT Architecture Using Stochastic Geometry: A Meta Distribution Approach",
+            "authors": "B Naganjani",
+            "lab": "SPCRC",
+            "advisor": "Dr. Sachin Chaudhari",
+            "forum": "IEEE Globecom Workshop",
+            "level": "A*"
           },
           {
-            title:
-              "MICap: A Unified Model for Identity-aware Movie Descriptions",
-            authors: "Haran Raajesh",
-            lab: "CVIT",
-            advisor: "Makarand Tapaswi",
-            forum: "CVPR 2024",
-            level: "A*",
+            "title": "Towards an ecologically valid naturalistic cognitive neuroscience of memory and event cognition",
+            "authors": "R Pooja",
+
           },
-        ],
+          {
+            "title": "A Systematic Exploration of Linguistic Phenomena in Spoken Hindi: Resource Creation and Hypothesis Testing",
+            "authors": "Aadya Ranjan",
+          },
+          {
+            "title": "A Portable and Flexible On-Road Sensing System for Traffic Monitoring",
+            "authors": "Gajingam Naveen Kumar",
+          }
+        ]
       },
-      {
-        time: "17:00 - 18:00",
-        event: "Research Session 4",
-        bgcolor: greenDark,
-        lightcolor: greenLight,
-        papers: [
-          {
-            title: "Towards Revolutionized Smart Grids: An AI-Driven Broker",
-            authors: "Chandlekar Sanjay Rajendrabhaia",
-            lab: "MLLS",
-            advisor: "Sujit Gujar",
-            forum: "IJCAI-24",
-            level: "A*",
-          },
-          {
-            title: "Higher Order Structures for Graph Explanations",
-            authors: "Akshit Sinha",
-            lab: "Precog",
-            advisor: "Ponnurangam Kumaraguru",
-            forum: "AAAI",
-            level: "A*",
-          },
-          {
-            title:
-              "IDD-X: A Multi-View Dataset for Ego-relative Important Object Localization",
-            authors: "Chirag Parikh",
-            lab: "CVIT",
-            advisor: "Ravi Kiran Sarvadevabhatla",
-            forum: "ICRA 2024",
-            level: "A*",
-          },
-        ],
-      },
-      {
-        time: "18:00 - 19:00",
-        event: "Research Session 5",
-        bgcolor: beige,
-        lightcolor: beigeLight,
-        papers: [
-          {
-            title:
-              "DashCop: Automated E-Ticket Generation for Two-Wheeler Traffic Violations",
-            authors: "Deepti Rawat",
-            lab: "CVIT",
-            advisor: "Ravi Kiran Sarvadevabhatla",
-            forum: "WACV",
-            level: "A",
-          },
-          {
-            title:
-              "Analyzing 6G Satellite IoT Architecture Using Stochastic Geometry",
-            authors: "B Naganjani",
-            lab: "SPCRC",
-            advisor: "Dr. Sachin Chaudhari",
-            forum: "IEEE Globecom Workshop",
-            level: "A*",
-          },
-          {
-            title:
-              "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
-            authors: "Kanukuntla Raj Kumar",
-            lab: "EERC",
-            advisor: "Jofin George",
-            forum: "SEC-2024",
-            level: "A*",
-          },
-          {
-            title: "Enhancing Accuracy in Indic Handwritten Text Recognition",
-            authors: "Evani Lalitha",
-            lab: "CVIT",
-            advisor: "Prof C V Jawahar",
-            forum: "ICCVIP",
-            level: "B",
-          },
-        ],
-      },
-    ],
+    ]
   },
+  
 
   {
     date: "February 9",
@@ -236,34 +210,11 @@ const conference_schedule = [
         lightcolor: purpleLight,
         papers: [
           {
-            title:
-              "LineTR: Unified Text Line Segmentation for Challenging Palm Leaf Manuscripts",
-            authors: "Amal Joseph",
-            lab: "CVIT",
-            advisor: "Ravi Kiran S",
-            forum: "ICPR",
-            level: "B",
+            title: "LineTR: Unified Text Line Segmentation for Challenging Palm Leaf Manuscripts",
+            authors: "Amal Joseph"
           },
           {
-            title:
-              "Online Partitioned Scheduling over RSU for Computation Offloading",
-            authors: "Tanniru Abhinav Siddharth",
-            lab: "CSG",
-            advisor: "Deepak Gangadharan",
-            forum: "IEEE VTC Fall-2024",
-            level: "B",
-          },
-          {
-            title: "Towards a Training Free Approach for 3D Scene Editing",
-            authors: "Madhavaram Vivek Vardhan",
-            lab: "MLL",
-            advisor: "Charu Sharma",
-            forum: "WACV",
-            level: "A",
-          },
-          {
-            title:
-              "SaGE: Evaluating Moral Consistency in Large Language Models",
+            title: "SaGE: Evaluating Moral Consistency in Large Language Models",
             authors: "Vamshi Krishna Bonagiri",
             lab: "Precog",
             advisor: "Ponnurangam Kumaraguru, Manas Gaur",
@@ -271,28 +222,35 @@ const conference_schedule = [
             level: "A",
           },
           {
-            title:
-              "Prompt-to-Correct: Automated Test-Time Pronunciation Correction",
+            title: "Prompt-to-Correct: Automated Test-Time Pronunciation Correction with Voice Prompts",
             authors: "Ayan Kashyap",
             lab: "CVIT",
             advisor: "Vineet Gandhi",
             forum: "ICASSP",
             level: "A",
           },
+          {
+            title: "NUMERICAL STUDY ON SEISMIC RESPONSE OF ROOF-TOP MOUNTED COOLING TOWER",
+            authors: "Saranya S",
+            lab: "EERC",
+            advisor: "Dr. Sunitha Palissery",
+            forum: "18th World Conference on Earthquake Engineering",
+            level: "Others",
+          },
         ],
       },
       {
         time: "12:00 - 13:00",
         event: "Research Session 2",
-        bgcolor: oragneDark,
+        bgcolor: orangeDark,
         lightcolor: orangeLight,
         papers: [
           {
-            title: "Working Backwards: Mixed-Methods Approaches",
+            title: "Working Backwards: Mixed-Methods Approaches and the Challenge of a Fragmentary Migration Archive",
             authors: "Radheshyam Thiyagarajan",
             lab: "HSRC",
             advisor: "Nazia Akhtar",
-            forum: "SMUS Conference",
+            forum: "Spatial Methods for Urban Sustainability (SMUS Conference)",
             level: "NA",
           },
           {
@@ -300,7 +258,7 @@ const conference_schedule = [
             authors: "Jayadratha Gayen",
             lab: "MLL",
             advisor: "Charu Sharma, Naresh Manwani",
-            forum: "DAI Workshop at AAAI-2025",
+            forum: "Deployable AI (DAI) Workshop at AAAI-2025",
             level: "Workshop",
           },
           {
@@ -308,16 +266,28 @@ const conference_schedule = [
             authors: "Aditya Siddheshwar",
             lab: "SPCRC",
             advisor: "Prasad Krishnan",
-            forum: "ISIT",
+            forum: "International Symposium on Information Theory",
             level: "B",
           },
+          {
+            title: "High-Performance Implementation of Louvain Algorithm with Representational Optimizations",
+            authors: "Subhajit Sahu",
+            lab: "CSTAR",
+            advisor: "Kishore Kothapalli",
+            forum: "COMPLEX NETWORKS 2024",
+            level: "Below B",
+          },
+          {
+            title: "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
+            authors: "Amar Satyabroto Banerjee"
+          }
         ],
       },
-      {
-        time: "13:00 - 14:00",
-        event: "Lunch Break",
-        bgcolor: blueDark,
-      },
+      // {
+      //   time: "13:00 - 14:00",
+      //   event: "Lunch Break",
+      //   bgcolor: blueDark,
+      // },
       {
         time: "14:00 - 15:00",
         event: "Research Session 3",
@@ -325,8 +295,19 @@ const conference_schedule = [
         lightcolor: pink2Light,
         papers: [
           {
-            title:
-              "MetaCirc: A Meta-Learning Approach for Statistical Leakage Estimation",
+            title: "Emergence of Text Semantics in CLIP Image Encoders",
+            authors: "Sreeram Reddy Vennam"
+          },
+          {
+            title: "Towards an Ecologically Valid Naturalistic Cognitive Neuroscience of Memory and Event Cognition",
+            authors: "R Pooja",
+            lab: "Cognitive science lab",
+            advisor: "Vishnu Sreekumar",
+            forum: "Neuropsychologia",
+            level: "SJR (SCImago Journal Rank): 0.995, Quartile: Q1",
+          },
+          {
+            title: "MetaCirc: A Meta-Learning Approach for Statistical Leakage Estimation Improvement in Digital Circuits",
             authors: "N V Raghavendra",
             lab: "CVEST",
             advisor: "Dr. Zia Abbas",
@@ -334,146 +315,124 @@ const conference_schedule = [
             level: "A*",
           },
           {
-            title: "Towards Architecting Sustainable MLOps",
-            authors: "Hiya Bhatt",
+            title: "Public Blockchain-Envisioned Security Scheme Using Post Quantum Lattice-Based Aggregate Signature for Internet of Drones Applications",
+            authors: "Prithwi Bagchi",
             lab: "SERC",
-            advisor: "Karthik Vaidhyanathan",
-            forum: "ICSA",
-            level: "A",
           },
           {
-            title: "Emergence of Text Semantics in CLIP Image Encoders",
-            authors: "Sreeram Reddy Vennam",
-            lab: "Precog",
-            advisor: "Prof. Ponnurangam Kumaraguru",
-            forum: "UniReps @ NeurIPS 2024",
-            level: "Workshop",
-          },
+            title: "CSUM: A Novel Mechanism for Updating CubeSat while Preserving Authenticity and Integrity",
+            authors: "Aashish Paliwal"
+          }
         ],
       },
-      {
-        time: "15:00 - 16:00",
-        event: "Panel Discussion",
-        bgcolor: greenDark,
-        lightcolor: greenLight,
-        participants: "Prof1, Prof2, Prof3",
-        moderator: "x",
-      },
-      {
-        time: "16:00 - 16:30",
-        event: "Tea Break",
-        bgcolor: blueDark,
-      },
+
       {
         time: "16:30 - 17:00",
         event: "Research Session 4",
-        bgcolor: beige,
-        lightcolor: beigeLight,
+        bgcolor: greenDark,
+        lightcolor: greenLight,
         papers: [
           {
-            title:
-              "Towards Infusing Auxiliary Knowledge for Distracted Driver Detection",
+            title: "Towards Infusing Auxiliary Knowledge for Distracted Driver Detection",
             authors: "Ishwar B Balappanawar",
-            lab: "Precog",
-            advisor: "Prof. Ponnurangam Kumaraguru",
-            forum: "KDD Conference Workshop",
-            level: "Workshop",
           },
           {
-            title:
-              "Random Representations Outperform Online Continually Learned Representations",
-            authors: "Shiven Sinha",
-            lab: "Precog",
-            advisor: "Prof. Ponnurangam Kumaraguru",
-            forum: "NeurIPS",
-            level: "A*",
+            title: "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
+            authors: "Shrikara A",
+          },
+          {
+            title: "Time-Series based Fall Detection in Two-Wheelers",
+            authors: "Arihant Jain",
+            lab: "CSG",
+            advisor: "Dr. Deepak Gangadharan",
+            forum: "2023 IEEE 98th Vehicular Technology Conference",
+            level: "B",
           },
         ],
       },
       {
         time: "17:00 - 18:00",
         event: "Research Session 5",
-        bgcolor: purpleDark,
-        lightcolor: purpleLight,
+        bgcolor: beige,
+        lightcolor: beigeLight,
         papers: [
           {
-            title: "LLMs for Generation of Architectural Components",
-            authors: "Shrikara A",
-            lab: "SERC",
-            advisor: "Karthik Vaidhyanathan",
-            forum: "ICSA",
-            level: "A",
-          },
-          {
-            title: "CSUM: A Novel Mechanism for Updating CubeSat",
-            authors: "Aashish Paliwal",
-            lab: "C-STAR",
-            advisor: "Dr Ankit Gangwal",
-            forum: "IEEE LCN",
-            level: "A",
+            title: "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
+            authors: "Vidya C S",
           },
           {
             title: "LLM Vocabulary Compression for Low-Compute Environments",
             authors: "Anish R Joishy",
             lab: "Precog",
             advisor: "Prof. Ponnurangam Kumaraguru",
-            forum: "NeurIPS Workshop",
+            forum: "Compression Workshop @ Neurips",
             level: "Workshop",
           },
+          {
+            title: "POSEIDON : Efficient Function Placement at the Edge using Deep Reinforcement Learning",
+            authors: "Divyansh Pandey",
+            lab: "SERC",
+            advisor: "Karthik Vaidhyanathan",
+            forum: "International Conference on Service Oriented Computing (ICSOC)",
+            level: "A",
+          },
+          {
+            title: "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
+            authors: "Rudra Dhar",
+          },
+          {
+            title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
+            authors: "Karthik Prasanna N"
+          }
         ],
       },
       {
         time: "18:00 - 19:00",
         event: "Research Session 6",
-        bgcolor: oragneDark,
-        lightcolor: orangeLight,
+        bgcolor: purpleLight,
+        lightcolor: purpleDark,
         papers: [
           {
-            title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
-            authors: "Karthik Prasanna N",
-            lab: "HSRC",
-            advisor: "Dr. Ashwin Jayanti",
-            forum: "BEWARE24 Workshop",
-            level: "Workshop",
+            title: "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
+            authors: "Sandeep Kumar"
           },
           {
-            title: "SyMCoM-Syntactic Measure of Code Mixing",
-            authors: "Kodali Prashant",
-            lab: "LTRC, Precog",
-            advisor: "Manish Shrivastava, Ponnurangam Kumaraguru",
-            forum: "ACL",
-            level: "A*",
+            title: "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
+            authors: "Srinivasan R"
           },
           {
-            title:
-              "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution",
-            authors: "Sandeep Kumar",
-            lab: "C-STAR, ML Lab",
-            advisor: "Prof Girish Varma",
-            forum: "AISTATS'25",
-            level: "A*",
+            title: "Adaptive Control of Quadrotor under Actuator Loss and Unknown State-dependent Dynamics",
+            authors: "Amitabh Sharma",
+            lab: "RRC",
+            advisor: "Spandan Roy",
+            forum: "International Conference on Automation Science and Engineering",
+            level: "Others",
           },
-        ],
-      },
-      {
-        time: "19:00 - 19:30",
-        event: "Research Session 7",
-        bgcolor: pink2Dark,
-        lightcolor: pink2Light,
-        papers: [
           {
-            title:
-              "A Systematic Exploration of Linguistic Phenomena in Spoken Hindi",
-            authors: "Aadya Ranjan",
-            lab: "LTRC",
-            advisor: "Rajakrishnan Rajkumar",
-            forum: "ICNLP",
+            title: "ACMGVR: Architecturally Consistent Mazes for Games in Virtual Reality",
+            authors: "Puru Ojha",
+            lab: "SERC",
+            advisor: "Y. Raghu Reddy",
+            forum: "ACM CHIPLAY",
             level: "A",
           },
+          {
+            title: "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
+            authors: "Kanukuntla Raj Kumar"
+          },
+          {
+            title: "Enhancing Accuracy in Indic Handwritten Text Recognition",
+            authors: "Evani Lalitha"
+          },
+          {
+            title: "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
+            authors: "Raghav Donakanti"
+          }
         ],
       },
     ],
-  },
+  }
+  
 ];
 
 function day(content) {
