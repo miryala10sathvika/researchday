@@ -8,6 +8,7 @@ import { Box, Typography, Paper } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { purple } from "@mui/material/colors";
 
 const orangeDark = "#dbb07f";
 const orangeLight = "#ffdbb3";
@@ -114,6 +115,16 @@ const conference_schedule = [
             "level": "A*"
           }
         ]
+      },
+      {
+        time: "16:00 - 16:45",
+        event: "Writing Workshop",
+        bgcolor: greenDark,
+      },
+      {
+        time: "16:45 - 17:00",
+        event: "Tea Break",
+        bgcolor: blueDark,
       },
       {
         "time": "17:00 - 18:00",
@@ -283,11 +294,11 @@ const conference_schedule = [
           }
         ],
       },
-      // {
-      //   time: "13:00 - 14:00",
-      //   event: "Lunch Break",
-      //   bgcolor: blueDark,
-      // },
+      {
+        time: "13:00 - 14:00",
+        event: "Lunch Break",
+        bgcolor: blueDark,
+      },
       {
         time: "14:00 - 15:00",
         event: "Research Session 3",
@@ -325,7 +336,16 @@ const conference_schedule = [
           }
         ],
       },
-
+      {
+        time: "15:00 - 16:00",
+        event: "Panel Discussion",
+        bgcolor: purpleDark,
+      },
+      {
+        time: "16:00 - 16:30",
+        event: "Tea Break",
+        bgcolor: blueDark,
+      },
       {
         time: "16:30 - 17:00",
         event: "Research Session 4",
