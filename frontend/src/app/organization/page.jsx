@@ -51,7 +51,7 @@ const organizers = [
     position: "Organizing Committee",
     members: [
       { name: "Chandrasekar S", batch: "MS(CSE) 2k24" },
-      { name: "Kaveri Anuranjana", batch: "PhD(CL) 2k23" },
+      // { name: "Kaveri Anuranjana", batch: "PhD(CL) 2k23" },
       { name: "Vedula Bhaskara Hanuma", batch: "PhD(CSE) 2k22" },
       { name: "Janaksinh Ven", batch: "MS(ECE) 2k23" },
       // { name: "Rasheed", batch: "PhD(CSE) 2k22" },
