@@ -119,6 +119,8 @@ export const conference_schedule = [
         time: "16:00 - 16:45",
         event: "Writing Workshop",
         bgcolor: greenDark,
+        participants:
+          'By Dr. Vishnu Sreekumar. Reference material: <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619" style="color: blue">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619</a>',
       },
       {
         time: "16:45 - 17:00",
@@ -360,6 +362,8 @@ export const conference_schedule = [
         time: "15:00 - 16:00",
         event: "Panel Discussion",
         bgcolor: purpleDark,
+        participants:
+          "With Prof. Karthik Vaidhyanathan, Prof. Isha Dubey, and Prof. Kshitij Gajjar, moderated by PhD scholar Mr. Sudarshan Srinivasan",
       },
       {
         time: "16:00 - 16:30",

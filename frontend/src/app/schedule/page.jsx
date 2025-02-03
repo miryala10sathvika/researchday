@@ -97,7 +97,9 @@ function day(content) {
                         },
                       }}
                     >
-                      {event.participants}
+                      <span
+                        dangerouslySetInnerHTML={{ __html: event.participants }}
+                      />
                     </TableCell>
                   </TableRow>
                 )}
