@@ -201,18 +201,17 @@ export const conference_schedule = [
           },
           {
             title:
-              "Towards an ecologically valid naturalistic cognitive neuroscience of memory and event cognition",
+              "Towards an Ecologically Valid Naturalistic Cognitive Neuroscience of Memory and Event Cognition",
             authors: "R Pooja",
+            lab: "Cognitive science lab",
+            advisor: "Vishnu Sreekumar",
+            forum: "Neuropsychologia",
+            level: "SJR (SCImago Journal Rank): 0.995, Quartile: Q1",
           },
           {
             title:
               "A Systematic Exploration of Linguistic Phenomena in Spoken Hindi: Resource Creation and Hypothesis Testing",
             authors: "Aadya Ranjan",
-          },
-          {
-            title:
-              "A Portable and Flexible On-Road Sensing System for Traffic Monitoring",
-            authors: "Gajingam Naveen Kumar",
           },
         ],
       },
@@ -261,14 +260,6 @@ export const conference_schedule = [
             forum: "18th World Conference on Earthquake Engineering",
             level: "Others",
           },
-        ],
-      },
-      {
-        time: "12:00 - 13:00",
-        event: "Research Session 2",
-        bgcolor: orangeDark,
-        lightcolor: orangeLight,
-        papers: [
           {
             title:
               "Working Backwards: Mixed-Methods Approaches and the Challenge of a Fragmentary Migration Archive",
@@ -278,6 +269,14 @@ export const conference_schedule = [
             forum: "Spatial Methods for Urban Sustainability (SMUS Conference)",
             level: "NA",
           },
+        ],
+      },
+      {
+        time: "12:00 - 13:00",
+        event: "Research Session 2",
+        bgcolor: orangeDark,
+        lightcolor: orangeLight,
+        papers: [
           {
             title: "Node Classification With Integrated Reject Option",
             authors: "Jayadratha Gayen",
@@ -308,6 +307,11 @@ export const conference_schedule = [
               "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
             authors: "Amar Satyabroto Banerjee",
           },
+          {
+            title:
+              "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
+            authors: "Rudra Dhar",
+          },
         ],
       },
       {
@@ -322,19 +326,6 @@ export const conference_schedule = [
         lightcolor: pink2Light,
         papers: [
           {
-            title: "Emergence of Text Semantics in CLIP Image Encoders",
-            authors: "Sreeram Reddy Vennam",
-          },
-          {
-            title:
-              "Towards an Ecologically Valid Naturalistic Cognitive Neuroscience of Memory and Event Cognition",
-            authors: "R Pooja",
-            lab: "Cognitive science lab",
-            advisor: "Vishnu Sreekumar",
-            forum: "Neuropsychologia",
-            level: "SJR (SCImago Journal Rank): 0.995, Quartile: Q1",
-          },
-          {
             title:
               "MetaCirc: A Meta-Learning Approach for Statistical Leakage Estimation Improvement in Digital Circuits",
             authors: "N V Raghavendra",
@@ -342,6 +333,15 @@ export const conference_schedule = [
             advisor: "Dr. Zia Abbas",
             forum: "IEEE ISCAS",
             level: "A*",
+          },
+          {
+            title:
+              "Towards Architecting Sustainable MLOps: A Self-Adaptation Approach",
+            authors: "Hiya Bhatt",
+          },
+          {
+            title: "Emergence of Text Semantics in CLIP Image Encoders",
+            authors: "Sreeram Reddy Vennam",
           },
           {
             title:
@@ -378,17 +378,17 @@ export const conference_schedule = [
             authors: "Ishwar B Balappanawar",
           },
           {
-            title:
-              "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
-            authors: "Shrikara A",
-          },
-          {
             title: "Time-Series based Fall Detection in Two-Wheelers",
             authors: "Arihant Jain",
             lab: "CSG",
             advisor: "Dr. Deepak Gangadharan",
             forum: "2023 IEEE 98th Vehicular Technology Conference",
             level: "B",
+          },
+          {
+            title:
+              "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
+            authors: "Shrikara A",
           },
         ],
       },
@@ -398,11 +398,6 @@ export const conference_schedule = [
         bgcolor: beige,
         lightcolor: beigeLight,
         papers: [
-          {
-            title:
-              "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
-            authors: "Vidya C S",
-          },
           {
             title: "LLM Vocabulary Compression for Low-Compute Environments",
             authors: "Anish R Joishy",
@@ -423,12 +418,17 @@ export const conference_schedule = [
           },
           {
             title:
-              "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
-            authors: "Rudra Dhar",
+              "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
+            authors: "Vidya C S",
           },
           {
             title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
             authors: "Karthik Prasanna N",
+          },
+          {
+            title:
+              "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
+            authors: "Srinivasan R",
           },
         ],
       },
@@ -442,11 +442,6 @@ export const conference_schedule = [
             title:
               "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
             authors: "Sandeep Kumar",
-          },
-          {
-            title:
-              "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
-            authors: "Srinivasan R",
           },
           {
             title:
