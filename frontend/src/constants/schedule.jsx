@@ -373,7 +373,7 @@ export const conference_schedule = [
         event: "Panel Discussion",
         bgcolor: purpleDark,
         participants:
-          "With Prof. Karthik Vaidhyanathan, Prof. Isha Dubey, and Prof. Kshitij Gajjar, moderated by PhD scholar Mr. Sudarshan Srinivasan",
+          "With Dr. Karthik Vaidhyanathan, Dr. Isha Dubey, and Dr. Kshitij Gajjar, moderated by PhD scholar Mr. Sudarshan Srinivasan",
       },
       {
         time: "16:00 - 16:30",

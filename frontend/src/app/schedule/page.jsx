@@ -1,8 +1,7 @@
 "use client";
+
 import { React, useState } from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Alert from "@mui/material/Alert";
+
 import {
   Box,
   Typography,
@@ -11,6 +10,9 @@ import {
   TableRow,
   TableBody,
   Container,
+  Button,
+  ButtonGroup,
+  // Alert,
 } from "@mui/material";
 
 import { conference_schedule } from "constants/schedule";
@@ -227,11 +229,11 @@ function SchedulePage() {
           Schedule
         </Typography>
 
-        <Alert severity="info" style={{ alignItems: "center" }}>
+        {/* <Alert severity="info" style={{ alignItems: "center" }}>
           <p style={{ alignItems: "center" }}>
             Please note that the schedule is tentative and subject to changes.
           </p>
-        </Alert>
+        </Alert> */}
 
         {ToggleButton()}
       </Box>
