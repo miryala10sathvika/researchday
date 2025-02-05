@@ -17,7 +17,7 @@ export const conference_schedule = [
     day: 1,
     events: [
       {
-        time: "13:30 - 15:00",
+        time: "13:00 - 14:00",
         event: "Registration Desk Open",
         bgcolor: blueLight,
       },
@@ -230,7 +230,7 @@ export const conference_schedule = [
     day: 2,
     events: [
       {
-        time: "10:30 - 12:00",
+        time: "10:00 - 12:00",
         event: "Registration Desk Open",
         bgcolor: blueLight,
       },
