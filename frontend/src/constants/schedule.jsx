@@ -183,7 +183,7 @@ export const conference_schedule = [
           },
           {
             title:
-              "IRaga Space Visualization: Analyzing Melodic Structures in Carnatic and Hindustani Music",
+              "Raga Space Visualization: Analyzing Melodic Structures in Carnatic and Hindustani Music",
             authors: "Soham G Korade",
             forum:
               "2024 IEEE International Conference on Robotics and Automation (ICRA)",
