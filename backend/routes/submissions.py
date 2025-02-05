@@ -236,7 +236,7 @@ async def get_pdf(
     public_view = False
     roll_no = uuid.split("_")[0]
     submission = await SubmissionLogic.get_submission_by_roll_no(db, roll_no, admin)
-    if submission.status == "Approved" and folder_name == "paper":
+    if submission.status == "Accepted" and folder_name == "paper":
         public_view = True
 
     if not (admin or public_view):

@@ -35,6 +35,7 @@ export const conference_schedule = [
             advisor: "Dr. Zia Abbas",
             forum: "Midwest Symposium on Circuits and Systems (MWSCAS)",
             level: "A",
+            author_rollno: 2022702013,
           },
           {
             title:
@@ -44,6 +45,7 @@ export const conference_schedule = [
             advisor: "Y. Raghu Reddy",
             forum: "ISEC25",
             level: "Others",
+            author_rollno: 2022900007,
           },
           {
             title:
@@ -53,6 +55,7 @@ export const conference_schedule = [
             advisor: "Madhava Krishna",
             forum: "WACV",
             level: "A",
+            author_rollno: 2020111018,
           },
           {
             title:
@@ -63,6 +66,7 @@ export const conference_schedule = [
             forum:
               "International Conference on Signal Processing and Communications",
             level: "B",
+            author_rollno: 2022701008,
           },
           {
             title:
@@ -72,6 +76,7 @@ export const conference_schedule = [
             advisor: "Vineet Gandhi",
             forum: "ICASSP 2025",
             level: "A",
+            author_rollno: 2021900013
           },
         ],
       },
@@ -90,6 +95,7 @@ export const conference_schedule = [
             advisor: "K. Madhava Krishna",
             forum: "Advanced Robotics",
             level: "Others",
+            author_rollno: 2021701002,
           },
           {
             title:
@@ -99,6 +105,7 @@ export const conference_schedule = [
             advisor: "Y. Raghu Reddy",
             forum: "SEAA",
             level: "B",
+            author_rollno: 2020900015,
           },
           {
             title:
@@ -109,6 +116,7 @@ export const conference_schedule = [
             forum:
               "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies",
             level: "A*",
+            author_rollno: 2022801009,
           },
           {
             title:
@@ -119,6 +127,7 @@ export const conference_schedule = [
             forum:
               "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
             level: "A*",
+            author_rollno: 2021101005,
           },
         ],
       },
@@ -150,6 +159,7 @@ export const conference_schedule = [
             forum:
               "International Joint Conference on Artificial Intelligence (IJCAI-24)",
             level: "A*",
+            author_rollno: 2020701017,
           },
           {
             title: "Higher Order Structures for Graph Explanations",
@@ -158,6 +168,7 @@ export const conference_schedule = [
             advisor: "Ponnurangam Kumaraguru",
             forum: "AAAI Conference on Artificial Intelligence",
             level: "A*",
+            author_rollno: 2021101109,
           },
           {
             title:
@@ -168,6 +179,7 @@ export const conference_schedule = [
             forum:
               "2024 IEEE International Conference on Robotics and Automation (ICRA)",
             level: "A*",
+            author_rollno: 2022900005,
           },
           {
             title:
@@ -176,6 +188,7 @@ export const conference_schedule = [
             forum:
               "2024 IEEE International Conference on Robotics and Automation (ICRA)",
             level: "A*",
+            author_rollno: 2021101131,
           },
         ],
       },
@@ -190,6 +203,7 @@ export const conference_schedule = [
             title:
               "Architecting Digital Twin for Smart City Systems: A Case Study",
             authors: "Kanigolla Naga Venkata Bala Likhith",
+            author_rollno: 2024701036,
           },
           {
             title:
@@ -200,6 +214,7 @@ export const conference_schedule = [
             forum:
               "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
             level: "A",
+            author_rollno: 2022801016,
           },
           {
             title:
@@ -209,6 +224,7 @@ export const conference_schedule = [
             advisor: "Dr. Sachin Chaudhari",
             forum: "IEEE Globecom Workshop",
             level: "A*",
+            author_rollno: 2022702003,
           },
           {
             title:
@@ -218,11 +234,13 @@ export const conference_schedule = [
             advisor: "Vishnu Sreekumar",
             forum: "Neuropsychologia",
             level: "SJR (SCImago Journal Rank): 0.995, Quartile: Q1",
+            author_rollno: 2022815001,
           },
           {
             title:
               "A Systematic Exploration of Linguistic Phenomena in Spoken Hindi: Resource Creation and Hypothesis Testing",
             authors: "Aadya Ranjan",
+            author_rollno: 2023814001,
           },
         ],
       },
@@ -249,6 +267,7 @@ export const conference_schedule = [
             title:
               "LineTR: Unified Text Line Segmentation for Challenging Palm Leaf Manuscripts",
             authors: "Amal Joseph",
+            author_rollno: 2023801004
           },
           {
             title:
@@ -258,6 +277,7 @@ export const conference_schedule = [
             advisor: "Ponnurangam Kumaraguru, Manas Gaur",
             forum: "LREC-COLING 2024",
             level: "A",
+            author_rollno: 2020114011,
           },
           {
             title:
@@ -267,6 +287,7 @@ export const conference_schedule = [
             advisor: "Vineet Gandhi",
             forum: "ICASSP",
             level: "A",
+            author_rollno: 2024701010,
           },
           {
             title:
@@ -276,6 +297,7 @@ export const conference_schedule = [
             advisor: "Dr. Sunitha Palissery",
             forum: "18th World Conference on Earthquake Engineering",
             level: "Others",
+            author_rollno: 2021810001,
           },
           {
             title:
@@ -285,6 +307,7 @@ export const conference_schedule = [
             advisor: "Nazia Akhtar",
             forum: "Spatial Methods for Urban Sustainability (SMUS Conference)",
             level: "NA",
+            author_rollno: 2020115009
           },
         ],
       },
@@ -302,6 +325,7 @@ export const conference_schedule = [
             advisor: "Charu Sharma, Naresh Manwani",
             forum: "Deployable AI (DAI) Workshop at AAAI-2025",
             level: "Workshop",
+            author_rollno: 2022702012,
           },
           {
             title: "Recursive Subproduct Codes with Reed-Muller-like Structure",
@@ -310,6 +334,7 @@ export const conference_schedule = [
             advisor: "Prasad Krishnan",
             forum: "International Symposium on Information Theory",
             level: "B",
+            author_rollno: 2022702018,
           },
           {
             title:
@@ -319,16 +344,19 @@ export const conference_schedule = [
             advisor: "Kishore Kothapalli",
             forum: "COMPLEX NETWORKS 2024",
             level: "Below B",
+            author_rollno: 2018801013
           },
           {
             title:
               "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
             authors: "Amar Satyabroto Banerjee",
+            author_rollno: 2018801016,
           },
           {
             title:
               "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
             authors: "Rudra Dhar",
+            author_rollno: 2022801002
           },
         ],
       },
@@ -352,26 +380,31 @@ export const conference_schedule = [
             advisor: "Dr. Zia Abbas",
             forum: "IEEE ISCAS",
             level: "A*",
+            author_rollno: 2022702010
           },
           {
             title:
               "Towards Architecting Sustainable MLOps: A Self-Adaptation Approach",
             authors: "Hiya Bhatt",
+            author_rollno: 2024701001
           },
           {
             title: "Emergence of Text Semantics in CLIP Image Encoders",
             authors: "Sreeram Reddy Vennam",
+            author_rollno: 2021101045
           },
           {
             title:
               "Public Blockchain-Envisioned Security Scheme Using Post Quantum Lattice-Based Aggregate Signature for Internet of Drones Applications",
             authors: "Prithwi Bagchi",
             lab: "SERC",
+            author_rollno: 2020801014
           },
           {
             title:
               "CSUM: A Novel Mechanism for Updating CubeSat while Preserving Authenticity and Integrity",
             authors: "Aashish Paliwal",
+            author_rollno: 2022801018
           },
         ],
       },
@@ -399,6 +432,7 @@ export const conference_schedule = [
             title:
               "Towards Infusing Auxiliary Knowledge for Distracted Driver Detection",
             authors: "Ishwar B Balappanawar",
+            author_rollno: 2021101023
           },
           {
             title: "Time-Series based Fall Detection in Two-Wheelers",
@@ -407,11 +441,13 @@ export const conference_schedule = [
             advisor: "Dr. Deepak Gangadharan",
             forum: "2023 IEEE 98th Vehicular Technology Conference",
             level: "B",
+            author_rollno: 2021112018
           },
           {
             title:
               "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
             authors: "Shrikara A",
+            author_rollno: 2021101058
           },
         ],
       },
@@ -429,6 +465,7 @@ export const conference_schedule = [
             advisor: "Prof. Ponnurangam Kumaraguru",
             forum: "Compression Workshop @ Neurips",
             level: "Workshop",
+            author_rollno: 2022111014
           },
           {
             title:
@@ -439,20 +476,24 @@ export const conference_schedule = [
             forum:
               "International Conference on Service Oriented Computing (ICSOC)",
             level: "A",
+            author_rollno: 2022101111
           },
           {
             title:
               "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
             authors: "Vidya C S",
+            author_rollno: 2022702002
           },
           {
             title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
             authors: "Karthik Prasanna N",
+            author_rollno: 2020115007
           },
           {
             title:
               "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
             authors: "Srinivasan R",
+            author_rollno: 2024900020
           },
         ],
       },
@@ -467,6 +508,7 @@ export const conference_schedule = [
             title:
               "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
             authors: "Sandeep Kumar",
+            author_rollno: 2018701015
           },
           {
             title:
@@ -477,6 +519,7 @@ export const conference_schedule = [
             forum:
               "International Conference on Automation Science and Engineering",
             level: "Others",
+            author_rollno: 2022702005
           },
           {
             title:
@@ -486,20 +529,24 @@ export const conference_schedule = [
             advisor: "Y. Raghu Reddy",
             forum: "ACM CHIPLAY",
             level: "A",
+            author_rollno: 2022701007
           },
           {
             title:
               "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
             authors: "Kanukuntla Raj Kumar",
+            author_rollno: 2023810001
           },
           {
             title: "Enhancing Accuracy in Indic Handwritten Text Recognition",
             authors: "Evani Lalitha",
+            author_rollno: 2024701023
           },
           {
             title:
               "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
             authors: "Raghav Donakanti",
+            author_rollno: 2021101024
           },
         ],
       },

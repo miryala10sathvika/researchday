@@ -1,6 +1,7 @@
 "use client";
 
 import { React, useState } from "react";
+import Link from "next/link";
 
 import {
   Box,
@@ -12,8 +13,10 @@ import {
   Container,
   Button,
   ButtonGroup,
+  IconButton,
   // Alert,
 } from "@mui/material";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 import { conference_schedule } from "constants/schedule";
 
@@ -130,6 +133,9 @@ function day(content) {
                         <TableCell
                           style={{
                             backgroundColor: event.lightcolor,
+                            display: "flex", // Ensure content is in flexbox
+                            justifyContent: "space-between", // Distribute space between content and icon
+                            alignItems: "center", // Align items vertically
                           }}
                           sx={{
                             "@media (max-width: 768px)": {
@@ -138,12 +144,36 @@ function day(content) {
                             },
                           }}
                         >
-                          <p style={{}}>
-                            <strong> {paper.title} </strong>
-                          </p>
-                          <p style={{ color: "black", fontStyle: "italic" }}>
-                            {paper.authors}
-                          </p>
+                          <div style={{ flex: 1 }}>
+                            {" "}
+                            <p style={{ margin: 0 }}>
+                              <strong>{paper.title}</strong>
+                            </p>
+                            <p
+                              style={{
+                                color: "black",
+                                fontStyle: "italic",
+                                margin: 0,
+                              }}
+                            >
+                              {paper.authors}
+                            </p>
+                          </div>
+                          {paper.author_rollno && (
+                            <Link
+                              href={`/api/get-pdf/paper/${paper.author_rollno}_paper`}
+                            >
+                              <IconButton
+                                sx={{
+                                  "@media (max-width: 768px)": {
+                                    marginLeft: "auto", // Ensure icon is on the extreme right
+                                  },
+                                }}
+                              >
+                                <PictureAsPdfIcon />
+                              </IconButton>
+                            </Link>
+                          )}
                         </TableCell>
                       </TableRow>
                     ))}
