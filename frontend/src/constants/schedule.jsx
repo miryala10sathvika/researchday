@@ -26,6 +26,7 @@ export const conference_schedule = [
         event: "Research Session 1",
         bgcolor: purpleDark,
         lightcolor: purpleLight,
+        moderators: "Furqan",
         papers: [
           {
             title: "Design and Optimization of Robust Process Monitors",
@@ -79,6 +80,7 @@ export const conference_schedule = [
         event: "Research Session 2",
         bgcolor: orangeDark,
         lightcolor: orangeLight,
+        moderators: "Furqan",
         papers: [
           {
             title:
@@ -137,6 +139,7 @@ export const conference_schedule = [
         event: "Research Session 3",
         bgcolor: pink2Dark,
         lightcolor: pink2Light,
+        moderators: "Vidya",
         papers: [
           {
             title:
@@ -181,6 +184,7 @@ export const conference_schedule = [
         event: "Research Session 4",
         bgcolor: greenDark,
         lightcolor: greenLight,
+        moderators: "Vidya",
         papers: [
           {
             title:
@@ -239,6 +243,7 @@ export const conference_schedule = [
         event: "Research Session 1",
         bgcolor: purpleDark,
         lightcolor: purpleLight,
+        moderators: "Sudharshan",
         papers: [
           {
             title:
@@ -288,6 +293,7 @@ export const conference_schedule = [
         event: "Research Session 2",
         bgcolor: orangeDark,
         lightcolor: orangeLight,
+        moderators: "Sudharshan",
         papers: [
           {
             title: "Node Classification With Integrated Reject Option",
@@ -336,6 +342,7 @@ export const conference_schedule = [
         event: "Research Session 3",
         bgcolor: pink2Dark,
         lightcolor: pink2Light,
+        moderators: "Vidya",
         papers: [
           {
             title:
@@ -372,8 +379,9 @@ export const conference_schedule = [
         time: "15:00 - 16:00",
         event: "Panel Discussion",
         bgcolor: purpleDark,
+        moderators: "PhD scholar Mr. Sudarshan Srinivasan",
         participants:
-          "With Dr. Karthik Vaidhyanathan, Dr. Isha Dubey, and Dr. Kshitij Gajjar, moderated by PhD scholar Mr. Sudarshan Srinivasan",
+          "With Dr. Karthik Vaidhyanathan, Dr. Isha Dubey, and Dr. Kshitij Gajjar.",
       },
       {
         time: "16:00 - 16:30",
@@ -385,6 +393,7 @@ export const conference_schedule = [
         event: "Research Session 4",
         bgcolor: greenDark,
         lightcolor: greenLight,
+        moderators: "Aparajitha",
         papers: [
           {
             title:
@@ -411,6 +420,7 @@ export const conference_schedule = [
         event: "Research Session 5",
         bgcolor: beige,
         lightcolor: beigeLight,
+        moderators: "Aparajitha",
         papers: [
           {
             title: "LLM Vocabulary Compression for Low-Compute Environments",
@@ -451,6 +461,7 @@ export const conference_schedule = [
         event: "Research Session 6",
         bgcolor: purpleLight,
         lightcolor: purpleDark,
+        moderators: "Aparajitha",
         papers: [
           {
             title:

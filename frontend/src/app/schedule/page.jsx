@@ -67,10 +67,18 @@ function day(content) {
                       width: "100%",
                       backgroundColor: event.bgcolor,
                       display: "flex",
-                      alignItems: "center",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
                     }}
                   >
-                    <strong>{event.event}</strong>
+                    <p style={{}}>
+                      <strong> {event.event} </strong>
+                    </p>
+                    {event.moderators && (
+                      <p style={{ color: "black", fontStyle: "italic" }}>
+                        Moderated by {event.moderators}
+                      </p>
+                    )}
                   </TableCell>
                 </TableRow>
 
