@@ -20,6 +20,40 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 import { conference_schedule } from "constants/schedule";
 
+function getBatchStream(rollno) {
+  rollno = rollno.toString();
+  let batch = rollno.substring(0, 4);
+  let stream = rollno.substring(4, 5);
+  if (stream === "1") {
+    let stream2 = rollno.substring(5, 6);
+    if (stream2 === "0") stream = "B.Tech";
+    else if (stream2 === "1") {
+      let stream3 = rollno.substring(6, 7);
+      if (stream3 === "1") stream = "CSD";
+      else if (stream3 === "2") stream = "ECD";
+      else if (stream3 === "3") stream = "CND";
+      else if (stream3 === "4") stream = "CLD";
+      else if (stream3 === "5") stream = "CHD";
+      else stream = "Dual Degree";
+    } else if (stream2 === "2") stream = "Lateral Entry";
+    else stream = "B.Tech";
+  } else if (stream === "7") {
+    stream = "MTech";
+  } else if (stream === "7") {
+    stream = "MS";
+  } else if (stream === "8") {
+    stream = "PhD";
+  } else if (stream === "9") {
+    stream = "PGSSP";
+  } else {
+    stream = "MTech";
+  }
+
+  let fancy_batch = "2k" + batch.substring(2, 4);
+  
+  return "(" + stream + ", " + fancy_batch + ")";
+}
+
 function day(content) {
   let val = content[content.length - 1];
 
@@ -156,7 +190,9 @@ function day(content) {
                                 margin: 0,
                               }}
                             >
-                              {paper.authors}
+                              {paper.authors}{" "}
+                              {paper.author_rollno &&
+                                getBatchStream(paper.author_rollno)}
                             </p>
                           </div>
                           {paper.author_rollno && (
