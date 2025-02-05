@@ -130,12 +130,12 @@ export const conference_schedule = [
           'By Dr. Vishnu Sreekumar. Reference material: <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619" style="color: blue">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619</a>',
       },
       {
-        time: "16:45 - 17:00",
+        time: "16:45 - 17:15",
         event: "Tea Break",
         bgcolor: blueDark,
       },
       {
-        time: "17:00 - 18:00",
+        time: "17:15 - 18:00",
         event: "Research Session 3",
         bgcolor: pink2Dark,
         lightcolor: pink2Light,
