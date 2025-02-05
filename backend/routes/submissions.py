@@ -5,7 +5,7 @@ from manager.submissions import (
     SubmissionLogic,
     SubmissionUpdateStatus,
     SubmissionResponse,
-    DeleteSubmissionRequest
+    DeleteSubmissionRequest,
 )
 import os
 from db import db
@@ -18,9 +18,9 @@ from datetime import datetime
 sub_router = APIRouter()
 
 
-
 def create_ist_time():
     return datetime.now(timezone("Asia/Kolkata"))
+
 
 @sub_router.post("/submissions", response_model=SubmissionResponse)
 async def create_submission(
@@ -92,6 +92,7 @@ async def create_submission(
         print(f"Error: {str(e)}")  # Log the error in your backend logs
         raise HTTPException(status_code=400, detail=f"Error: {str(e)}")
 
+
 @sub_router.put("/submissions", response_model=SubmissionResponse)
 async def update_submission(
     user_roll_no: str = Form(...),
@@ -143,10 +144,13 @@ async def update_submission(
             "reviewed_at": None,
         }
 
-        return await SubmissionLogic.update_submission(db, user_roll_no, submission_data)
+        return await SubmissionLogic.update_submission(
+            db, user_roll_no, submission_data
+        )
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"{str(e)}")
+
 
 @sub_router.delete("/submissions")
 async def delete_submission(
@@ -165,6 +169,7 @@ async def delete_submission(
         raise HTTPException(status_code=404, detail=f"{str(e)}")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"{str(e)}")
+
 
 @sub_router.get("/submissions", response_model=List[SubmissionResponse])
 async def get_all_submissions(
@@ -225,6 +230,18 @@ async def get_pdf(
     uuid: str,
     admin: bool = Depends(check_admin),
 ):
+    if folder_name not in ["paper", "proof"]:
+        raise HTTPException(status_code=400, detail="Invalid folder name")
+
+    public_view = False
+    roll_no = uuid.split("_")[0]
+    submission = await SubmissionLogic.get_submission_by_roll_no(db, roll_no, admin)
+    if submission.status == "Approved" and folder_name == "paper":
+        public_view = True
+
+    if not (admin or public_view):
+        raise HTTPException(status_code=401, detail="Not Authenticated")
+
     try:
         return FileResponse(f"uploads/{folder_name}/{uuid}.pdf")
     except ValueError as e:
