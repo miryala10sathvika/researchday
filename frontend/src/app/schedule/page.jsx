@@ -37,7 +37,7 @@ function getBatchStream(rollno) {
       else stream = "Dual Degree";
     } else if (stream2 === "2") stream = "Lateral Entry";
     else stream = "B.Tech";
-  } else if (stream === "7") {
+  } else if (stream === "2") {
     stream = "MTech";
   } else if (stream === "7") {
     stream = "MS";
