@@ -51,7 +51,8 @@ function getBatchStream(rollno) {
 
   let fancy_batch = "2k" + batch.substring(2, 4);
   
-  return "(" + stream + ", " + fancy_batch + ")";
+  // return "(" + stream + ", " + fancy_batch + ")";
+  return "";
 }
 
 function day(content) {
