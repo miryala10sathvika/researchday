@@ -307,7 +307,7 @@ export const conference_schedule = [
             advisor: "Nazia Akhtar",
             forum: "Spatial Methods for Urban Sustainability (SMUS Conference)",
             level: "NA",
-            author_rollno: 2020115009
+            // author_rollno: 2020115009
           },
         ],
       },
