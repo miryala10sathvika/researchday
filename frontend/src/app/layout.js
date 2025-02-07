@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Box } from "@mui/material";
+import { headers } from "next/headers";
+
 import Header from "components/Header";
 import Footer from "components/Footer";
 import { getUser } from "utils/verification";
@@ -14,25 +16,9 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const user = await getUser();
 
-  const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    {
-      label: "Organization",
-      href: "/organization",
-      // submenu: [
-      //     { label: "Submenu 1", href: "/organization/submenu1" },
-      //     { label: "Submenu 2", href: "/organization/submenu2" },
-      //     { label: "Submenu 3", href: "/organization/submenu3" },
-      // ],
-    },
-    ...(user
-      ? [
-          { label: "Application", href: "/applications" },
-          { label: "Logout", href: "/api/logout" },
-        ]
-      : [{ label: "Login", href: "/api/login" }]),
-  ];
+  // Get the page path
+  const headersList = headers();
+  const path = headersList.get("x-pathname");
 
   return (
     <html lang="en">
@@ -46,19 +32,23 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body>
-        <Box
-          sx={{
-            width: "100%",
-            overflowX: "hidden",
-            margin: "auto",
-          }}
-        >
-          <Header user={user} />
-          <Box component="main" sx={{ mt: 10 }}>
-            {children}
+        {path && !path.includes("archives") ? (
+          <Box
+            sx={{
+              width: "100%",
+              overflowX: "hidden",
+              margin: "auto",
+            }}
+          >
+            <Header user={user} />
+            <Box component="main" sx={{ mt: 10 }}>
+              {children}
+            </Box>
+            <Footer />
           </Box>
-          <Footer />
-        </Box>
+        ) : (
+          children
+        )}
       </body>
     </html>
   );
