@@ -10,9 +10,17 @@ const importantDatesMapping = {
   results_day: "Notifications",
 };
 
+const importantDates = {
+  "presenter_registration_deadline": "2025-01-25T23:59:59",
+  "attendee_registration_start": "2025-01-22T18:00:00",
+  "attendee_registration_end": "2025-01-30T23:30:00",
+  "results_day": "2025-01-30T22:00:00"
+}
+
 const bannerImage = "/assets/banner.jpg";
 export default async function Home() {
-  const importantDates = await getImportantDates();
+  // const importantDates = await getImportantDates();
+  // console.log(importantDates);
   const currentDate = new Date(); // Get current date
   const sortedDates = Object.entries(importantDates).sort((a, b) => {
     return new Date(a[1]) - new Date(b[1]); // Sort by date in ascending order
