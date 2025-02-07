@@ -49,16 +49,6 @@ export const conference_schedule = [
           },
           {
             title:
-              "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
-            authors: "Chavan Aneesh Samrat",
-            lab: "RRC",
-            advisor: "Madhava Krishna",
-            forum: "WACV",
-            level: "A",
-            author_rollno: 2020111018,
-          },
-          {
-            title:
               "Open Vocabulary Keyword Spotting through Transfer Learning from Speech Synthesis",
             authors: "Kesavaraj V",
             lab: "LTRC",
@@ -128,6 +118,16 @@ export const conference_schedule = [
               "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
             level: "A*",
             author_rollno: 2021101005,
+          },
+          {
+            title:
+              "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
+            authors: "Chavan Aneesh Samrat",
+            lab: "RRC",
+            advisor: "Madhava Krishna",
+            forum: "WACV",
+            level: "A",
+            author_rollno: 2020111018,
           },
         ],
       },
