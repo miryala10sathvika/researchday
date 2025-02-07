@@ -410,11 +410,11 @@ export const conference_schedule = [
       },
       {
         time: "15:00 - 16:00",
-        event: "Panel Discussion",
+        event: "Navigating the Research Odyssey: Insights from Early-Career Researchers",
         bgcolor: purpleDark,
         moderators: "PhD scholar Mr. Sudarshan Srinivasan",
         participants:
-          "With Dr. Karthik Vaidhyanathan, Dr. Isha Dubey, and Dr. Kshitij Gajjar.",
+          "Panel Discussion with Dr. Karthik Vaidhyanathan, Dr. Isha Dubey, and Dr. Kshitij Gajjar.",
       },
       {
         time: "16:00 - 16:30",
