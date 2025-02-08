@@ -68,6 +68,12 @@ export const conference_schedule = [
             level: "A",
             author_rollno: 2021900013,
           },
+          {
+            title:
+              "Why should only High-Resource-Languages have all the fun? Pivot Based Evaluation in Low Resource Setting",
+            authors: "Ananya Mukherjee",
+            author_rollno: 2018801009,
+          },
         ],
       },
       {
@@ -247,6 +253,12 @@ export const conference_schedule = [
             authors: "Aadya Ranjan",
             author_rollno: 2023814001,
           },
+          {
+            title:
+              "Representation Surgery: Theory and Practice of Affine Steering",
+            authors: "Shashwat Singh",
+            author_rollno: 2020114016,
+          },
         ],
       },
     ],
@@ -346,6 +358,11 @@ export const conference_schedule = [
             forum: "COMPLEX NETWORKS 2024",
             level: "Below B",
             author_rollno: 2018801013,
+          },
+          {
+            title: "Towards Rational Consensus in Honest Majority",
+            authors: "Varul Srivastava",
+            author_rollno: 2019111015,
           },
           {
             title:
