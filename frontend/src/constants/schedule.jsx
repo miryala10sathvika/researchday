@@ -141,7 +141,7 @@ export const conference_schedule = [
         event: "Writing Workshop",
         bgcolor: greenDark,
         participants:
-          'By Dr. Vishnu Sreekumar. Reference material: <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619" style="color: blue">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619</a>',
+          'By Dr. Vishnu Sreekumar. Reference material: <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619" style="color: blue">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619</a>. Slides: <a href="https://iiitaphyd-my.sharepoint.com/:p:/g/personal/researchfest_iiit_ac_in/EdPsvCgDLIZOpQInxFGMlOoBSMaFizKBt2WnMPXB4xlXZQ?e=3ODjs2" style="color: blue">OneDrive Link</a>',
       },
       {
         time: "16:45 - 17:15",
