@@ -89,6 +89,16 @@ export const conference_schedule = [
           },
           {
             title:
+              "Prompt-to-Correct: Automated Test-Time Pronunciation Correction with Voice Prompts",
+            authors: "Ayan Kashyap",
+            lab: "CVIT",
+            advisor: "Vineet Gandhi",
+            forum: "ICASSP",
+            level: "A",
+            author_rollno: 2024701010,
+          },
+          {
+            title:
               "Measuring Software Development Waste in Open-Source Software Projects",
             authors: "Divij",
             lab: "SERC",
@@ -108,17 +118,6 @@ export const conference_schedule = [
             level: "A*",
             author_rollno: 2022801009,
           },
-          // {
-          //   title:
-          //     "MICap: A Unified Model for Identity-aware Movie Descriptions",
-          //   authors: "Haran Raajesh",
-          //   lab: "CVIT",
-          //   advisor: "Makarand Tapaswi",
-          //   forum:
-          //     "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
-          //   level: "A*",
-          //   author_rollno: 2021101005,
-          // },
           {
             title:
               "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
@@ -287,13 +286,9 @@ export const conference_schedule = [
           },
           {
             title:
-              "Prompt-to-Correct: Automated Test-Time Pronunciation Correction with Voice Prompts",
-            authors: "Ayan Kashyap",
-            lab: "CVIT",
-            advisor: "Vineet Gandhi",
-            forum: "ICASSP",
-            level: "A",
-            author_rollno: 2024701010,
+              "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
+            authors: "Raghav Donakanti",
+            author_rollno: 2021101024,
           },
           {
             title:
@@ -546,15 +541,20 @@ export const conference_schedule = [
           },
           {
             title:
-              "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
-            authors: "Raghav Donakanti",
-            author_rollno: 2021101024,
-          },
-          {
-            title:
               "Objectifying Gaze: an empirical study with non-sexualized images",
             authors: "Ayushi Agarwal",
             author_rollno: 2020801007,
+          },
+          {
+            title:
+              "MICap: A Unified Model for Identity-aware Movie Descriptions",
+            authors: "Haran Raajesh",
+            lab: "CVIT",
+            advisor: "Makarand Tapaswi",
+            forum:
+              "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
+            level: "A*",
+            author_rollno: 2021101005,
           },
         ],
       },
