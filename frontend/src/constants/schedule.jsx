@@ -382,7 +382,7 @@ export const conference_schedule = [
         event: "Research Session 3",
         bgcolor: pink2Dark,
         lightcolor: pink2Light,
-        moderators: "Vidya",
+        moderators: "Aaryan",
         papers: [
           {
             title:
@@ -435,7 +435,7 @@ export const conference_schedule = [
         bgcolor: blueDark,
       },
       {
-        time: "16:30 - 17:00",
+        time: "16:30 - 17:30",
         event: "Research Session 4",
         bgcolor: greenDark,
         lightcolor: greenLight,
@@ -462,15 +462,6 @@ export const conference_schedule = [
             authors: "Shrikara A",
             author_rollno: 2021101058,
           },
-        ],
-      },
-      {
-        time: "17:00 - 18:00",
-        event: "Research Session 5",
-        bgcolor: beige,
-        lightcolor: beigeLight,
-        moderators: "Aparajitha",
-        papers: [
           {
             title: "LLM Vocabulary Compression for Low-Compute Environments",
             authors: "Anish R Joishy",
@@ -491,6 +482,15 @@ export const conference_schedule = [
             level: "A",
             author_rollno: 2022101111,
           },
+        ],
+      },
+      {
+        time: "17:30 - 18:30",
+        event: "Research Session 5",
+        bgcolor: beige,
+        lightcolor: beigeLight,
+        moderators: "Hiya Bhatt",
+        papers: [
           {
             title:
               "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
@@ -508,15 +508,6 @@ export const conference_schedule = [
             authors: "Srinivasan R",
             author_rollno: 2024900020,
           },
-        ],
-      },
-      {
-        time: "18:00 - 19:00",
-        event: "Research Session 6",
-        bgcolor: purpleLight,
-        lightcolor: purpleDark,
-        moderators: "Aparajitha",
-        papers: [
           {
             title:
               "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
@@ -529,6 +520,15 @@ export const conference_schedule = [
             authors: "Kanukuntla Raj Kumar",
             author_rollno: 2023810001,
           },
+        ],
+      },
+      {
+        time: "18:30 - 19:30",
+        event: "Research Session 6",
+        bgcolor: purpleLight,
+        lightcolor: purpleDark,
+        moderators: "Lokesh V",
+        papers: [
           {
             title:
               "Adaptive Control of Quadrotor under Actuator Loss and Unknown State-dependent Dynamics",
