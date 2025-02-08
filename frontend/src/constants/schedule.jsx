@@ -47,17 +47,17 @@ export const conference_schedule = [
             level: "Others",
             author_rollno: 2022900007,
           },
-          {
-            title:
-              "Open Vocabulary Keyword Spotting through Transfer Learning from Speech Synthesis",
-            authors: "Kesavaraj V",
-            lab: "LTRC",
-            advisor: "Anil Kumar Vuppala",
-            forum:
-              "International Conference on Signal Processing and Communications",
-            level: "B",
-            author_rollno: 2022701008,
-          },
+          // {
+          //   title:
+          //     "Open Vocabulary Keyword Spotting through Transfer Learning from Speech Synthesis",
+          //   authors: "Kesavaraj V",
+          //   lab: "LTRC",
+          //   advisor: "Anil Kumar Vuppala",
+          //   forum:
+          //     "International Conference on Signal Processing and Communications",
+          //   level: "B",
+          //   author_rollno: 2022701008,
+          // },
           {
             title:
               "Minimalistic Video Saliency Prediction via Efficient Decoder & Spatio Temporal Action Cues",
@@ -66,7 +66,7 @@ export const conference_schedule = [
             advisor: "Vineet Gandhi",
             forum: "ICASSP 2025",
             level: "A",
-            author_rollno: 2021900013
+            author_rollno: 2021900013,
           },
         ],
       },
@@ -108,17 +108,17 @@ export const conference_schedule = [
             level: "A*",
             author_rollno: 2022801009,
           },
-          {
-            title:
-              "MICap: A Unified Model for Identity-aware Movie Descriptions",
-            authors: "Haran Raajesh",
-            lab: "CVIT",
-            advisor: "Makarand Tapaswi",
-            forum:
-              "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
-            level: "A*",
-            author_rollno: 2021101005,
-          },
+          // {
+          //   title:
+          //     "MICap: A Unified Model for Identity-aware Movie Descriptions",
+          //   authors: "Haran Raajesh",
+          //   lab: "CVIT",
+          //   advisor: "Makarand Tapaswi",
+          //   forum:
+          //     "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
+          //   level: "A*",
+          //   author_rollno: 2021101005,
+          // },
           {
             title:
               "FinderNet: A Data Augmentation Free Canonicalization aided Loop Detection and Closure technique",
@@ -228,6 +228,12 @@ export const conference_schedule = [
           },
           {
             title:
+              "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
+            authors: "Amar Satyabroto Banerjee",
+            author_rollno: 2018801016,
+          },
+          {
+            title:
               "Towards an Ecologically Valid Naturalistic Cognitive Neuroscience of Memory and Event Cognition",
             authors: "R Pooja",
             lab: "Cognitive science lab",
@@ -267,7 +273,7 @@ export const conference_schedule = [
             title:
               "LineTR: Unified Text Line Segmentation for Challenging Palm Leaf Manuscripts",
             authors: "Amal Joseph",
-            author_rollno: 2023801004
+            author_rollno: 2023801004,
           },
           {
             title:
@@ -344,19 +350,13 @@ export const conference_schedule = [
             advisor: "Kishore Kothapalli",
             forum: "COMPLEX NETWORKS 2024",
             level: "Below B",
-            author_rollno: 2018801013
-          },
-          {
-            title:
-              "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
-            authors: "Amar Satyabroto Banerjee",
-            author_rollno: 2018801016,
+            author_rollno: 2018801013,
           },
           {
             title:
               "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
             authors: "Rudra Dhar",
-            author_rollno: 2022801002
+            author_rollno: 2022801002,
           },
         ],
       },
@@ -380,37 +380,38 @@ export const conference_schedule = [
             advisor: "Dr. Zia Abbas",
             forum: "IEEE ISCAS",
             level: "A*",
-            author_rollno: 2022702010
+            author_rollno: 2022702010,
           },
           {
             title:
               "Towards Architecting Sustainable MLOps: A Self-Adaptation Approach",
             authors: "Hiya Bhatt",
-            author_rollno: 2024701001
+            author_rollno: 2024701001,
           },
           {
             title: "Emergence of Text Semantics in CLIP Image Encoders",
             authors: "Sreeram Reddy Vennam",
-            author_rollno: 2021101045
+            author_rollno: 2021101045,
           },
           {
             title:
               "Public Blockchain-Envisioned Security Scheme Using Post Quantum Lattice-Based Aggregate Signature for Internet of Drones Applications",
             authors: "Prithwi Bagchi",
             lab: "SERC",
-            author_rollno: 2020801014
+            author_rollno: 2020801014,
           },
           {
             title:
               "CSUM: A Novel Mechanism for Updating CubeSat while Preserving Authenticity and Integrity",
             authors: "Aashish Paliwal",
-            author_rollno: 2022801018
+            author_rollno: 2022801018,
           },
         ],
       },
       {
         time: "15:00 - 16:00",
-        event: "Navigating the Research Odyssey: Insights from Early-Career Researchers",
+        event:
+          "Navigating the Research Odyssey: Insights from Early-Career Researchers",
         bgcolor: purpleDark,
         moderators: "PhD scholar Mr. Sudarshan Srinivasan",
         participants:
@@ -432,7 +433,7 @@ export const conference_schedule = [
             title:
               "Towards Infusing Auxiliary Knowledge for Distracted Driver Detection",
             authors: "Ishwar B Balappanawar",
-            author_rollno: 2021101023
+            author_rollno: 2021101023,
           },
           {
             title: "Time-Series based Fall Detection in Two-Wheelers",
@@ -441,13 +442,13 @@ export const conference_schedule = [
             advisor: "Dr. Deepak Gangadharan",
             forum: "2023 IEEE 98th Vehicular Technology Conference",
             level: "B",
-            author_rollno: 2021112018
+            author_rollno: 2021112018,
           },
           {
             title:
               "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
             authors: "Shrikara A",
-            author_rollno: 2021101058
+            author_rollno: 2021101058,
           },
         ],
       },
@@ -465,7 +466,7 @@ export const conference_schedule = [
             advisor: "Prof. Ponnurangam Kumaraguru",
             forum: "Compression Workshop @ Neurips",
             level: "Workshop",
-            author_rollno: 2022111014
+            author_rollno: 2022111014,
           },
           {
             title:
@@ -476,24 +477,24 @@ export const conference_schedule = [
             forum:
               "International Conference on Service Oriented Computing (ICSOC)",
             level: "A",
-            author_rollno: 2022101111
+            author_rollno: 2022101111,
           },
           {
             title:
               "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
             authors: "Vidya C S",
-            author_rollno: 2022702002
+            author_rollno: 2022702002,
           },
           {
             title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
             authors: "Karthik Prasanna N",
-            author_rollno: 2020115007
+            author_rollno: 2020115007,
           },
           {
             title:
               "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
             authors: "Srinivasan R",
-            author_rollno: 2024900020
+            author_rollno: 2024900020,
           },
         ],
       },
@@ -508,7 +509,13 @@ export const conference_schedule = [
             title:
               "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
             authors: "Sandeep Kumar",
-            author_rollno: 2018701015
+            author_rollno: 2018701015,
+          },
+          {
+            title:
+              "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
+            authors: "Kanukuntla Raj Kumar",
+            author_rollno: 2023810001,
           },
           {
             title:
@@ -519,7 +526,7 @@ export const conference_schedule = [
             forum:
               "International Conference on Automation Science and Engineering",
             level: "Others",
-            author_rollno: 2022702005
+            author_rollno: 2022702005,
           },
           {
             title:
@@ -529,24 +536,25 @@ export const conference_schedule = [
             advisor: "Y. Raghu Reddy",
             forum: "ACM CHIPLAY",
             level: "A",
-            author_rollno: 2022701007
+            author_rollno: 2022701007,
           },
-          {
-            title:
-              "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
-            authors: "Kanukuntla Raj Kumar",
-            author_rollno: 2023810001
-          },
+
           {
             title: "Enhancing Accuracy in Indic Handwritten Text Recognition",
             authors: "Evani Lalitha",
-            author_rollno: 2024701023
+            author_rollno: 2024701023,
           },
           {
             title:
               "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
             authors: "Raghav Donakanti",
-            author_rollno: 2021101024
+            author_rollno: 2021101024,
+          },
+          {
+            title:
+              "Objectifying Gaze: an empirical study with non-sexualized images",
+            authors: "Ayushi Agarwal",
+            author_rollno: 2020801007,
           },
         ],
       },
