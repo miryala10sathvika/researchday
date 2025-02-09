@@ -501,7 +501,7 @@ export const conference_schedule = [
             title: "EditIQ: Automated Cinematic Editing of Static Wide-Angle Videos via Dialogue Interpretation and Saliency Cues",
             authors: "Bhav Beri",
             author_rollno: 2021111013,
-          }
+          },
           {
             title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
             authors: "Karthik Prasanna N",
