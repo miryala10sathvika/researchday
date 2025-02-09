@@ -241,7 +241,7 @@ const DayButton = ({ day, dayVal, setDayVal }) => {
 };
 
 function ToggleButton() {
-  const [dayVal, setDayVal] = useState("Day 1");
+  const [dayVal, setDayVal] = useState("Day 2");
 
   return (
     <>
