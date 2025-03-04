@@ -51,6 +51,7 @@ export default function Header({ user = null }) {
         },
         { label: "Schedule", href: "/schedule" },
         { label: "Application", href: "/applications" },
+        { label: "Gallery", href: "/gallery" },
         // { label: "Attendee Registration", href: "/attendee" },
         { label: "Logout", href: "/api/logout" },
       ]);
@@ -63,6 +64,7 @@ export default function Header({ user = null }) {
           href: "/organization",
         },
         { label: "Schedule", href: "/schedule" },
+        { label: "Gallery", href: "/gallery" },
         { label: "Login", href: "/api/login" },
       ]);
     }

@@ -17,7 +17,7 @@ export default async function RootLayout({ children }) {
   const user = await getUser();
 
   // Get the page path
-  const headersList = headers();
+  const headersList = await headers();
   const path = headersList.get("x-pathname");
 
   return (

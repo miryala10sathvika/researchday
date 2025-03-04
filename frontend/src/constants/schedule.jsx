@@ -36,6 +36,7 @@ export const conference_schedule = [
             forum: "Midwest Symposium on Circuits and Systems (MWSCAS)",
             level: "A",
             author_rollno: 2022702013,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S1/D1-S1-P1-Shiva_Sharma.pptx?d=wccf2b80af77a476eb501d0fcab902556&csf=1&web=1&e=DbcAj5",
           },
           {
             title:
@@ -46,6 +47,7 @@ export const conference_schedule = [
             forum: "ISEC25",
             level: "Others",
             author_rollno: 2022900007,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S1/D1-S1-P2-LLMcomparision_ResearchFest.pptx?d=wf2da54e4951f4414b5dfcbbc8ec82d85&csf=1&web=1&e=VJ8Zbx",
           },
           // {
           //   title:
@@ -67,12 +69,14 @@ export const conference_schedule = [
             forum: "ICASSP 2025",
             level: "A",
             author_rollno: 2021900013,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S1/Rohit_Girmaji_ResearchFest.pptx?d=w4f55f645ddd24accbafc6629ac71b807&csf=1&web=1&e=ZHt2wG",
           },
           {
             title:
               "Why should only High-Resource-Languages have all the fun? Pivot Based Evaluation in Low Resource Setting",
             authors: "Ananya Mukherjee",
             author_rollno: 2018801009,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S1/D1-S1-P5-AnanyaMukherjee_ResearchFest.pdf?csf=1&web=1&e=71oKBx",
           },
         ],
       },
@@ -102,6 +106,7 @@ export const conference_schedule = [
             forum: "ICASSP",
             level: "A",
             author_rollno: 2024701010,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S1/Ayan-Prompt-to-Correct2.pptx?d=wba7768f50a564614a447d6a7778c02c6&csf=1&web=1&e=6Qx02O",
           },
           {
             title:
@@ -112,6 +117,7 @@ export const conference_schedule = [
             forum: "SEAA",
             level: "B",
             author_rollno: 2020900015,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S2/D1-S2-P2-Divij_SDW.pptx?d=w90c8769432cc43eca6db939a1a0c01b1&csf=1&web=1&e=oyAEJc",
           },
           {
             title:
@@ -123,6 +129,7 @@ export const conference_schedule = [
               "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies",
             level: "A*",
             author_rollno: 2022801009,
+            slides: "https://iiitaphyd-my.sharepoint.com/:u:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S2/D1-S2-P3-Neil_StethoSpeech.key?csf=1&web=1&e=DPK6t7",
           },
           {
             title:
@@ -133,6 +140,7 @@ export const conference_schedule = [
             forum: "WACV",
             level: "A",
             author_rollno: 2020111018,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S2/D1-S2-P5-Aneesh_FinderNet.pdf?csf=1&web=1&e=dX0GsX",
           },
         ],
       },
@@ -165,6 +173,7 @@ export const conference_schedule = [
               "International Joint Conference on Artificial Intelligence (IJCAI-24)",
             level: "A*",
             author_rollno: 2020701017,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S3/D1-S3-P1-IJCAIDC2024_Session3_Sanjay_Chandlekar.pptx?d=wbf158b1d1d754061a67ff8077dc9fa48&csf=1&web=1&e=LowPDz",
           },
           {
             title: "Higher Order Structures for Graph Explanations",
@@ -174,6 +183,7 @@ export const conference_schedule = [
             forum: "AAAI Conference on Artificial Intelligence",
             level: "A*",
             author_rollno: 2021101109,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S3/D1-S3-P2-Akshit.pdf?csf=1&web=1&e=ZR9GwZ",
           },
           {
             title:
@@ -185,6 +195,7 @@ export const conference_schedule = [
               "2024 IEEE International Conference on Robotics and Automation (ICRA)",
             level: "A*",
             author_rollno: 2022900005,
+            slides: "https://iiitaphyd-my.sharepoint.com/:u:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S3/D1-S3-P3-Chirag_Parikh.url?csf=1&web=1&e=G8eJAC",
           },
           {
             title:
@@ -194,6 +205,7 @@ export const conference_schedule = [
               "2024 IEEE International Conference on Robotics and Automation (ICRA)",
             level: "A*",
             author_rollno: 2021101131,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S3/D1-S3-P4%20Soham%20Korade.pdf?csf=1&web=1&e=PG3LGi",
           },
         ],
       },
@@ -209,6 +221,7 @@ export const conference_schedule = [
               "Architecting Digital Twin for Smart City Systems: A Case Study",
             authors: "Kanigolla Naga Venkata Bala Likhith",
             author_rollno: 2024701036,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P1-Kanigolla%20Naga%20Venkata%20Bala%20Likhith.pptx?d=w8667c34bc22f4cec9fbc29178f5f449d&csf=1&web=1&e=EkB1F5",
           },
           {
             title:
@@ -220,6 +233,7 @@ export const conference_schedule = [
               "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)",
             level: "A",
             author_rollno: 2022801016,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P2-Deepti_DashCop.pptx?d=w70cbbd00138e4ce1b9c6f1e92190f4d6&csf=1&web=1&e=ubgwhE",
           },
           {
             title:
@@ -230,12 +244,14 @@ export const conference_schedule = [
             forum: "IEEE Globecom Workshop",
             level: "A*",
             author_rollno: 2022702003,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P3-Naganjani.pdf?csf=1&web=1&e=no4Rme",
           },
           {
             title:
               "A Knowledge-Driven Approach for Dynamic Reconfiguration of Control Design in Internet of Things and Cyber-Physical Systems",
             authors: "Amar Satyabroto Banerjee",
             author_rollno: 2018801016,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P4-Amar_Banerjee-Knowledge-Driven-Control-Capability-Composition.pptx?d=w96bf102733ea4fdba2b9aabe9740c216&csf=1&web=1&e=KOwiwR",
           },
           {
             title:
@@ -246,18 +262,21 @@ export const conference_schedule = [
             forum: "Neuropsychologia",
             level: "SJR (SCImago Journal Rank): 0.995, Quartile: Q1",
             author_rollno: 2022815001,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P5-Pooja%20and%20PrithaD1-S4-P5-Pooja%20and%20Pritha.pptx?d=w71e461b18188480f892d6ec099fb2e47&csf=1&web=1&e=RA82uj",
           },
           {
             title:
               "A Systematic Exploration of Linguistic Phenomena in Spoken Hindi: Resource Creation and Hypothesis Testing",
             authors: "Aadya Ranjan",
             author_rollno: 2023814001,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/D1-S4-P6-icon_research_anonymous.pdf?csf=1&web=1&e=YdIcCb",
           },
           {
             title:
               "Representation Surgery: Theory and Practice of Affine Steering",
             authors: "Shashwat Singh",
             author_rollno: 2020114016,
+            slides: "https://iiitaphyd-my.sharepoint.com/:u:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D1-S4/slides.com.url?csf=1&web=1&e=5zaEcp",
           },
         ],
       },
@@ -285,6 +304,7 @@ export const conference_schedule = [
               "LineTR: Unified Text Line Segmentation for Challenging Palm Leaf Manuscripts",
             authors: "Amal Joseph",
             author_rollno: 2023801004,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S1/D2-S1-P1-FINAL%20-%20AmalJoseph%20-%20LineTR.pdf?csf=1&web=1&e=E646Um",
           },
           {
             title:
@@ -295,12 +315,14 @@ export const conference_schedule = [
             forum: "LREC-COLING 2024",
             level: "A",
             author_rollno: 2020114011,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S1/D2-S1-P2-Coling%20Presentation%20Slides_anonymous.pdf?csf=1&web=1&e=KC7vec,"
           },
           {
             title:
               "InSaAF: Incorporating Safety Through Accuracy and Fairness - Are LLMs Ready for the Indian Legal Domain?",
             authors: "Raghav Donakanti",
             author_rollno: 2021101024,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S1/D2-S1-P3-Insaaf.pdf?csf=1&web=1&e=nbaKTK",
           },
           {
             title:
@@ -311,6 +333,7 @@ export const conference_schedule = [
             forum: "18th World Conference on Earthquake Engineering",
             level: "Others",
             author_rollno: 2021810001,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S1/D2-S1-P4-S.Saranya_2021810001_ResearchFest_anonymous.pptx?d=w042435bc4bed492e9ba87c1c85028a75&csf=1&web=1&e=ERuivh",
           },
           {
             title:
@@ -320,6 +343,7 @@ export const conference_schedule = [
             advisor: "Nazia Akhtar",
             forum: "Spatial Methods for Urban Sustainability (SMUS Conference)",
             level: "NA",
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S1/D2-S1-P5-Radheshyam_ResearchFest2025.pptx?d=w69c51e27fd014cf2b0cb161169b9198b&csf=1&web=1&e=kKKgHM",
             // author_rollno: 2020115009
           },
         ],
@@ -339,6 +363,7 @@ export const conference_schedule = [
             forum: "Deployable AI (DAI) Workshop at AAAI-2025",
             level: "Workshop",
             author_rollno: 2022702012,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S2/D2-S2-P1-Jayadratha-NCwR.pptx?d=wd3754e7d03b04d2188eeb7432f0e8993&csf=1&web=1&e=05E5Tt",
           },
           {
             title: "Recursive Subproduct Codes with Reed-Muller-like Structure",
@@ -348,6 +373,7 @@ export const conference_schedule = [
             forum: "International Symposium on Information Theory",
             level: "B",
             author_rollno: 2022702018,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S2/D2-S2-P2-aditya_siddheshwar_RSP_codes_anonymous.pdf?csf=1&web=1&e=E2FmIx",
           },
           {
             title:
@@ -363,12 +389,14 @@ export const conference_schedule = [
             title: "Towards Rational Consensus in Honest Majority",
             authors: "Varul Srivastava",
             author_rollno: 2019111015,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S2/D2-S2-P4-_IIITH_Research_Week_RationalConsensus.pdf?csf=1&web=1&e=esKwfx"
           },
           {
             title:
               "Can LLMs Generate Architectural Design Decisions? - An Exploratory Empirical study",
             authors: "Rudra Dhar",
             author_rollno: 2022801002,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S2/D2-S2-P5-ResearchFest_RudraDhar.pptx?d=w6fd7c826fa5347fab7f1c3e6d9544bdb&csf=1&web=1&e=uqNJiV",
           },
         ],
       },
@@ -393,17 +421,20 @@ export const conference_schedule = [
             forum: "IEEE ISCAS",
             level: "A*",
             author_rollno: 2022702010,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S3/D2-S3-P1-MetaCirc_anonymous.pptx?d=w73079c4ca7514153b982a87dd45ed3ba&csf=1&web=1&e=c78r5O",
           },
           {
             title:
               "Towards Architecting Sustainable MLOps: A Self-Adaptation Approach",
             authors: "Hiya Bhatt",
             author_rollno: 2024701001,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S3/D2-S3-P2-Sustainable%20MLOps%20Presentation-3.pdf?csf=1&web=1&e=csTqVC",
           },
           {
             title: "Emergence of Text Semantics in CLIP Image Encoders",
             authors: "Sreeram Reddy Vennam",
             author_rollno: 2021101045,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S3/D2-S3-P3-Sreeram_Vennam.pdf?csf=1&web=1&e=73170b",
           },
           {
             title:
@@ -411,12 +442,14 @@ export const conference_schedule = [
             authors: "Prithwi Bagchi",
             lab: "SERC",
             author_rollno: 2020801014,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S3/D2-S3-P4-Research_Fest_Prit.pdf?csf=1&web=1&e=4mPnw4",
           },
           {
             title:
               "CSUM: A Novel Mechanism for Updating CubeSat while Preserving Authenticity and Integrity",
             authors: "Aashish Paliwal",
             author_rollno: 2022801018,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S3/D2-S3-P5-Aashish.pdf?csf=1&web=1&e=cTsgbX",
           },
         ],
       },
@@ -446,6 +479,7 @@ export const conference_schedule = [
               "Towards Infusing Auxiliary Knowledge for Distracted Driver Detection",
             authors: "Ishwar B Balappanawar",
             author_rollno: 2021101023,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S4/D2-S4-P1-Towards%20Infusing%20Auxiliary%20Knowledge%20for%20Distracted%20Driver%20Detection.pdf?csf=1&web=1&e=F0tdh3",
           },
           {
             title: "Time-Series based Fall Detection in Two-Wheelers",
@@ -455,12 +489,14 @@ export const conference_schedule = [
             forum: "2023 IEEE 98th Vehicular Technology Conference",
             level: "B",
             author_rollno: 2021112018,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S4/D2-S4-P2-Arihant_anonymous.pptx?d=w883f026a2e444979b4e4062cc07082c9&csf=1&web=1&e=CoMIj7",
           },
           {
             title:
               "LLMs for Generation of Architectural Components: An Exploratory Empirical Study in the Serverless World",
             authors: "Shrikara A",
             author_rollno: 2021101058,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S4/D2-S4-P3-Shrikara.pdf?csf=1&web=1&e=uDnyXv",
           },
           {
             title: "LLM Vocabulary Compression for Low-Compute Environments",
@@ -470,6 +506,7 @@ export const conference_schedule = [
             forum: "Compression Workshop @ Neurips",
             level: "Workshop",
             author_rollno: 2022111014,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S4/D2-S4-P4-IIIT%20Hyderabad_anonymous.pdf?csf=1&web=1&e=TuABQH",
           },
           {
             title:
@@ -481,6 +518,7 @@ export const conference_schedule = [
               "International Conference on Service Oriented Computing (ICSOC)",
             level: "A",
             author_rollno: 2022101111,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S4/D2-S4-P5-Poseidon%20(3).pdf?csf=1&web=1&e=dfeME9",
           },
         ],
       },
@@ -496,34 +534,40 @@ export const conference_schedule = [
               "Equilibrium Point Selection and Two Stage Optimal Control of Quadrotor under Actuator Failure",
             authors: "Vidya C S",
             author_rollno: 2022702002,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S5/D2-S5-P1-2022702002_anonymous.pptx?d=w33389e17f8b34f8ebfa5e384a5e03036&csf=1&web=1&e=D2jJ8f",
           },
           {
             title: "EditIQ: Automated Cinematic Editing of Static Wide-Angle Videos via Dialogue Interpretation and Saliency Cues",
             authors: "Bhav Beri",
             author_rollno: 2021111013,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S5/D2-S5-P2-New%20EditIQ%20Video%20Presentation.pptx?d=wf222c66208534cafb1356250bc64afcb&csf=1&web=1&e=gib6WN",
           },
           {
             title: "Does Content Effect in LLMs Point to Genuine Reasoning?",
             authors: "Karthik Prasanna N",
             author_rollno: 2020115007,
+            slides: "https://iiitaphyd-my.sharepoint.com/:b:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P6-BEWARE%20Presentation%201%201.pdf?csf=1&web=1&e=xVbmJG",
           },
           {
             title:
               "Automatically Assessing Software Architecture Compliance with Green Software Patterns",
             authors: "Srinivasan R",
             author_rollno: 2024900020,
+            slides: "https://iiitaphyd-my.sharepoint.com/:f:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S5?csf=1&web=1&e=CxTJzc",
           },
           {
             title:
               "Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows",
             authors: "Sandeep Kumar",
             author_rollno: 2018701015,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S5/D2-S5-P4-Inverse_Flow_anonymous.pptx?d=wf33e81cec4964f168b49bbd5e17dc56f&csf=1&web=1&e=dTZgkl",
           },
           {
             title:
               "COMPUTATIONAL FRAMEWORK FOR FAILURE ANALYSIS OF FUNICULAR STRUCTURES",
             authors: "Kanukuntla Raj Kumar",
             author_rollno: 2023810001,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S5/D2-S5-P5-RAJKUMAR_K_IIIT_HYD_RF_anonymous.pptx?d=wa5d056792fcc4784a9a13cf300e5e04b&csf=1&web=1&e=QsIes1",
           },
         ],
       },
@@ -544,6 +588,7 @@ export const conference_schedule = [
               "International Conference on Automation Science and Engineering",
             level: "Others",
             author_rollno: 2022702005,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P1-Research_Fest.pptx?d=w33d5f82acdca498a9923136cae87befe&csf=1&web=1&e=BU47ij",
           },
           {
             title:
@@ -554,18 +599,21 @@ export const conference_schedule = [
             forum: "ACM CHIPLAY",
             level: "A",
             author_rollno: 2022701007,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P2-ACMGVR%20Puru%20Ojha.pptx?d=w155f2722d5c94b5da00db0f262369e7f&csf=1&web=1&e=FYuTcY",
           },
 
           {
             title: "Enhancing Accuracy in Indic Handwritten Text Recognition",
             authors: "Evani Lalitha",
             author_rollno: 2024701023,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P3-Evani_Lalitha-2024701023_anonymous.pptx?d=wc6b717c4446344f7a0ace3c7b415e5f7&csf=1&web=1&e=72V7ps",
           },
           {
             title:
               "Objectifying Gaze: an empirical study with non-sexualized images",
             authors: "Ayushi Agarwal",
             author_rollno: 2020801007,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P4-ResearchFest_CSS2024.pptx?d=wa9b90682a7fa40129fe8d35b7e5ed5ab&csf=1&web=1&e=mpEiBL",
           },
           {
             title:
@@ -577,6 +625,7 @@ export const conference_schedule = [
               "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024",
             level: "A*",
             author_rollno: 2021101005,
+            slides: "https://iiitaphyd-my.sharepoint.com/:p:/r/personal/researchfest_iiit_ac_in/Documents/ResearchFest2025-Slides/D2-S6/D2-S6-P5-Haran_MICap.pptx?d=w1c6e523b0ed042b99580ee51db6e5d1c&csf=1&web=1&e=1CRqXo",
           },
         ],
       },

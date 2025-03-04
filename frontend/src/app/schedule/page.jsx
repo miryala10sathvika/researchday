@@ -17,6 +17,7 @@ import {
   // Alert,
 } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import SlideshowIcon from '@mui/icons-material/Slideshow';
 
 import { conference_schedule } from "constants/schedule";
 
@@ -210,6 +211,21 @@ function day(content) {
                                 <PictureAsPdfIcon />
                               </IconButton>
                             </Link>
+                          )}
+                          {paper?.slides && (
+                            <Link
+                                href={`${paper?.slides}`}
+                              >
+                                <IconButton
+                                  sx={{
+                                    "@media (max-width: 768px)": {
+                                      marginLeft: "auto", // Ensure icon is on the extreme right
+                                    },
+                                  }}
+                                >
+                                  <SlideshowIcon />
+                                </IconButton>
+                              </Link>
                           )}
                         </TableCell>
                       </TableRow>
